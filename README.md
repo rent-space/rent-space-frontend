@@ -1,30 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# RentSpace
 
-## Getting Started
+Reserve espaços e serviços para seu evento!
 
-First, run the development server:
+### Instalando
+
+```bash
+npm install
+```
+
+### Executando
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O site estará disponível em http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Testando
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Primeiro o site deve estar rodando.
 
-## Learn More
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Em seguida, basta rodar o testes do cypress.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run tests
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Contribuindo
 
-## Deploy on Vercel
+Ao criar um PR a nossa suite de testes será executada automáticamente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Além disso, o Vercel irá gerar um Web Preview para testar
+funcionalmente a nova feature.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ao fazer merge na main um novo deploy será automáticamente feito para a URL de produção.
