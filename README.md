@@ -27,7 +27,7 @@ npm run dev
 Em seguida, basta rodar o testes do cypress.
 
 ```bash
-npm run tests
+npm run test
 ```
 
 ### Contribuindo
