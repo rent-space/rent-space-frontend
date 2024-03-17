@@ -14,7 +14,7 @@
     
 }
 
-.button:hover {
+.button:not(.disabled):hover {
     opacity: 0.8;
 }
 
