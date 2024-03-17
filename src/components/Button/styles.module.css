@@ -1,0 +1,34 @@
+.button {
+    height: 52px;
+    border-radius: 6px;
+    background-color: #EB5B14;
+    color: #FFF;
+    border: 0;
+    padding: 0 120px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+    
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+
+.disabled { 
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.secundary {
+    color: #EB5B14;
+    background-color: #fff;
+    border: 1px solid #EB5B14;
+}
+
+
+
