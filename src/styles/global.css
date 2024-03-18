@@ -1,0 +1,12 @@
+body , input , button, textarea {
+    font-family: 'Montserrat', sans-serif;
+    font: 500 16px 'Roboto', sans-serif;
+}
+
+:root {
+    --laranja: #EB5B14;
+    --branco: #fff;
+    --cinza-claro: #555;
+}
+
+  

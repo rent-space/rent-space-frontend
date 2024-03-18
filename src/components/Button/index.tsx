@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes } from "react"
 import styles from './styles.module.css'
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     secondary?: boolean;
     onClick?: () => void

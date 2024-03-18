@@ -1,7 +1,7 @@
 .button {
     height: 3.25rem;
     border-radius: 0.5rem;
-    background-color: #EB5B14;
+    background-color: var(--laranja);
     color: #FFF;
     border: 0;
     padding: 0 7.5rem;
@@ -25,9 +25,9 @@
 }
 
 .secondary {
-    color: #EB5B14;
-    background-color: #fff;
-    border: 1px solid #EB5B14;
+    color: var(--laranja);
+    background-color: var(--branco);
+    border: 1px solid var(--laranja);
 }
 
 
