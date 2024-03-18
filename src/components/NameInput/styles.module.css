@@ -1,0 +1,54 @@
+.content {
+    position: relative;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+.title {
+    margin-top: 12px;
+    font-size: 16px;
+    color: #5555;
+    padding-bottom: 6px;
+    font-weight: bold;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.input {
+    font-size: 14px;
+    
+    height: 51px;
+    padding-left: 16px;
+    width: 430px;
+    padding-right: 2rem;
+
+    border-radius: 8px;
+    background-color: #F1F3F6;
+    border: 0;    
+    
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.iconContent{
+    justify-content: center;
+    align-items: center;
+    background-color: #EB5B14;
+    padding: 12px 12px 12px 12px;
+    border-radius: 8px;
+    position: absolute;
+    top: 72%; 
+    left: 430px;
+    transform: translateY(-50%); 
+    font-size: 24px;
+    color: #fff
+}
