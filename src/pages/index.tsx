@@ -5,7 +5,7 @@ export default function Home() {
     <>
     <h1>RentSpace</h1>
     <Button disabled>Disabled</Button>
-    <Button secundary>Secundary</Button>
+    <Button secondary>Secundary</Button>
     <Button>Principal</Button>
     </>
   );
