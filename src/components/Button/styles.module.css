@@ -1,11 +1,11 @@
 .button {
-    height: 52px;
-    border-radius: 6px;
+    height: 3.25rem;
+    border-radius: 0.5rem;
     background-color: #EB5B14;
     color: #FFF;
     border: 0;
-    padding: 0 120px;
-    font-size: 20px;
+    padding: 0 7.5rem;
+    font-size: 1.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
