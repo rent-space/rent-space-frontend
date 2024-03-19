@@ -1,3 +1,12 @@
+import { Header } from "@/components/Header";
+
 export default function Home() {
-  return <h1>RentSpace</h1>;
+  return (
+    <>
+      <Header>
+        <p>olaaa</p>
+      </Header>
+      <h1>RentSpace</h1>
+    </>
+  );
 }
