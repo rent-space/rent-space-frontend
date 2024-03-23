@@ -16,10 +16,20 @@ export function Header(props: Props) {
     router.push("/");
   };
 
+  const navigateToHome = () => {
+    router.push("/home");
+  };
+
   return (
     <div className={styles.header}>
-      <Image src="/logo.svg" alt="RentSpace Logo" width={129} height={62} />
-
+      <Image
+        src="/logo.svg"
+        alt="RentSpace Logo"
+        width={129}
+        height={62}
+        onClick={navigateToHome}
+        className={styles.logo}
+      />
       {userLoggedIn && (
         <>
           <NavBar />
