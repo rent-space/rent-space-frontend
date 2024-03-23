@@ -1,12 +1,10 @@
 .button {
-  height: 3.25rem;
-  border-radius: 0.5rem;
-  padding: 0 7.5rem;
-  font-size: 1.25rem;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-size: var(----font-size-medium);
 }
 
 .button[data-disabled="true"] {
@@ -28,4 +26,12 @@
   color: var(--branco);
   background-color: var(--laranja);
   border: 0;
+}
+
+.button[data-size="small"] {
+  padding: 0.625rem 1.875rem;
+}
+
+.button[data-size="large"] {
+  padding: 0.625rem 10.675rem;
 }

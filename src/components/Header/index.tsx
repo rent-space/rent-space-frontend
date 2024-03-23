@@ -1,16 +1,21 @@
 import styles from "./style.module.css";
 import Image from "next/image";
-import { NavBar } from "../NavBar";
+import { NavBar } from "@/components/NavBar";
 import { useRouter } from "next/router";
+import { Button } from "@/components/Button";
 
 interface Props {
-  userLoggedIn?: boolean;
+  userLoggedIn?: boolean; // Temporary Prop, will be replaced by an API call in the future
 }
 
 export function Header(props: Props) {
   const { userLoggedIn } = props;
 
   const router = useRouter();
+
+  const login = () => {
+    router.push("/home");
+  };
 
   const logout = () => {
     router.push("/");
@@ -30,11 +35,22 @@ export function Header(props: Props) {
         onClick={navigateToHome}
         className={styles.logo}
       />
-      {userLoggedIn && (
+      {userLoggedIn ? (
         <>
           <NavBar />
-          <div onClick={logout}>Log out</div>
+          <Button variant="secondary" size="small" onClick={logout}>
+            Sair
+          </Button>
         </>
+      ) : (
+        <div className={styles.ladingPageButtons}>
+          <Button variant="primary" onClick={login} size="small">
+            Login
+          </Button>
+          <Button variant="secondary" size="small">
+            Cadastrar
+          </Button>
+        </div>
       )}
     </div>
   );

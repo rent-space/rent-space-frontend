@@ -3,12 +3,14 @@ import styles from "./styles.module.css";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: "primary" | "secondary";
+  size: "small" | "large";
 };
 export function Button(props: ButtonProps) {
-  const { disabled, variant, children, onClick } = props;
+  const { variant, size, disabled, children, onClick } = props;
 
   return (
     <button
+      data-size={size}
       data-variant={variant}
       data-disabled={disabled}
       className={styles.button}

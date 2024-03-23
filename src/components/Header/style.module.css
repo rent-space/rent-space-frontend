@@ -9,3 +9,8 @@
 .logo:hover {
   cursor: pointer;
 }
+
+.ladingPageButtons {
+  display: flex;
+  column-gap: 1.75rem;
+}
