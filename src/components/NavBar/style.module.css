@@ -1,0 +1,26 @@
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navitem {
+  display: inline;
+  margin: 0 2rem;
+}
+
+.navitem a {
+  font-size: var(--font-size-medium);
+}
+
+.navitem[data-open="false"] a {
+  text-decoration: none;
+  color: var(--cinza-escuro);
+}
+
+.navitem[data-open="true"] a {
+  font-weight: bold;
+  color: var(--laranja);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
