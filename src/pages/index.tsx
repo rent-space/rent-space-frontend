@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { Header } from "@/components/Header";
 
 export default function Home() {
   return (
@@ -9,6 +10,9 @@ export default function Home() {
       </Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="primary">Principal</Button>
+      <Header>
+        <p>olaaa</p>
+      </Header>
     </>
   );
 }
