@@ -3,6 +3,7 @@ import Image from "next/image";
 import { NavBar } from "@/components/NavBar";
 import { useRouter } from "next/router";
 import { Button } from "@/components/Button";
+import { UserAvatar } from "../UserAvatar";
 
 interface Props {
   userLoggedIn?: boolean; // Temporary Prop, will be replaced by an API call in the future
@@ -15,10 +16,6 @@ export function Header(props: Props) {
 
   const login = () => {
     router.push("/home");
-  };
-
-  const logout = () => {
-    router.push("/");
   };
 
   const navigateToHome = () => {
@@ -38,9 +35,7 @@ export function Header(props: Props) {
       {userLoggedIn ? (
         <>
           <NavBar />
-          <Button variant="secondary" size="small" onClick={logout}>
-            Sair
-          </Button>
+          <UserAvatar />
         </>
       ) : (
         <div className={styles.ladingPageButtons}>
