@@ -1,9 +1,5 @@
-import { Header } from "@/components/Header";
+import { Page } from "@/components/Page";
 
 export default function Services() {
-  return (
-    <>
-      <Header userLoggedIn={true} />
-    </>
-  );
+  return <Page userIsLoggedIn={true}></Page>;
 }

@@ -1,5 +1,3 @@
-import { Header } from "@/components/Header";
-
 import Image from "next/image";
 import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
@@ -7,13 +5,13 @@ import { Button } from "@/components/Button";
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
 import { Text } from "@/components/Text";
+import { Page } from "@/components/Page";
+import { Footer } from "@/components/Footer";
 
 export default function LandingPage() {
   return (
-    <div>
-      <Header />
-
-      <div className={styles.pageContent}>
+    <Page userIsLoggedIn={false}>
+      <div className={styles.home}>
         <section className={styles.homeInformations}>
           <h1 className={styles.homeTitle}>
             Encontre o lugar perfeito para a sua próxima
@@ -47,17 +45,16 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className={styles.homeImageCont}>
+        <div className={styles.homeImageCont}>
           <div className={styles.blurEffect} />
           <Image src={HomeImg} alt="Home image" className={styles.homeImg} />
-        </section>
+        </div>
       </div>
-
-      <section className={styles.footer}>
+      <Footer>
         <Text variant="section" tone="secondary">
           Contato &#x2022; Termos de uso
         </Text>
-      </section>
-    </div>
+      </Footer>
+    </Page>
   );
 }
