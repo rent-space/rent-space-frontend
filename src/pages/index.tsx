@@ -6,6 +6,7 @@ import { Button } from "@/components/Button";
 
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
+import { Text } from "@/components/Text";
 
 export default function LandingPage() {
   return (
@@ -39,9 +40,11 @@ export default function LandingPage() {
             </span>
           </div>
 
-          <Button variant="primary" size="large">
-            Planejar agora
-          </Button>
+          <div>
+            <Button variant="primary" size="large">
+              Planejar agora
+            </Button>
+          </div>
         </section>
 
         <section className={styles.homeImageCont}>
@@ -51,9 +54,9 @@ export default function LandingPage() {
       </div>
 
       <section className={styles.footer}>
-        <span className={styles.appFunctionalities}>
-          Contato * Termos de uso
-        </span>
+        <Text variant="section" tone="secondary">
+          Contato &#x2022; Termos de uso
+        </Text>
       </section>
     </div>
   );
