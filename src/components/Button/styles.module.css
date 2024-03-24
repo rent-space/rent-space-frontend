@@ -1,34 +1,30 @@
 .button {
-    height: 3.25rem;
-    border-radius: 0.5rem;
-    background-color: var(--laranja);
-    color: var(--branco);
-    border: 0;
-    padding: 0 7.5rem;
-    font-size: 1.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    cursor: pointer;
-    
+  height: 3.25rem;
+  border-radius: 0.5rem;
+  background-color: var(--laranja);
+  color: var(--branco);
+  border: 0;
+  padding: 0 7.5rem;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .button:not(.disabled):hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 
 .disabled { 
-    opacity: 0.6;
-    cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .secondary {
-    color: var(--laranja);
-    background-color: var(--branco);
-    border: 1px solid var(--laranja);
+  color: var(--laranja);
+  background-color: var(--branco);
+  border: 1px solid var(--laranja);
 }
-
-
-
