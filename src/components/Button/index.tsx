@@ -1,15 +1,22 @@
-import { ButtonHTMLAttributes } from "react"
-import styles from './styles.module.css'
+import { ButtonHTMLAttributes } from "react";
+import styles from "./styles.module.css";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-    secondary?: boolean;
-    aditionalStyles?: any;
-    onClick?: () => void
-}
+  variant: "primary" | "secondary";
+  size: "small" | "large";
+};
+export function Button(props: ButtonProps) {
+  const { variant, size, disabled, children, onClick } = props;
 
-export function Button({ secondary = false, disabled = false, aditionalStyles, ...props}: ButtonProps) {
-    return (
-        <button
-        className={`${styles.button} ${disabled && styles.disabled} ${secondary && styles.secondary} ${aditionalStyles} `} {...props}></button>
-    )
+  return (
+    <button
+      data-size={size}
+      data-variant={variant}
+      data-disabled={disabled}
+      className={styles.button}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }

@@ -1,10 +1,5 @@
-.header {
-  width: 100%;
+.home {
   display: flex;
-  flex-direction: row;
-  padding: 8px 16px;
-  justify-content: space-between;
-  box-sizing: border-box;
 }
 
 .homeInformations {
@@ -12,46 +7,38 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-
-}
-
-.pageContent {
-  margin: 2.5rem auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 1800px;
 }
 
 .homeTitle {
   font-size: 50px;
-  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 
+.homeTitle span {
+  color: var(--laranja);
+}
+
 .appDescription {
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  color: #1E1E1E;
+  font-size: var(--font-size-medium);
+  color: #1e1e1e;
 }
 
 .appFunctionalities {
-  font-size: 18px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  color: #A5A5A5;
+  margin: 1.625rem 0;
+  font-size: var(--font-size-medium);
+  color: var(--cinza-medio);
+}
+
+.appFunctionalities span {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
 }
 
-.planButton {
-  margin-top: 40px;
-  width: 50%;
-  padding: 0;
+.appFunctionalities span p {
+  margin: 0;
 }
-
 
 .homeImageCont {
   position: relative;
@@ -63,14 +50,8 @@
 }
 
 .blurEffect {
-  background-image: linear-gradient(to right, #FFF, rgba(255,255,255,0));
+  background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
   width: 20%;
   height: 100%;
   position: absolute;
-}
-
-.footer {
-  margin: 0.5rem auto;
-  display: flex;
-  justify-content: center;
 }
