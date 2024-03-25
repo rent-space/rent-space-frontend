@@ -4,6 +4,7 @@ import HomeImg from '@/assets/home.svg';
 import { Button } from "@/components/Button";
 
 import styles from './styles.module.css';
+import { TermCondition } from "@/components/TermConditions";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
             <li>Contrate os melhores serviços.</li>
             <li>Aproveite 100% da sua festa.</li>
           </ul>
-
+          <TermCondition />
           <Button aditionalStyles={styles.planButton}>Planejar agora</Button>
         </section>
 
