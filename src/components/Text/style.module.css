@@ -1,0 +1,15 @@
+.text[data-variant="body"] {
+  font-size: var(--font-size-small);
+}
+
+.text[data-variant="section"] {
+  font-size: var(--font-size-medium);
+}
+
+.text[data-variant="title"] {
+  font-size: var(--font-size-large);
+}
+
+.text[data-tone="secondary"] {
+  color: var(--cinza-medio);
+}
