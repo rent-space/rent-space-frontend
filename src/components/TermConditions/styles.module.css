@@ -1,8 +1,48 @@
 .container {
-    color: #C2C2C2;
-
+    color: var(--cinza-texto-claro);
+    display: flex;
+    align-items: center;
+    
 }
 
 .link {
-    color: #999999;
+    color: var(--cinza-texto-escuro);
+    font-weight: 500;
 }
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+
+.checkboxInput {
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    
+    width: 1.3rem; 
+    height: 1.3rem; 
+    border-radius: 6px; 
+    position: relative; 
+    cursor: pointer; 
+    border: 0;
+    background-color: var(--laranja);
+}
+
+.checkboxInput:before {
+    content: '\2714'; 
+    font-size:0.9rem; 
+    color: var(--branco); 
+    
+    position: absolute; 
+    left: 0.3rem;
+    opacity: 0; 
+    transition: opacity 0.3s; 
+}
+
+.checkboxInput:checked:before {
+    opacity: 1; 
+}
+
