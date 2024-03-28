@@ -6,7 +6,7 @@ export function TermCondition() {
         <div className={styles.container}>
             <label className={styles.checkboxLabel}>
 
-                <span>Li e aceito os <Link href="" className={styles.link}>termos e condições</Link></span>
+                <span>Li e aceito os <Link href="/term-conditions" className={styles.link}>termos e condições</Link></span>
                 <input type="checkbox" className={styles.checkboxInput} name="termos-e-condicoes"/>
                 
             </label>
