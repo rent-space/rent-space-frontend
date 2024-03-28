@@ -55,3 +55,8 @@
   height: 100%;
   position: absolute;
 }
+
+.login {
+  display: flex;
+  column-gap: 1.75rem;
+}
