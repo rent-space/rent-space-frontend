@@ -1,6 +1,5 @@
-.form {
+.section {
   display: flex;
   flex-direction: column;
-  gap: 3.25rem;
-  margin: 0 10rem;
+  gap: 1.5rem;
 }

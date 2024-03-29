@@ -2,16 +2,19 @@ html,
 body {
   margin: 0;
 }
-button {
+button,
+input {
   font-family: inherit;
 }
 
 :root {
+  --preto: #000;
   --laranja: #eb5b14;
   --branco: #fff;
-  --cinza-claro: #555;
+  --cinza-claro: #f1f3f6;
   --cinza-medio: #a5a5a5;
   --cinza-escuro: #455a64;
+  --font-size-tiny: 14px;
   --font-size-small: 16px;
   --font-size-medium: 18px;
   --font-size-2x-medium: 21px;

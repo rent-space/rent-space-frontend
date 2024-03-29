@@ -9,7 +9,7 @@ export function Form(props: Props) {
 
   return (
     <>
-      <div className={styles.form}>{children}</div>
+      <form className={styles.form}>{children}</form>
     </>
   );
 }
