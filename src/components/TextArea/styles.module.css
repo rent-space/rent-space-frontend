@@ -1,0 +1,40 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.title {
+  margin-top: 12px;
+  font-size: 16px;
+  color: #5555;
+  padding-bottom: 6px;
+  font-weight: bold;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+  width: 33.5rem;
+}
+
+.textarea {
+  height: 4rem;
+  width: 30rem;
+  font-size: var(--font-size-tiny);
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  border-radius: 8px;
+  background-color: var(--cinza-claro);
+  border: 0;
+  resize: none;
+}
+
+.input:focus {
+  outline: none;
+}

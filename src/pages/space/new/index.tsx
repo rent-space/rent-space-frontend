@@ -4,8 +4,12 @@ import { Form } from "@/components/Form";
 import FormTitle from "@/components/Form/FormTitle";
 import FormSection from "@/components/Form/FormSection";
 import { Input } from "@/components/Input";
+import { TextArea } from "@/components/TextArea";
+import { useState } from "react";
 
 export default function SpaceNew() {
+  const [description, setDescription] = useState("");
+
   return (
     <>
       <Header justify="center" />
@@ -16,10 +20,18 @@ export default function SpaceNew() {
         />
         <FormSection title="Sobre o local">
           <Input
+            type="text"
             label="Título do anúncio"
             placeholder="Insira o título do local"
             required={true}
-          ></Input>
+          />
+          <TextArea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            type="textarea"
+            label="Descrição"
+            placeholder="Adicione a descrição"
+          />
         </FormSection>
 
         <section></section>

@@ -8,15 +8,17 @@ type Input = InputHTMLAttributes<HTMLInputElement> & {
   icon?: IconType;
 };
 
-export function Input({ label, icon: Icon, ...props }: Input) {
+export function Input(props: Input) {
+  const { label, icon: Icon, type, required, placeholder } = props;
+
   return (
     <>
       <div className={styles.content}>
         <Text variant="label" tone="secondary">
           {label}
-          {props.required && " *"}
+          {required && " *"}
         </Text>
-        <input className={styles.input} {...props} />
+        <input className={styles.input} type={type} placeholder={placeholder} />
         {Icon && (
           <div className={styles.iconContent}>
             <span className={styles.icon}>
