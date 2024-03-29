@@ -8,6 +8,7 @@ import { TextArea } from "@/components/TextArea";
 import { useState } from "react";
 import styles from "./styles.module.css";
 import { CurrencyInput } from "@/components/Input/CurrencyInput";
+import { PiHouseLight } from "react-icons/pi";
 
 export default function SpaceNew() {
   const [description, setDescription] = useState("");
@@ -38,6 +39,15 @@ export default function SpaceNew() {
             <Input label="Capacidade máxima" placeholder="0" type="number" />
             <CurrencyInput label="Valor por hora" required={true} />
           </div>
+        </FormSection>
+        <FormSection title="Endereço do local">
+          <Input
+            label="CEP"
+            type="number"
+            required={true}
+            placeholder="00000000"
+            icon={PiHouseLight}
+          />
         </FormSection>
 
         <section></section>

@@ -31,16 +31,13 @@
   outline: none;
 }
 
-.iconContent {
-  justify-content: center;
-  align-items: center;
+.icon {
   background-color: #eb5b14;
-  padding: 12px 12px 12px 12px;
+  padding: 0.6rem;
   border-radius: 8px;
-  position: absolute;
-  top: 72%;
-  left: 430px;
-  transform: translateY(-50%);
+  float: right;
+  position: relative;
+  top: -3.5rem;
   font-size: 24px;
   color: #fff;
 }
