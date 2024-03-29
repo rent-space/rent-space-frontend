@@ -7,6 +7,7 @@ import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
 import { useState } from "react";
 import styles from "./styles.module.css";
+import { CurrencyInput } from "@/components/Input/CurrencyInput";
 
 export default function SpaceNew() {
   const [description, setDescription] = useState("");
@@ -35,12 +36,7 @@ export default function SpaceNew() {
           />
           <div className={styles.inline}>
             <Input label="Capacidade máxima" placeholder="0" type="number" />
-            <Input
-              label="Valor por hora"
-              placeholder="0"
-              type="number"
-              required={true}
-            />
+            <CurrencyInput label="Valor por hora" required={true} />
           </div>
         </FormSection>
 
