@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 
 interface Props {
-  variant: "body" | "title" | "section";
+  variant: "body" | "section" | "subtitle" | "title1" | "title2";
   tone: "primary" | "secondary";
   children: React.ReactNode;
 }

@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export function Footer(props: Props) {

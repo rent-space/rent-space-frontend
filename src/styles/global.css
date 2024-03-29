@@ -14,5 +14,7 @@ button {
   --cinza-escuro: #455a64;
   --font-size-small: 16px;
   --font-size-medium: 18px;
+  --font-size-2x-medium: 21px;
   --font-size-large: 24px;
+  --font-size-extra-large: 29px;
 }

@@ -6,8 +6,16 @@
   font-size: var(--font-size-medium);
 }
 
-.text[data-variant="title"] {
+.text[data-variant="subtitle"] {
+  font-size: var(--font-size-2x-medium);
+}
+
+.text[data-variant="title1"] {
   font-size: var(--font-size-large);
+}
+
+.text[data-variant="title2"] {
+  font-size: var(--font-size-extra-large);
 }
 
 .text[data-tone="secondary"] {
