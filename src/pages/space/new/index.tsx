@@ -6,6 +6,7 @@ import FormSection from "@/components/Form/FormSection";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
 import { useState } from "react";
+import styles from "./styles.module.css";
 
 export default function SpaceNew() {
   const [description, setDescription] = useState("");
@@ -20,9 +21,9 @@ export default function SpaceNew() {
         />
         <FormSection title="Sobre o local">
           <Input
-            type="text"
             label="Título do anúncio"
             placeholder="Insira o título do local"
+            type="text"
             required={true}
           />
           <TextArea
@@ -32,6 +33,15 @@ export default function SpaceNew() {
             label="Descrição"
             placeholder="Adicione a descrição"
           />
+          <div className={styles.inline}>
+            <Input label="Capacidade máxima" placeholder="0" type="number" />
+            <Input
+              label="Valor por hora"
+              placeholder="0"
+              type="number"
+              required={true}
+            />
+          </div>
         </FormSection>
 
         <section></section>
