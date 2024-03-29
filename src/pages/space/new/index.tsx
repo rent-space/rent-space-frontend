@@ -48,9 +48,29 @@ export default function SpaceNew() {
             placeholder="00000000"
             icon={PiHouseLight}
           />
+          <Input label="Rua" placeholder="Insira a rua" required={true} />
+          <div className={styles.inline}>
+            <Input
+              label="Bairro"
+              placeholder="Insira o bairro"
+              required={true}
+            />
+            <Input
+              label="Cidade"
+              placeholder="Insira a cidade"
+              required={true}
+            />
+          </div>
+          <div className={styles.inline}>
+            <Input label="Complemento" placeholder="Insira o complemento" />
+            <Input
+              label="Número"
+              type="number"
+              placeholder="Insira a número"
+              required={true}
+            />
+          </div>
         </FormSection>
-
-        <section></section>
       </Form>
       <Footer></Footer>
     </>
