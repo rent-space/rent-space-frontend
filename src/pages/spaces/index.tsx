@@ -1,6 +1,7 @@
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { List } from "@/components/List";
 import { NavBar } from "@/components/NavBar";
-import { Page } from "@/components/Page";
 import { UserAvatar } from "@/components/UserAvatar";
 
 export default function Spaces() {
@@ -10,7 +11,8 @@ export default function Spaces() {
         <NavBar />
         <UserAvatar />
       </Header>
-      <Page></Page>
+      <List></List>
+      <Footer></Footer>
     </>
   );
 }
