@@ -1,0 +1,33 @@
+.container { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.detailsBox {
+    border: 1px solid red;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--laranja);
+    font-weight: 500;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--cinza-claro)
+}
+
+.subinfoTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000
+}
+
+.infoDetails {
+}
