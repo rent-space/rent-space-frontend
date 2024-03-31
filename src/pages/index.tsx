@@ -31,7 +31,9 @@ export default function LandingPage() {
   }, [])
 
   useEffect(() => {
-    router.push("/home")
+    if (session) {
+      router.push("/home")
+    }
   }, [session])
 
   return (
@@ -40,8 +42,9 @@ export default function LandingPage() {
         {providers && Object.values(providers).map(provider => (
           <Button
             key={provider.name}
-            onClick={() => signIn(provider.id)}
-          >Login</Button>
+            onClick={() => signIn(provider.id)} variant={"primary"} size={"small"}>
+            Login
+          </Button>
         ))}
       </Header>
       <Page>

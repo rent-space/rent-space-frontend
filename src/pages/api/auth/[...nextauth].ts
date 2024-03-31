@@ -35,7 +35,6 @@ export const authOptions: NextAuthOptions = {
     async signIn({ profile }) {
       try {
         console.log("SignIn initialized")
-        console.log(profile)
         const userExists = false// Call endpoint to find user
         
         if (!userExists) {
