@@ -1,6 +1,7 @@
 import { ChangeEvent, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { FiUpload } from "react-icons/fi";
+import { ImageCard } from "./ImageCard";
 
 interface Props {
   name: string;
@@ -46,7 +47,7 @@ export function ImageInput(props: Props) {
       />
       <div>
         {images.map((image) => (
-          <p key={image.name}>{image.name}</p>
+          <ImageCard key={image.name} image={image} />
         ))}
       </div>
     </>

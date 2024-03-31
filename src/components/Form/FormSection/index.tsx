@@ -6,17 +6,18 @@ import { useState } from "react";
 interface Props {
   title: string;
   children?: React.ReactNode;
+  rowSpan?: number;
 }
 
 export default function FormSection(props: Props) {
-  const { title, children } = props;
+  const { title, children, rowSpan = 1 } = props;
 
   const [visible, setVisible] = useState(true);
 
   const toggle = () => setVisible(!visible);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} style={{ gridRow: `span ${rowSpan}` }}>
       <Text variant="section" tone="primary">
         {visible ? (
           <IoIosArrowUp onClick={toggle} />

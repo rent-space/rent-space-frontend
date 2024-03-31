@@ -18,36 +18,35 @@ export default function SpaceNew() {
   };
 
   return (
-    <Form name="Espaço" onSubmit={handleSubmit} action="/spaces">
-      <FormTitle
-        title="Cadastro de Espaço"
-        subtitle="Adicione abaixo as informações que serão exibidas sobre o seu espaço"
-      />
-      <div className={styles.inline}>
-        <FormSection title="Sobre o local">
-          <Input
-            label="Título do anúncio"
-            placeholder="Insira o título do local"
-            type="text"
-            required
-          />
-          <TextArea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type="textarea"
-            label="Descrição"
-            placeholder="Adicione a descrição"
-          />
-          <div className={styles.inline}>
-            <Input label="Capacidade máxima" placeholder="0" type="number" />
-            <CurrencyInput label="Valor por hora" required />
-          </div>
-        </FormSection>
-        <FormSection title="Mídias do local">
-          <ImageInput name="images" />
-        </FormSection>
-      </div>
-
+    <Form
+      name="Espaço"
+      onSubmit={handleSubmit}
+      action="/spaces"
+      title="Cadastro de Espaço"
+      subtitle="Adicione abaixo as informações que serão exibidas sobre o seu espaço"
+    >
+      <FormSection title="Sobre o local">
+        <Input
+          label="Título do anúncio"
+          placeholder="Insira o título do local"
+          type="text"
+          required
+        />
+        <TextArea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          type="textarea"
+          label="Descrição"
+          placeholder="Adicione a descrição"
+        />
+        <div className={styles.inline}>
+          <Input label="Capacidade máxima" placeholder="0" type="number" />
+          <CurrencyInput label="Valor por hora" required />
+        </div>
+      </FormSection>
+      <FormSection title="Mídias do local" rowSpan={2}>
+        <ImageInput name="images" />
+      </FormSection>
       <FormSection title="Endereço do local">
         <Input
           label="CEP"
