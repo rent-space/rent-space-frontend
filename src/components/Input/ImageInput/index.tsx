@@ -45,7 +45,7 @@ export function ImageInput(props: Props) {
         ref={imageInputRef}
         onChange={handleChange}
       />
-      <div>
+      <div className={styles.images}>
         {images.map((image) => (
           <ImageCard key={image.name} image={image} />
         ))}

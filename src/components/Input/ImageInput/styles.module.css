@@ -21,3 +21,11 @@
 .icon {
   align-self: center;
 }
+
+.images {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}

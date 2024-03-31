@@ -48,30 +48,24 @@ export default function SpaceNew() {
         <ImageInput name="images" />
       </FormSection>
       <FormSection title="Endereço do local">
-        <Input
-          label="CEP"
-          type="number"
-          required={true}
-          mask="99999-999"
-          placeholder="_____-___"
-          icon={PiHouseLight}
-        />
-        <Input label="Rua" placeholder="Insira a rua" required />
         <div className={styles.inline}>
-          <Input label="Bairro" placeholder="Insira o bairro" required />
-          <Input label="Cidade" placeholder="Insira a cidade" required />
+          <Input
+            label="CEP"
+            type="number"
+            required={true}
+            mask="99999-999"
+            placeholder="_____-___"
+            icon={PiHouseLight}
+          />
+          <Input label="Número" type="number" required />
+        </div>
+        <Input label="Cidade" placeholder="Insira a cidade" required />
+        <div className={styles.inline}>
+          <Input label="Rua" placeholder="Insira a rua" required />
         </div>
         <div className={styles.inline}>
+          <Input label="Bairro" placeholder="Insira o bairro" required />
           <Input label="Complemento" placeholder="Insira o complemento" />
-          <Input
-            label="Número"
-            type="tel"
-            mask="(99) 9 9999-9999"
-            placeholder="(__) _ ____-____"
-            required
-            icon={BsTelephoneFill}
-            iconSize={20}
-          />
         </div>
       </FormSection>
     </Form>

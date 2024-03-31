@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
+import { Text } from "@/components/Text";
 
 interface Props {
   image: File;
@@ -19,6 +20,11 @@ export function ImageCard(props: Props) {
           fill
           objectFit="contain"
         />
+      </div>
+      <div className={styles.imageTitle}>
+        <Text tone="secondary" variant="label">
+          {image.name}
+        </Text>
       </div>
     </div>
   );
