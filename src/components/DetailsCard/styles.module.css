@@ -1,0 +1,51 @@
+.container { 
+    height: 300px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 16px;
+    padding: 0.5rem;
+}
+
+.topTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.userContainer {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 1.5rem;
+    flex-direction: row;
+    
+}
+.userDetails {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    align-items: center;
+    justify-content: center;
+
+}
+.userPhoto {
+    width: 5rem;
+    height: 5rem;
+    background-color: var(--cinza-escuro);
+    border-radius: 50%;
+}
+.userName{
+    font-size: 1rem;
+    color: var(--laranja);
+    font-weight: bold;
+}
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+.buttonContainer Button {
+    width: 250px;
+}

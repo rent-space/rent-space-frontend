@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Page } from "@/components/Page";
 import styles from './style.module.css';
-
+import { DetailsCard } from "../../../components/DetailsCard";
 export default function DetailsSpace() {
   return (
     <>
@@ -28,7 +28,7 @@ export default function DetailsSpace() {
                 venha fazer sua festa conosco.</p>
                 <div className={styles.infoDetails}>
                     <div className={styles.subinfoTitle}>
-                        <span>Informações básicas</span>
+                        <span>Informações básicas</span> 
                     </div>
                     
                     <div className={styles.subinfoTitle}>
@@ -37,11 +37,9 @@ export default function DetailsSpace() {
                     <div className={styles.subinfoTitle}>
                         <span>Serviços disponilizados</span>
                     </div>
-                    <div>
-                        card de disponibilizado por
-                    </div>
+                    <DetailsCard/>
                 </div>
-                <div></div>
+                
                 
             </div>
 
