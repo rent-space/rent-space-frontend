@@ -1,4 +1,4 @@
-.imageInputContainer {
+.imageButton {
   height: 9rem;
   border-style: dashed;
   border: dashed 2px var(--cinza);
@@ -10,6 +10,8 @@
   flex-wrap: wrap;
   gap: 1rem;
   cursor: pointer;
+  background-color: white;
+  font-size: var(--font-size-tiny);
 }
 
 .imageInput {

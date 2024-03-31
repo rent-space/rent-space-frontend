@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { FiUpload } from "react-icons/fi";
 
@@ -9,23 +9,46 @@ interface Props {
 export function ImageInput(props: Props) {
   const { name } = props;
 
+  const [images, setImages] = useState<File[]>([]);
+
   const imageInputRef = useRef<HTMLInputElement>(null);
 
-  const openInput = () => {
-    imageInputRef.current?.click();
+  const handleClick = () => {
+    if (imageInputRef.current) {
+      imageInputRef.current.click();
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      setImages([...images, file]);
+    }
   };
 
   return (
-    <div className={styles.imageInputContainer} onClick={openInput}>
-      <FiUpload size={30} className={styles.icon} />
-      <label htmlFor={name}>Clique ou arraste para adicionar sua imagem</label>
+    <>
+      <button
+        className={styles.imageButton}
+        type="button"
+        onClick={handleClick}
+      >
+        <FiUpload size={30} className={styles.icon} />
+        Clique ou arraste para adicionar sua imagem
+      </button>
       <input
         id={name}
         className={styles.imageInput}
         type="file"
         accept="image/png, image/jpeg"
         ref={imageInputRef}
+        onChange={handleChange}
       />
-    </div>
+      <div>
+        {images.map((image) => (
+          <p key={image.name}>{image.name}</p>
+        ))}
+      </div>
+    </>
   );
 }
