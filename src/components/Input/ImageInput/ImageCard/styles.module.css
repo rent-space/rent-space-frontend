@@ -4,7 +4,6 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .imageContainer {
@@ -12,8 +11,13 @@
   height: 10rem;
   background-color: var(--cinza-claro);
   border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .imageTitle {
   align-self: flex-start;
+}
+
+.closeIcon {
+  align-self: flex-end;
 }

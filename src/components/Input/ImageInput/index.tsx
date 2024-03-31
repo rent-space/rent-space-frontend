@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { FiUpload } from "react-icons/fi";
 import { ImageCard } from "./ImageCard";
@@ -22,9 +22,15 @@ export function ImageInput(props: Props) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const file = e.target.files[0];
-      setImages([...images, file]);
+      const image = e.target.files[0];
+      setImages([...images, image]);
     }
+  };
+
+  const handleRemove = (imageName: string) => {
+    setImages((prevImages) =>
+      prevImages.filter((image) => image.name !== imageName)
+    );
   };
 
   return (
@@ -38,6 +44,7 @@ export function ImageInput(props: Props) {
         Clique ou arraste para adicionar sua imagem
       </button>
       <input
+        key={images.length}
         id={name}
         className={styles.imageInput}
         type="file"
@@ -47,7 +54,7 @@ export function ImageInput(props: Props) {
       />
       <div className={styles.images}>
         {images.map((image) => (
-          <ImageCard key={image.name} image={image} />
+          <ImageCard key={image.name} image={image} onRemove={handleRemove} />
         ))}
       </div>
     </>
