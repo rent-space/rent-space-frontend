@@ -9,6 +9,7 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { CurrencyInput } from "@/components/Input/CurrencyInput";
 import { PiHouseLight } from "react-icons/pi";
+import { BsTelephoneFill } from "react-icons/bs";
 
 export default function SpaceNew() {
   const [description, setDescription] = useState("");
@@ -65,9 +66,10 @@ export default function SpaceNew() {
             <Input label="Complemento" placeholder="Insira o complemento" />
             <Input
               label="Número"
-              type="number"
-              placeholder="Insira a número"
+              type="tel"
               required={true}
+              icon={BsTelephoneFill}
+              iconSize={20}
             />
           </div>
         </FormSection>
