@@ -1,0 +1,28 @@
+.header {
+  background-color: white;
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin: 1rem 2rem;
+}
+
+.header[data-justify="space-between"] {
+  justify-content: space-between;
+}
+
+.header[data-justify="center"] {
+  justify-content: center;
+}
+
+.logo:hover[data-click="true"] {
+  cursor: pointer;
+}
+
+.logo:hover[data-click="false"] {
+  cursor: default;
+}
+
+.ladingPageButtons {
+  display: flex;
+  column-gap: 1.75rem;
+}

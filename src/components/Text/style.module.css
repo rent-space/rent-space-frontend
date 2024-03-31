@@ -1,0 +1,32 @@
+.text[data-variant="label"] {
+  font-size: var(--font-size-tiny);
+}
+
+.text[data-variant="body"] {
+  font-size: var(--font-size-small);
+}
+
+.text[data-variant="section"] {
+  font-size: var(--font-size-medium);
+}
+
+.text[data-variant="subtitle"] {
+  font-size: var(--font-size-2x-medium);
+}
+
+.text[data-variant="title1"] {
+  font-size: var(--font-size-large);
+}
+
+.text[data-variant="title2"] {
+  font-size: var(--font-size-extra-large);
+}
+
+.text[data-tone="primary"] {
+  color: var(--preto);
+  font-weight: 600;
+}
+
+.text[data-tone="secondary"] {
+  color: var(--cinza-medio);
+}

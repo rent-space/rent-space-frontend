@@ -2,22 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import LogoImg from '@/assets/rentspace_logo.svg';
-import HomeImg from '@/assets/home.svg';
+import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
-
-import { signIn, useSession, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react'
-
-import styles from './styles.module.css';
+import { signIn, useSession, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react';
 import { BuiltInProviderType } from "next-auth/providers/index";
-import { useRouter } from "next/navigation";
+    
+import styles from "./styles.module.css";
+import { IconArrowRight } from "@/components/Icons/IconArrowRight";
+import { Text } from "@/components/Text";
+import { Page } from "@/components/Page";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { useRouter } from "next/router";
 
-export default function Home() {
+export default function LandingPage() {
   const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
   const { data: session } = useSession();
-
   const router = useRouter();
-
+  
   useEffect(() => {
     const setUpProviders = async () => {
       const response = await getProviders();
@@ -29,50 +31,65 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    router.push("/logged")
+    router.push("/home")
   }, [session])
-  
-  return (
-    <div>
-      <section className={styles.header}>
-        <Image src={LogoImg} width={129} height={62} alt="Logo" />
 
+  return (
+    <>
+      <Header>
         {providers && Object.values(providers).map(provider => (
           <Button
             key={provider.name}
             onClick={() => signIn(provider.id)}
           >Login</Button>
         ))}
-      </section>
+      </Header>
+      <Page>
+        <div className={styles.home}>
+          <section className={styles.homeInformations}>
+            <h1 className={styles.homeTitle}>
+              Encontre o lugar perfeito para a sua próxima
+              <span> comemoração.</span>
+            </h1>
 
-      <div className={styles.pageContent}>
-        <section className={styles.homeInformations}>
-          <h1 className={styles.homeTitle}>Encontre o lugar perfeito para a sua próxima <span className={styles.orangeText}>comemoração.</span></h1>
+            <span className={styles.appDescription}>
+              Reserve um espaço, contrate um serviço, se preocupe com a diversão
+              da sua festa, simplifique a dor de cabeça da organização conosco.
+            </span>
 
-          <span className={styles.appDescription}>Reserve um espaço, contrate um serviço, se preocupe com a diversão da sua festa,
-            simplifique a dor de cabeça da organização conosco.
-          </span>
+            <div className={styles.appFunctionalities}>
+              <span>
+                <IconArrowRight />
+                <p>Encontre o espaço perfeito.</p>
+              </span>
+              <span>
+                <IconArrowRight />
+                <p>Contrate os melhores serviços.</p>
+              </span>
+              <span>
+                <IconArrowRight />
+                <p>Aproveite 100% da sua festa.</p>
+              </span>
+            </div>
 
-          <ul className={styles.appFunctionalities}>
-            <li>Encontre o espaço perfeito.</li>
-            <li>Contrate os melhores serviços.</li>
-            <li>Aproveite 100% da sua festa.</li>
-          </ul>
+            <div>
+              <Button variant="primary" size="large">
+                Planejar agora
+              </Button>
+            </div>
+          </section>
 
-          <Button aditionalStyles={styles.planButton}>Planejar agora</Button>
-        </section>
-
-        <section className={styles.homeImageCont}>
-          <div className={styles.blurEffect} />
-          <Image src={HomeImg} alt="Home image" className={styles.homeImg} />
-        </section>
-      </div>
-
-      <section className={styles.footer}>
-        <span className={styles.appFunctionalities}>Contato</span>
-        <span className={styles.bulletPoint}>{'\u2B24'}</span>
-        <span className={styles.appFunctionalities}>Termos de uso</span>
-      </section>
-    </div>
-  )
+          <div className={styles.homeImageCont}>
+            <div className={styles.blurEffect} />
+            <Image src={HomeImg} alt="Home image" className={styles.homeImg} />
+          </div>
+        </div>
+      </Page>
+      <Footer>
+        <Text variant="section" tone="secondary">
+          Contato &#x2022; Termos de uso
+        </Text>
+      </Footer>
+    </>
+  );
 }

@@ -1,15 +1,24 @@
-body, html {
-  padding: 0 !important;
-  margin: 0 !important;
+html,
+body {
+  margin: 0;
 }
-
-body , input , button, textarea {
-  font-family: 'Montserrat', sans-serif;
-  font: 500 16px 'Roboto', sans-serif;
+button,
+input,
+textarea {
+  font-family: inherit;
 }
 
 :root {
-  --laranja: #EB5B14;
+  --preto: #000;
+  --laranja: #eb5b14;
   --branco: #fff;
-  --cinza-claro: #555;
+  --cinza-claro: #f1f3f6;
+  --cinza-medio: #a5a5a5;
+  --cinza-escuro: #455a64;
+  --font-size-tiny: 14px;
+  --font-size-small: 16px;
+  --font-size-medium: 18px;
+  --font-size-2x-medium: 21px;
+  --font-size-large: 24px;
+  --font-size-extra-large: 29px;
 }
