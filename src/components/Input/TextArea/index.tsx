@@ -1,6 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
 import styles from "./styles.module.css";
-import { Text } from "../Text";
+import { Text } from "../../Text";
 
 type Input = InputHTMLAttributes<HTMLTextAreaElement> & {
   label?: string;

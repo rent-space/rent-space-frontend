@@ -1,6 +1,18 @@
 .footer {
-  margin: 2rem 0;
+  margin: 2rem 0rem;
   width: 100%;
   display: flex;
+  gap: 1rem;
+}
+
+.footer[data-justify="left"] {
+  justify-content: left;
+}
+
+.footer[data-justify="center"] {
   justify-content: center;
+}
+
+.footer[data-justify="right"] {
+  justify-content: right;
 }
