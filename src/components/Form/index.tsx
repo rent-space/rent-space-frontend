@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
 import { Button } from "../Button";
 import { Footer } from "../Footer";
-import { Header } from "../Header";
-import { Separator } from "../Separator";
 import styles from "./style.module.css";
+import { Header } from "../Header";
 
 interface Props {
   name: string;
@@ -18,21 +17,20 @@ export function Form(props: Props) {
   const router = useRouter();
 
   const handleBack = () => {
-    router.push(action);
+    router.push("/home");
   };
 
   return (
     <>
+      <Header justify="center" />
       <form
         id={name}
         action={action}
         className={styles.form}
         onSubmit={onSubmit}
       >
-        <Header justify="center" />
         {children}
-        <Separator />
-        <Footer justify="right">
+        <Footer justify="right" separator>
           <Button
             variant="secondary"
             size="small"
@@ -42,7 +40,7 @@ export function Form(props: Props) {
             Voltar
           </Button>
           <Button variant="primary" size="small" type="submit" form={name}>
-            Cadastrar {name}
+            Cadastrar
           </Button>
         </Footer>
       </form>

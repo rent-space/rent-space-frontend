@@ -27,7 +27,7 @@ export default function SpaceNew() {
           label="Título do anúncio"
           placeholder="Insira o título do local"
           type="text"
-          required={true}
+          required
         />
         <TextArea
           value={description}
@@ -38,7 +38,7 @@ export default function SpaceNew() {
         />
         <div className={styles.inline}>
           <Input label="Capacidade máxima" placeholder="0" type="number" />
-          <CurrencyInput label="Valor por hora" required={true} />
+          <CurrencyInput label="Valor por hora" required />
         </div>
       </FormSection>
       <FormSection title="Endereço do local">
@@ -50,10 +50,10 @@ export default function SpaceNew() {
           placeholder="_____-___"
           icon={PiHouseLight}
         />
-        <Input label="Rua" placeholder="Insira a rua" required={true} />
+        <Input label="Rua" placeholder="Insira a rua" required />
         <div className={styles.inline}>
-          <Input label="Bairro" placeholder="Insira o bairro" required={true} />
-          <Input label="Cidade" placeholder="Insira a cidade" required={true} />
+          <Input label="Bairro" placeholder="Insira o bairro" required />
+          <Input label="Cidade" placeholder="Insira a cidade" required />
         </div>
         <div className={styles.inline}>
           <Input label="Complemento" placeholder="Insira o complemento" />
@@ -62,7 +62,7 @@ export default function SpaceNew() {
             type="tel"
             mask="(99) 9 9999-9999"
             placeholder="(__) _ ____-____"
-            required={true}
+            required
             icon={BsTelephoneFill}
             iconSize={20}
           />
