@@ -1,0 +1,21 @@
+.imageInputContainer {
+  height: 9rem;
+  border-style: dashed;
+  border: dashed 2px var(--cinza);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.imageInput {
+  display: none;
+}
+
+.icon {
+  align-self: center;
+}

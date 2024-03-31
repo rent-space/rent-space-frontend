@@ -36,7 +36,12 @@ export function Input(props: Input) {
           className={styles.input}
         />
       ) : (
-        <input className={styles.input} type={type} placeholder={placeholder} />
+        <input
+          className={styles.input}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+        />
       )}
 
       {Icon && (
