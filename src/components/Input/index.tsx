@@ -8,10 +8,19 @@ type Input = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   icon?: IconType;
   iconSize?: number;
+  mask?: string;
 };
 
 export function Input(props: Input) {
-  const { label, icon: Icon, iconSize, type, required, placeholder } = props;
+  const {
+    label,
+    icon: Icon,
+    iconSize,
+    type,
+    required,
+    placeholder,
+    mask,
+  } = props;
 
   return (
     <div className={styles.content}>
@@ -20,10 +29,10 @@ export function Input(props: Input) {
         {required && " *"}
       </Text>
 
-      {type === "tel" ? (
+      {mask ? (
         <InputMask
-          mask="(99) 9 9999-9999"
-          placeholder="(__) _ ____-____"
+          mask={mask}
+          placeholder={placeholder}
           className={styles.input}
         />
       ) : (

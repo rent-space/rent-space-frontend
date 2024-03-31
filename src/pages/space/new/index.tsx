@@ -46,7 +46,8 @@ export default function SpaceNew() {
             label="CEP"
             type="number"
             required={true}
-            placeholder="00000000"
+            mask="99999-999"
+            placeholder="_____-___"
             icon={PiHouseLight}
           />
           <Input label="Rua" placeholder="Insira a rua" required={true} />
@@ -67,6 +68,8 @@ export default function SpaceNew() {
             <Input
               label="Número"
               type="tel"
+              mask="(99) 9 9999-9999"
+              placeholder="(__) _ ____-____"
               required={true}
               icon={BsTelephoneFill}
               iconSize={20}
