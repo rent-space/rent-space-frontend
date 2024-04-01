@@ -10,6 +10,7 @@
     display: flex;
     align-items: start;
     flex-direction: column;
+    max-width: 720px;
 }
 
 .title {
@@ -26,5 +27,18 @@
 .subinfoTitle {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #000
+    color: #000;
+}
+
+.infoDetails {
+    display: flex;
+    gap: 9rem;
+}
+
+.basicInfo {
+    color: var(--cinza-claro)
+}
+
+.servicesAvailable { 
+    color: var(--laranja)
 }
