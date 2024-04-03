@@ -14,11 +14,12 @@ export default function DetailsPageSpace() {
           subtitle="ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE"
           basicInfo={teste}
           servicesAvailable={teste}
+          address="Rua tanana ta nanana nanaaaaaaaaaaaaaaaaaaaaaaaaaa"
         >
            <DetailsCard
            name="nome exemplo"
            email="email@email.com"/>
-        </DetailsSpace>
+          </DetailsSpace>
       </Page>
     </>
   );

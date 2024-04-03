@@ -6,11 +6,12 @@ type DetailsSpaceProps = {
     subtitle: string;
     children: React.ReactNode;
     basicInfo?: string[];
+    address?: string
     servicesAvailable?: string[];
 }
 
 
-export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvailable, ...props}: DetailsSpaceProps) {
+export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvailable, address}: DetailsSpaceProps) {
     return (
         <>
         <main className={styles.container}>
@@ -27,42 +28,43 @@ export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvai
                 <p className={styles.subtitle}> 
                     {subtitle}
                 </p>
+
                 <div className={styles.infoDetails}>
-                    <div>
-                    <div className={styles.subinfoTitle}>
-                        <span>Informações básicas</span> 
-                        <ul>
-                            {servicesAvailable && (
-                                <>
-                                    {servicesAvailable.map((item,index) => (
-                                        <li className={styles.servicesAvailable} key={index}>{item}</li>
-                                    ))}
-                                </>) 
-                            }
-                        </ul>
+                    <div className={styles.textBox}>
+                        <div className={styles.subinfoTitle}>
+                            <span>Informações básicas</span> 
+                            <ul>
+                                {servicesAvailable && (
+                                    <>
+                                        {servicesAvailable.map((item,index) => (
+                                            <li className={styles.servicesAvailable} key={index}>{item}</li>
+                                        ))}
+                                    </>) 
+                                }
+                            </ul>
+                        </div>
+                        
+                        <div className={styles.subinfoTitle}>
+                            <span>Endereço</span>
+                            <p>{address}</p>
+                        </div>
+                        <div className={styles.subinfoTitle}>
+                            <span>Serviços disponilizados</span>
+                            <ul>
+                                {basicInfo && (
+                                    <>
+                                        {basicInfo.map((item,index) => (
+                                            <li className={styles.basicInfo} key={index}>{item}</li>
+                                        ))}
+                                    </>) 
+                                }
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div className={styles.subinfoTitle}>
-                        <span>Endereço</span>
-                        <p>descrição do endereço</p>
-                    </div>
-                    <div className={styles.subinfoTitle}>
-                        <span>Serviços disponilizados</span>
-                        <ul>
-                            {basicInfo && (
-                                <>
-                                    {basicInfo.map((item,index) => (
-                                        <li className={styles.basicInfo} key={index}>{item}</li>
-                                    ))}
-                                </>) 
-                            }
-                        </ul>
-                    </div>
-                    </div>
+
                     <div className={styles.detailsCardBox}>
                         {children}
                     </div>
-                    
                 </div>
             </div>
         </main>
