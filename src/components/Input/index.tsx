@@ -1,15 +1,26 @@
 import { InputHTMLAttributes } from "react";
 import styles from "./styles.module.css";
 import { IconType } from "react-icons";
+import InputMask from "react-input-mask";
 import { Text } from "../Text";
 
 type Input = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   icon?: IconType;
+  iconSize?: number;
+  mask?: string;
 };
 
 export function Input(props: Input) {
-  const { label, icon: Icon, type, required, placeholder } = props;
+  const {
+    label,
+    icon: Icon,
+    iconSize,
+    type,
+    required,
+    placeholder,
+    mask,
+  } = props;
 
   return (
     <div className={styles.content}>
@@ -17,11 +28,26 @@ export function Input(props: Input) {
         {label}
         {required && " *"}
       </Text>
-      <input className={styles.input} type={type} placeholder={placeholder} />
+
+      {mask ? (
+        <InputMask
+          mask={mask}
+          placeholder={placeholder}
+          className={styles.input}
+        />
+      ) : (
+        <input
+          className={styles.input}
+          type={type}
+          placeholder={placeholder}
+          required={required}
+        />
+      )}
+
       {Icon && (
-        <div className={styles.iconContent}>
+        <div>
           <span className={styles.icon}>
-            <Icon />
+            <Icon size={iconSize ? iconSize : 24} />
           </span>
         </div>
       )}
