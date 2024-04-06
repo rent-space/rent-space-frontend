@@ -1,15 +1,54 @@
+import { useRouter } from "next/router";
+import { Button } from "../Button";
+import { Footer } from "../Footer";
 import styles from "./style.module.css";
+import { Header } from "../Header";
+import FormTitle from "./FormTitle";
 
 interface Props {
+  name: string;
+  action: string;
+  onSubmit: () => void;
   children?: React.ReactNode;
+  title: string;
+  subtitle: string;
 }
 
 export function Form(props: Props) {
-  const { children } = props;
+  const { name, children, onSubmit, action, title, subtitle } = props;
+
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.push("/home");
+  };
 
   return (
     <>
-      <form className={styles.form}>{children}</form>
+      <Header justify="center" />
+      <form
+        id={name}
+        action={action}
+        className={styles.form}
+        onSubmit={onSubmit}
+      >
+        <FormTitle title={title} subtitle={subtitle} />
+        <div className={styles.formContent}>{children}</div>
+
+        <Footer justify="right" separator>
+          <Button
+            variant="secondary"
+            size="small"
+            onClick={handleBack}
+            type="button"
+          >
+            Voltar
+          </Button>
+          <Button variant="primary" size="small" type="submit" form={name}>
+            Cadastrar
+          </Button>
+        </Footer>
+      </form>
     </>
   );
 }

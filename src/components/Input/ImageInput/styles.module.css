@@ -1,0 +1,31 @@
+.imageButton {
+  height: 9rem;
+  border-style: dashed;
+  border: dashed 2px var(--cinza);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  cursor: pointer;
+  background-color: white;
+  font-size: var(--font-size-tiny);
+}
+
+.imageInput {
+  display: none;
+}
+
+.icon {
+  align-self: center;
+}
+
+.images {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+}
