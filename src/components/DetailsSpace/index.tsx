@@ -1,5 +1,8 @@
+import Image from 'next/image';
 import { DetailsCard } from '../DetailsCard';
 import styles from './styles.module.css';
+import detailsPrincipal from "@/assets/detailsTop.svg";
+
 
 type DetailsSpaceProps = {
     title: string;
@@ -13,11 +16,25 @@ type DetailsSpaceProps = {
 
 export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvailable, address}: DetailsSpaceProps) {
     return (
-        <>
         <main className={styles.container}>
-            <div className={styles.box}>
-              aqui vai ser as imagens
-            </div>
+            <div className={styles.imageBox}>
+                <div className={styles.topImage}>
+                    <Image className={styles.topImage} src={detailsPrincipal} alt="Imagem principal" />
+                </div>
+                <div className={styles.bottomImage}>
+                    <div className={styles.leftImage}>
+                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
+                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
+                    </div>
+                    <div className={styles.rightImage}>
+                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
+                        <button className={styles.viewMore}>
+                            Ver mais...
+                        </button>
+                    </div>
+                </div>
+                
+            </div> 
             <div className={styles.detailsBox}>
                 <div className={styles.titleBox}>
                     <span className={styles.title}>
@@ -68,6 +85,5 @@ export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvai
                 </div>
             </div>
         </main>
-        </>
     )
 }
