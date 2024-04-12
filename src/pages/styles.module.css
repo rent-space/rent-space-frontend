@@ -9,6 +9,14 @@
   padding: 1rem;
 }
 
+.pageContent {
+  margin: 2.5rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 1800px;
+}
+
 .homeTitle {
   font-size: 50px;
   font-weight: 600;
@@ -58,5 +66,12 @@
 
 .login {
   display: flex;
+  justify-content: center;
   column-gap: 1.75rem;
+}
+
+.bulletPoint {
+  font-size: 8px;
+  color: #A5A5A5;
+  margin: 0 0.75rem;
 }

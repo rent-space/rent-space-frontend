@@ -1,5 +1,4 @@
 import { Form } from "@/components/Form";
-import FormTitle from "@/components/Form/FormTitle";
 import FormSection from "@/components/Form/FormSection";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/Input/TextArea";
@@ -7,10 +6,20 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { CurrencyInput } from "@/components/Input/CurrencyInput";
 import { PiHouseLight } from "react-icons/pi";
-import { BsTelephoneFill } from "react-icons/bs";
 import { ImageInput } from "@/components/Input/ImageInput";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export default function SpaceNew() {
+  const router = useRouter();
+
+  useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/");
+    },
+  });
+
   const [description, setDescription] = useState("");
 
   const handleSubmit = () => {

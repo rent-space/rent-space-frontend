@@ -1,11 +1,9 @@
-import { useRouter } from "next/router";
 import { IconAccountCircle } from "../Icons/IconAccountCircle";
+import { signOut } from "next-auth/react";
 
 export function UserAvatar() {
-  const router = useRouter();
-
   const logout = () => {
-    router.push("/");
+    signOut({ callbackUrl: "/" });
   };
 
   return (
