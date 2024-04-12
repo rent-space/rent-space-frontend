@@ -1,51 +1,33 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
-import { signIn, useSession, getProviders, LiteralUnion, ClientSafeProvider } from 'next-auth/react';
-import { BuiltInProviderType } from "next-auth/providers/index";
-    
+import { signIn } from "next-auth/react";
+
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
 import { Text } from "@/components/Text";
 import { Page } from "@/components/Page";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { useRouter } from "next/router";
 
 export default function LandingPage() {
-  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
-  const { data: session } = useSession();
-  const router = useRouter();
-  
-  useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-
-      setProviders(response);
-    }
-
-    setUpProviders();
-  }, [])
-
-  useEffect(() => {
-    if (session) {
-      router.push("/home")
-    }
-  }, [session])
-
   return (
     <>
       <Header>
-        {providers && Object.values(providers).map(provider => (
+        <div className={styles.login}>
           <Button
-            key={provider.name}
-            onClick={() => signIn(provider.id)} variant={"primary"} size={"small"}>
+            onClick={() => signIn("google", { callbackUrl: "/home" })}
+            variant="primary"
+            size="small"
+          >
             Login
           </Button>
-        ))}
+          <Button variant="secondary" size="small">
+            Cadastrar
+          </Button>
+        </div>
       </Header>
       <Page>
         <div className={styles.home}>

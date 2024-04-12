@@ -1,7 +1,7 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 import { UserProfile } from "../../../../common.types";
-import { createUser, getUser } from "@/services/user-service";
+import { createUser, getUser } from "@/services/userService";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -9,7 +9,6 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    // ...add more providers here
   ],
   callbacks: {
     async session({ session }) {
@@ -23,7 +22,7 @@ export const authOptions: NextAuthOptions = {
           user: {
             ...session.user,
             // ...data
-          }
+          },
         };
 
         return newSession;
@@ -34,9 +33,9 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({ profile }) {
       try {
-        console.log("SignIn initialized")
-        const userExists = false// Call endpoint to find user
-        
+        console.log("SignIn initialized");
+        const userExists = false; // Call endpoint to find user
+
         if (!userExists) {
           // Call endpoint to create user
           const user: UserProfile = {
@@ -45,10 +44,10 @@ export const authOptions: NextAuthOptions = {
             profilePhoto: (profile as any)?.picture,
             email: (profile as any)?.email,
             telephone: "",
-            webSite: ""
-          }
+            webSite: "",
+          };
 
-          await createUser(user, (profile as any)?.sub);
+          // await createUser(user, (profile as any)?.sub);
         }
 
         return true;
@@ -56,8 +55,8 @@ export const authOptions: NextAuthOptions = {
         console.log(error);
         return false;
       }
-    }
-  }
-}
+    },
+  },
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);
