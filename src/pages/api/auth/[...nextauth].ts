@@ -4,10 +4,11 @@ import { UserProfile } from "../../../../common.types";
 import { createUser, getUser } from "@/services/userService";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.SECRET,
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_ID ?? "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
   callbacks: {
