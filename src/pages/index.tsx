@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
@@ -11,8 +11,18 @@ import { Text } from "@/components/Text";
 import { Page } from "@/components/Page";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function LandingPage() {
+  const { status } = useSession();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    status === "authenticated" && router.push("/home");
+  }, [router, status]);
+
   return (
     <>
       <Header>
