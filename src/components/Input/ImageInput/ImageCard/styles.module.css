@@ -1,0 +1,23 @@
+.card {
+  padding: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  position: relative;
+  height: 10rem;
+  background-color: var(--cinza-claro);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.imageTitle {
+  align-self: flex-start;
+}
+
+.closeIcon {
+  align-self: flex-end;
+}

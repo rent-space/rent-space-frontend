@@ -1,5 +1,12 @@
 .pageContent {
-  margin: 0 2rem;
   display: flex;
   flex-direction: column;
+}
+
+.pageContent[data-type="list"] {
+  margin: 0 2rem;
+}
+
+.pageContent[data-type="form"] {
+  margin: 0 10rem;
 }
