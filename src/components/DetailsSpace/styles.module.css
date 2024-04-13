@@ -1,94 +1,78 @@
-.container { 
-    display: flex;
-    justify-content: center;
-    gap: 5rem;
+.container {
+  display: flex;
+  gap: 3rem;
 }
 
 .detailsBox {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .imageBox {
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.5rem; 
-    min-width: 300px;
-}
-
-
-.title {
-    font-size: 2rem;
-    color: var(--laranja);
-    font-weight: 500;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: var(--cinza-claro)
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.5rem;
 }
 
 .subinfoTitle {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #000;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
 }
 
 .infoDetails {
-    display: flex;
-    gap: 8rem;
+  display: flex;
+  gap: 8rem;
 }
 
 .basicInfo {
-    color: var(--cinza-claro);
-    font-weight: 400;
+  color: var(--cinza-claro);
+  font-weight: 400;
 }
 
-.servicesAvailable { 
-    color: var(--laranja);
-    font-weight: 400;
+.servicesAvailable {
+  color: var(--laranja);
+  font-weight: 400;
 }
 
 .subinfoTitle p {
-    font-weight: 400;
-    margin-left: 2rem;
+  font-weight: 400;
+  margin-left: 2rem;
 }
 
 .topImage {
-    width: 23.25rem;
-    height: 31rem;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
+  width: 23.25rem;
+  height: 31rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
 }
 
 .bottomImage {
-    display: flex;
-    justify-content: center;
-    align-items: ce; 
-    flex-direction: column;
-    gap: 0.8rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: ce;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .sided {
-    width: 10.95rem; /* Tamanho das miniaturas */
-    height: 10.95rem;
-    border-radius: 8px;
-    object-fit: cover;
+  width: 10.95rem; /* Tamanho das miniaturas */
+  height: 10.95rem;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .viewMore {
-    border: none;
-    background-color: #555;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-    height: 10.95rem;
-    width: 10.95rem;
-    border-radius: 8px;
+  border: none;
+  background-color: #555;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  height: 10.95rem;
+  width: 10.95rem;
+  border-radius: 8px;
 }
 
 .viewMore:hover {
@@ -96,13 +80,13 @@
 }
 
 .rightImage {
-    flex-direction: flex-start;
-    display: flex;
-    gap: 1.2rem;
+  flex-direction: flex-start;
+  display: flex;
+  gap: 1.2rem;
 }
 
 .leftImage {
-    flex-direction: flex-start;
-    display: flex;
-    gap: 1.2rem;
+  flex-direction: flex-start;
+  display: flex;
+  gap: 1.2rem;
 }

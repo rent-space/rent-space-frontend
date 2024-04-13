@@ -14,6 +14,10 @@ export default function Spaces() {
     router.push("/space/details");
   };
 
+  const navigateToNewSpace = () => {
+    router.push("/space/new");
+  };
+
   useSession({
     required: true,
     onUnauthenticated() {
@@ -28,9 +32,19 @@ export default function Spaces() {
         <UserAvatar />
       </Header>
       <List>
-        <Button variant="primary" size="small" onClick={navigateToDetailsSpace}>
-          detalhes de espaço
-        </Button>
+        <div>
+          <Button variant="primary" size="small" onClick={navigateToNewSpace}>
+            Cadastrar espaço
+          </Button>
+          <br />
+          <Button
+            variant="primary"
+            size="small"
+            onClick={navigateToDetailsSpace}
+          >
+            detalhes de espaço
+          </Button>
+        </div>
       </List>
       <Footer></Footer>
     </>

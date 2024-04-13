@@ -11,10 +11,10 @@ export default function FormTitle(props: Props) {
 
   return (
     <section className={styles.title}>
-      <Text variant="title1" tone="primary">
+      <Text size="title1" weight="semibold">
         {title}
       </Text>
-      <Text variant="section" tone="secondary">
+      <Text size="section" color="gray">
         {subtitle}
       </Text>
     </section>

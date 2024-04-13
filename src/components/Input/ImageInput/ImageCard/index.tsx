@@ -28,7 +28,7 @@ export function ImageCard(props: Props) {
         />
       </div>
       <div className={styles.imageTitle}>
-        <Text tone="secondary" variant="label">
+        <Text color="gray" size="label">
           {image.name}
         </Text>
       </div>

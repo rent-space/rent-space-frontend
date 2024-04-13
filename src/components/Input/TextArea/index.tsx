@@ -14,11 +14,11 @@ export function TextArea(props: Input) {
   return (
     <div className={styles.content}>
       <div className={styles.label}>
-        <Text variant="label" tone="secondary">
+        <Text size="label" color="gray">
           {label}
           {required && " *"}
         </Text>
-        <Text variant="label" tone="secondary">
+        <Text size="label" color="gray">
           {value.length}/120
         </Text>
       </div>

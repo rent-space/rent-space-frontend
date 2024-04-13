@@ -2,25 +2,44 @@ import { Header } from "@/components/Header";
 import { Page } from "@/components/Page";
 import { DetailsSpace } from "@/components/DetailsSpace";
 import { DetailsCard } from "@/components/DetailsCard";
+import { Footer } from "@/components/Footer";
+
+const space = {
+  title: "Espaco Verde",
+  description:
+    "Um lugar muito agradável e espaçoso para quem gosta de ar livre para seus eventos onde você pode aproveitar da natureza para criar um ambiente perfeito para todos os seus convidados. Disponibilizamos diversos serviços que podem ser contratados juntamente com nosso local, venha fazer sua festa conosco.",
+  address: "R. Afonso Campos, 304A",
+  city: "Campina Grande",
+  pricePerHour: 100,
+  owner: {
+    name: "Espaço Verde Recepções",
+    profilePhoto: undefined,
+    email: "espacoverde@gmail.com",
+    telephone: "83988650907",
+    webSite: "www.espacoverde.com.br",
+  },
+  maximumCapacity: 300,
+  neighborhood: "Centro",
+  complement: undefined,
+  zipCode: 58400235,
+};
 
 export default function DetailsPageSpace() {
-  const teste = ['teste','teste1','teste2'];
   return (
     <>
       <Header justify="center" />
-      <Page>
+      <Page type="form">
         <DetailsSpace
-          title='Espaco Verde'
-          subtitle="ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE ESPAÇO VERDE"
-          basicInfo={teste}
-          servicesAvailable={teste}
-          address="Rua tanana ta nanana nanaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          title={space.title}
+          description={space.description}
+          maximumCapacity={space.maximumCapacity}
+          pricePerHour={space.pricePerHour}
+          address={space.address}
         >
-           <DetailsCard
-           name="nome exemplo"
-           email="email@email.com"/>
-          </DetailsSpace>
+          <DetailsCard name="nome exemplo" email="email@email.com" />
+        </DetailsSpace>
       </Page>
+      <Footer />
     </>
   );
 }

@@ -18,7 +18,7 @@ export default function FormSection(props: Props) {
 
   return (
     <section className={styles.section} style={{ gridRow: `span ${rowSpan}` }}>
-      <Text variant="section" tone="primary">
+      <Text size="section" weight="semibold">
         {visible ? (
           <IoIosArrowUp onClick={toggle} />
         ) : (

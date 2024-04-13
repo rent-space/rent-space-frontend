@@ -1,89 +1,87 @@
-import Image from 'next/image';
-import { DetailsCard } from '../DetailsCard';
-import styles from './styles.module.css';
+import Image from "next/image";
+import styles from "./styles.module.css";
 import detailsPrincipal from "@/assets/detailsTop.svg";
-
+import { Text } from "../Text";
 
 type DetailsSpaceProps = {
-    title: string;
-    subtitle: string;
-    children: React.ReactNode;
-    basicInfo?: string[];
-    address?: string
-    servicesAvailable?: string[];
-}
+  title: string;
+  description: string;
+  children: React.ReactNode;
+  maximumCapacity: number;
+  pricePerHour: number;
+  address?: string;
+  servicesAvailable?: string[];
+};
 
+export function DetailsSpace({
+  title,
+  description,
+  children,
+  maximumCapacity,
+  pricePerHour,
+  address,
+}: DetailsSpaceProps) {
+  return (
+    <div className={styles.container}>
+      <div className={styles.imageBox}>
+        <div className={styles.topImage}>
+          <Image
+            className={styles.topImage}
+            src={detailsPrincipal}
+            alt="Imagem principal"
+          />
+        </div>
+        <div className={styles.bottomImage}>
+          <div className={styles.leftImage}>
+            <Image
+              className={styles.sided}
+              src={detailsPrincipal}
+              alt="Imagem principal"
+            />
+            <Image
+              className={styles.sided}
+              src={detailsPrincipal}
+              alt="Imagem principal"
+            />
+          </div>
+          <div className={styles.rightImage}>
+            <Image
+              className={styles.sided}
+              src={detailsPrincipal}
+              alt="Imagem principal"
+            />
+            <button className={styles.viewMore}>Ver mais...</button>
+          </div>
+        </div>
+      </div>
+      <div className={styles.detailsBox}>
+        <Text size="title2" weight="semibold" color="orange">
+          {title}
+        </Text>
 
-export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvailable, address}: DetailsSpaceProps) {
-    return (
-        <main className={styles.container}>
-            <div className={styles.imageBox}>
-                <div className={styles.topImage}>
-                    <Image className={styles.topImage} src={detailsPrincipal} alt="Imagem principal" />
-                </div>
-                <div className={styles.bottomImage}>
-                    <div className={styles.leftImage}>
-                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
-                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
-                    </div>
-                    <div className={styles.rightImage}>
-                        <Image className={styles.sided} src={detailsPrincipal} alt="Imagem principal" />
-                        <button className={styles.viewMore}>
-                            Ver mais...
-                        </button>
-                    </div>
-                </div>
-                
-            </div> 
-            <div className={styles.detailsBox}>
-                <div className={styles.titleBox}>
-                    <span className={styles.title}>
-                        {title}
-                    </span>
-                </div>
+        <Text size="subtitle" color="gray">
+          {description}
+        </Text>
 
-                <p className={styles.subtitle}> 
-                    {subtitle}
-                </p>
-
-                <div className={styles.infoDetails}>
-                    <div className={styles.textBox}>
-                        <div className={styles.subinfoTitle}>
-                            <span>Informações básicas</span> 
-                            <ul>
-                                {servicesAvailable && (
-                                    <>
-                                        {servicesAvailable.map((item,index) => (
-                                            <li className={styles.servicesAvailable} key={index}>{item}</li>
-                                        ))}
-                                    </>) 
-                                }
-                            </ul>
-                        </div>
-                        
-                        <div className={styles.subinfoTitle}>
-                            <span>Endereço</span>
-                            <p>{address}</p>
-                        </div>
-                        <div className={styles.subinfoTitle}>
-                            <span>Serviços disponilizados</span>
-                            <ul>
-                                {basicInfo && (
-                                    <>
-                                        {basicInfo.map((item,index) => (
-                                            <li className={styles.basicInfo} key={index}>{item}</li>
-                                        ))}
-                                    </>) 
-                                }
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div className={styles.detailsCardBox}>
-                        {children}
-                    </div>
-                </div>
+        <div className={styles.infoDetails}>
+          <div className={styles.textBox}>
+            <div className={styles.subinfoTitle}>
+              <Text size="section">Informações básicas</Text>
+              <ul>
+                <li>Até {maximumCapacity} pessoas</li>
+                <li>R$ {pricePerHour}/h </li>
+              </ul>
             </div>
-        </main>
-    )
+
+            <div className={styles.subinfoTitle}>
+              <span>Endereço</span>
+              <p>{address}</p>
+            </div>
+          </div>
+
+          <div className={styles.detailsCardBox}>{children}</div>
+        </div>
+      </div>
+    </div>
+  );
 }

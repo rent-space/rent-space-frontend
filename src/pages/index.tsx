@@ -81,7 +81,7 @@ export default function LandingPage() {
         </div>
       </Page>
       <Footer>
-        <Text variant="section" tone="secondary">
+        <Text size="section" color="gray">
           Contato &#x2022; Termos de uso
         </Text>
       </Footer>

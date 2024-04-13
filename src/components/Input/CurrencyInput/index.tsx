@@ -12,7 +12,7 @@ export function CurrencyInput(props: Props) {
 
   return (
     <div className={styles.content}>
-      <Text variant="label" tone="secondary">
+      <Text size="label" color="gray">
         {label}
         {required && " *"}
       </Text>

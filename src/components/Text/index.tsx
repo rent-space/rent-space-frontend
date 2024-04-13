@@ -1,19 +1,22 @@
 import styles from "./style.module.css";
 
 interface Props {
-  variant: "label" | "body" | "section" | "subtitle" | "title1" | "title2";
-  tone: "primary" | "secondary";
+  size: "label" | "body" | "section" | "subtitle" | "title1" | "title2";
+  // tone: "primary" | "secondary" | "primary-orange" | "secondary-orange";
+  weight?: "light" | "regular" | "semibold" | "bold";
+  color?: "black" | "gray" | "orange";
   children: React.ReactNode;
   onClick?: () => void;
 }
 
 export function Text(props: Props) {
-  const { variant, children, tone, onClick } = props;
+  const { size, children, weight, color, onClick } = props;
 
   return (
     <span
-      data-variant={variant}
-      data-tone={tone}
+      data-size={size}
+      data-weight={weight}
+      data-color={color}
       className={styles.text}
       onClick={onClick}
     >

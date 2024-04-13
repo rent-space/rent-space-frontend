@@ -1,32 +1,47 @@
-.text[data-variant="label"] {
+.text[data-size="label"] {
   font-size: var(--font-size-tiny);
 }
 
-.text[data-variant="body"] {
+.text[data-size="body"] {
   font-size: var(--font-size-small);
 }
 
-.text[data-variant="section"] {
+.text[data-size="section"] {
   font-size: var(--font-size-medium);
 }
 
-.text[data-variant="subtitle"] {
+.text[data-size="subtitle"] {
   font-size: var(--font-size-2x-medium);
 }
 
-.text[data-variant="title1"] {
+.text[data-size="title1"] {
   font-size: var(--font-size-large);
 }
 
-.text[data-variant="title2"] {
+.text[data-size="title2"] {
   font-size: var(--font-size-extra-large);
 }
 
-.text[data-tone="primary"] {
-  color: var(--preto);
+.text[data-weight="bold"] {
+  font-weight: bold;
+}
+
+.text[data-weight="semibold"] {
   font-weight: 600;
 }
 
-.text[data-tone="secondary"] {
+.text[data-weight="light"] {
+  font-weight: lighter;
+}
+
+.text[data-color="black"] {
+  color: var(--preto);
+}
+
+.text[data-color="orange"] {
+  color: var(--laranja);
+}
+
+.text[data-color="gray"] {
   color: var(--cinza-medio);
 }
