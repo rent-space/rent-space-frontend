@@ -22,8 +22,16 @@
   font-size: var(--font-size-extra-large);
 }
 
+.text[data-size="title3"] {
+  font-size: var(--font-size-4x-large);
+}
+
 .text[data-weight="bold"] {
   font-weight: bold;
+}
+
+.text[data-weight="regular"] {
+  font-weight: 400;
 }
 
 .text[data-weight="semibold"] {

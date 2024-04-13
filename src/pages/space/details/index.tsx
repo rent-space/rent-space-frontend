@@ -13,14 +13,14 @@ const space = {
   pricePerHour: 100,
   owner: {
     name: "Espaço Verde Recepções",
-    profilePhoto: undefined,
+    profilePhoto: "",
     email: "espacoverde@gmail.com",
     telephone: "83988650907",
     webSite: "www.espacoverde.com.br",
   },
   maximumCapacity: 300,
   neighborhood: "Centro",
-  complement: undefined,
+  complement: "",
   zipCode: 58400235,
 };
 
@@ -29,13 +29,7 @@ export default function DetailsPageSpace() {
     <>
       <Header justify="center" />
       <Page type="form">
-        <DetailsSpace
-          title={space.title}
-          description={space.description}
-          maximumCapacity={space.maximumCapacity}
-          pricePerHour={space.pricePerHour}
-          address={space.address}
-        >
+        <DetailsSpace space={space}>
           <DetailsCard name="nome exemplo" email="email@email.com" />
         </DetailsSpace>
       </Page>

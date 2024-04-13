@@ -3,24 +3,43 @@ import styles from "./styles.module.css";
 import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 
-type DetailsSpaceProps = {
+type Space = {
   title: string;
   description: string;
-  children: React.ReactNode;
-  maximumCapacity: number;
+  address: string;
+  city: string;
   pricePerHour: number;
-  address?: string;
-  servicesAvailable?: string[];
+  owner: {
+    name: string;
+    profilePhoto: string;
+    email: string;
+    telephone: string;
+    webSite: string;
+  };
+  maximumCapacity: number;
+  neighborhood: string;
+  complement: string;
+  zipCode: number;
 };
 
-export function DetailsSpace({
-  title,
-  description,
-  children,
-  maximumCapacity,
-  pricePerHour,
-  address,
-}: DetailsSpaceProps) {
+interface Props {
+  space: Space;
+  children: React.ReactNode;
+}
+
+export function DetailsSpace(props: Props) {
+  const { space, children } = props;
+  const {
+    title,
+    description,
+    maximumCapacity,
+    pricePerHour,
+    address,
+    neighborhood,
+    city,
+    zipCode,
+  } = space;
+
   return (
     <div className={styles.container}>
       <div className={styles.imageBox}>
@@ -59,26 +78,32 @@ export function DetailsSpace({
           {title}
         </Text>
 
-        <Text size="subtitle" color="gray">
+        <Text size="subtitle" color="gray" weight="regular">
           {description}
         </Text>
 
         <div className={styles.infoDetails}>
           <div className={styles.textBox}>
-            <div className={styles.subinfoTitle}>
-              <Text size="section">Informações básicas</Text>
-              <ul>
+            <div>
+              <Text size="subtitle" weight="semibold">
+                Informações básicas
+              </Text>
+              <ul className={styles.list}>
                 <li>Até {maximumCapacity} pessoas</li>
                 <li>R$ {pricePerHour}/h </li>
               </ul>
             </div>
 
-            <div className={styles.subinfoTitle}>
-              <span>Endereço</span>
-              <p>{address}</p>
+            <div className={styles.address}>
+              <Text size="subtitle" weight="semibold">
+                Endereço
+              </Text>
+
+              <Text size="body" color="gray" weight="regular">
+                {address} - {neighborhood}, {city} - {zipCode}
+              </Text>
             </div>
           </div>
-
           <div className={styles.detailsCardBox}>{children}</div>
         </div>
       </div>

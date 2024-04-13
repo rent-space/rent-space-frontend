@@ -15,15 +15,9 @@
   border-radius: 0.5rem;
 }
 
-.subinfoTitle {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #000;
-}
-
 .infoDetails {
   display: flex;
-  gap: 8rem;
+  justify-content: space-between;
 }
 
 .basicInfo {
@@ -31,14 +25,20 @@
   font-weight: 400;
 }
 
-.servicesAvailable {
+.list {
   color: var(--laranja);
   font-weight: 400;
 }
 
-.subinfoTitle p {
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.subinfoTitle li {
   font-weight: 400;
-  margin-left: 2rem;
+  color: var(--laranja);
 }
 
 .topImage {

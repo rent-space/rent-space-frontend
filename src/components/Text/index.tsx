@@ -1,8 +1,14 @@
 import styles from "./style.module.css";
 
 interface Props {
-  size: "label" | "body" | "section" | "subtitle" | "title1" | "title2";
-  // tone: "primary" | "secondary" | "primary-orange" | "secondary-orange";
+  size:
+    | "label"
+    | "body"
+    | "section"
+    | "subtitle"
+    | "title1"
+    | "title2"
+    | "title3";
   weight?: "light" | "regular" | "semibold" | "bold";
   color?: "black" | "gray" | "orange";
   children: React.ReactNode;
