@@ -34,6 +34,9 @@ export default function LandingPage() {
           >
             Login
           </Button>
+          <Button variant="secondary" size="small">
+            Cadastrar
+          </Button>
         </div>
       </Header>
       <Page>

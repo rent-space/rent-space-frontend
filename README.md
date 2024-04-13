@@ -8,6 +8,14 @@ Reserve espaços e serviços para seu evento!
 npm install
 ```
 
+### Variáveis de ambiente
+
+Copie o `.env` de exemplo e insira as chaves Google fornecidas pelos integrantes da equipe.
+
+```bash
+cp .env.example .env
+```
+
 ### Executando
 
 ```bash
