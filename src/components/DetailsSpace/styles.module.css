@@ -9,6 +9,15 @@
   gap: 1.5rem;
 }
 
+.textBox {
+  width: 50%;
+}
+
+.card {
+  width: 50%;
+  height: 10rem;
+}
+
 .imageBox {
   display: flex;
   flex-direction: column;
@@ -17,7 +26,6 @@
 
 .infoDetails {
   display: flex;
-  justify-content: space-between;
 }
 
 .basicInfo {

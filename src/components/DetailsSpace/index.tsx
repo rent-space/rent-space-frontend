@@ -104,7 +104,7 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
           </div>
-          <div className={styles.detailsCardBox}>{children}</div>
+          <div className={styles.card}>{children}</div>
         </div>
       </div>
     </div>

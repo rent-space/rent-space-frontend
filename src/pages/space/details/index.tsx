@@ -27,10 +27,10 @@ const space = {
 export default function DetailsPageSpace() {
   return (
     <>
-      <Header justify="center" />
+      <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         <DetailsSpace space={space}>
-          <DetailsCard name="nome exemplo" email="email@email.com" />
+          <DetailsCard owner={space.owner} />
         </DetailsSpace>
       </Page>
       <Footer />

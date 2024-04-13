@@ -4,11 +4,16 @@ import { useRouter } from "next/router";
 
 interface Props {
   justify?: "space-between" | "center";
+  navigateBackTo?: "/home" | "/spaces" | "/services" | "/";
   children?: React.ReactNode;
 }
 
 export function Header(props: Props) {
-  const { justify = "space-between", children } = props;
+  const {
+    justify = "space-between",
+    children,
+    navigateBackTo = "/home",
+  } = props;
 
   const router = useRouter();
 
@@ -16,7 +21,7 @@ export function Header(props: Props) {
 
   const navigateToHome = () => {
     if (logoIsClickable) {
-      router.push("/home");
+      router.push(navigateBackTo);
     }
   };
 
