@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { UserProfile } from "../../../../common.types";
-import { createUser, getUser } from "@/services/userService";
+import { User } from "@/utils/types";
+import { createUser, getUser } from "@/services/api/userService";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
@@ -13,16 +13,15 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const email = session?.user?.email as string;
-
       try {
-        // const data = await getUser(email) as UserProfile
+        const email = session?.user?.email ?? "";
+        const user: User = await getUser(email);
 
         const newSession = {
           ...session,
           user: {
             ...session.user,
-            // ...data
+            ...(user.id && { id: user.id }),
           },
         };
 
@@ -34,21 +33,31 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({ profile }) {
       try {
-        console.log("SignIn initialized");
-        const userExists = false; // Call endpoint to find user
+        if (!profile) {
+          throw new Error("Empty profile while trying to sign in");
+        }
 
-        if (!userExists) {
-          // Call endpoint to create user
-          const user: UserProfile = {
-            userType: "",
-            name: (profile as any)?.name,
-            profilePhoto: (profile as any)?.picture,
-            email: (profile as any)?.email,
+        if (!profile.name) {
+          throw new Error("Empty name while trying to sign in");
+        }
+
+        if (!profile.email) {
+          throw new Error("Empty email while trying to sign in");
+        }
+
+        const user: User = await getUser(profile.email);
+
+        if (!user) {
+          const newUser: User = {
+            userType: "EVENT_OWNER",
+            name: profile.name,
+            profilePhoto: profile.image ?? "",
+            email: profile.email,
             telephone: "",
             webSite: "",
           };
 
-          // await createUser(user, (profile as any)?.sub);
+          await createUser(newUser);
         }
 
         return true;
