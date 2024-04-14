@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { DetailsCard } from '../DetailsCard';
 import styles from './styles.module.css';
 import detailsPrincipal from "@/assets/detailsTop.svg";
+import { Button } from '../Button';
 
 
 type DetailsSpaceProps = {
@@ -36,6 +37,7 @@ export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvai
                 
             </div> 
             <div className={styles.detailsBox}>
+
                 <div className={styles.titleBox}>
                     <span className={styles.title}>
                         {title}
@@ -47,6 +49,7 @@ export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvai
                 </p>
 
                 <div className={styles.infoDetails}>
+
                     <div className={styles.textBox}>
                         <div className={styles.subinfoTitle}>
                             <span>Informações básicas</span> 
@@ -82,8 +85,14 @@ export function DetailsSpace({title, subtitle, children, basicInfo, servicesAvai
                     <div className={styles.detailsCardBox}>
                         {children}
                     </div>
+                    
                 </div>
+                <div className={styles.buttonContent}>
+                <Button variant='primary' size='large'>Contratar Espaço</Button>
+                </div>
+                
             </div>
+
         </main>
     )
 }

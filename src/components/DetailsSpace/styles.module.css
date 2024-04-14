@@ -106,3 +106,20 @@
     display: flex;
     gap: 1.2rem;
 }
+
+.buttonContent {
+    position: relative;   
+}
+
+.buttonContent Button {
+    position: absolute;
+    margin-top: 23rem;
+    margin-left: 15rem;
+    font-size: 20px;
+    box-shadow: 8px 8px 2px 1px rgba(66, 66, 68, 0.2);
+}
+
+.buttonContent Button:hover {
+    filter: contrast(1.5);
+    box-shadow: 1px 2px 6px 8px rgba(255, 123, 0, 0.349);
+}
