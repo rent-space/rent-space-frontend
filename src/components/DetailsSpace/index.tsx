@@ -2,25 +2,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
-
-type Space = {
-  title: string;
-  description: string;
-  address: string;
-  city: string;
-  pricePerHour: number;
-  owner: {
-    name: string;
-    profilePhoto: string;
-    email: string;
-    telephone: string;
-    webSite: string;
-  };
-  maximumCapacity: number;
-  neighborhood: string;
-  complement: string;
-  zipCode: number;
-};
+import { Space } from "@/utils/types";
 
 interface Props {
   space: Space;
