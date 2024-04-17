@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const DEFAULT_ERROR_MESSAGE = "Erro ao conectar com o servidor!";
-const API_BASE_URL = process.env.APPLICATION_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_APPLICATION_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,

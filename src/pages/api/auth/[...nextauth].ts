@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
         return session;
       }
     },
-    async signIn({ profile }) {
+    async signIn({ profile, ...rest }) {
       try {
         if (!profile) {
           throw new Error("Empty profile while trying to sign in");
@@ -45,20 +45,20 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Empty email while trying to sign in");
         }
 
-        const user: User = await getUser(profile.email);
+        // const user: User = await getUser(profile.email);
 
-        if (!user) {
-          const newUser: User = {
-            userType: "EVENT_OWNER",
-            name: profile.name,
-            profilePhoto: profile.image ?? "",
-            email: profile.email,
-            telephone: "",
-            webSite: "",
-          };
+        // if (!user) {
+          // const newUser: User = {
+          //   userType: "",
+          //   name: profile.name,
+          //   profilePhoto: profile.image ?? "",
+          //   email: profile.email,
+          //   telephone: "",
+          //   webSite: "",
+          // };
 
-          await createUser(newUser);
-        }
+          // await createUser(newUser);
+        // }
 
         return true;
       } catch (error) {
