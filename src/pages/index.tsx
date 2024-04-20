@@ -13,28 +13,47 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { getUser } from "@/services/api/userService";
+import { User } from "@/utils/types";
 
 export default function LandingPage() {
-  const { status } = useSession();
+  const { status, data } = useSession();
 
   const router = useRouter();
 
-  useEffect(() => {
-    status === "authenticated" && router.push("/home");
-  }, [router, status]);
+  // useEffect(() => {
+  //   async function userCreationOrLogin() {
+  //     if (status === "authenticated") {
+  //       if (data.user?.email) {
+  //         const user: User = await getUser(data.user?.email);
+  //         console.log(user)
+  //         if (!user) {
+  //           router.push("/select-user-type")
+  //         } else {
+  //           router.push("/home");
+  //         }
+  //       }
+  //     } 
+  //   }
+
+  //   userCreationOrLogin();
+  // }, [router, status]);
 
   return (
     <>
       <Header>
         <div className={styles.login}>
           <Button
-            onClick={() => signIn("google", { callbackUrl: "/home" })}
+            onClick={() => signIn("google", { callbackUrl: "/login-loader" })}
             variant="primary"
             size="small"
           >
             Login
           </Button>
-          <Button variant="secondary" size="small">
+          <Button 
+            onClick={() => signIn("google", { callbackUrl: "/login-loader" })}
+            variant="secondary" size="small"
+          >
             Cadastrar
           </Button>
         </div>
