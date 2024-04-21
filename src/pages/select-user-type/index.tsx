@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import EventOwner from "@/assets/eventOwner.svg";
 import SpaceOwner from "@/assets/spaceOwner.svg";
 import Service from "@/assets/service.svg";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { useSession } from "next-auth/react";
 import { User } from "@/utils/types";
@@ -45,6 +45,8 @@ export default function SelectUserType() {
   const { data } = useSession();
   const [selectedOption, setSelectedOption] = useState<number>(-1);
 
+  const router = useRouter();
+
   const selectionOptions = [
     {
       source: EventOwner,
@@ -81,8 +83,10 @@ export default function SelectUserType() {
         telephone: "",
         webSite: "",
       };
+      const response = await createUser(newUser);
+      console.log(response);
 
-      await createUser(newUser);
+      router.push("/home");
     } else {
       console.log("Erro ao criar usuário");
     }
