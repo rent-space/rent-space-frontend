@@ -14,6 +14,7 @@ export default function LoginLoader() {
   const router = useRouter();
 
   useEffect(() => {
+    console.log(status, data);
     if (status === "authenticated") {
       if ((data.user as User).id) {
         router.push("/home");
