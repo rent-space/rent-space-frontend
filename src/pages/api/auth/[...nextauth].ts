@@ -44,22 +44,7 @@ export const authOptions: NextAuthOptions = {
         if (!profile.email) {
           throw new Error("Empty email while trying to sign in");
         }
-
-        // const user: User = await getUser(profile.email);
-
-        // if (!user) {
-          // const newUser: User = {
-          //   userType: "",
-          //   name: profile.name,
-          //   profilePhoto: profile.image ?? "",
-          //   email: profile.email,
-          //   telephone: "",
-          //   webSite: "",
-          // };
-
-          // await createUser(newUser);
-        // }
-
+        
         return true;
       } catch (error) {
         console.log(error);
