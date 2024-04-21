@@ -1,26 +1,35 @@
-import { InputHTMLAttributes } from "react";
+import { Dispatch, HTMLInputTypeAttribute, SetStateAction } from "react";
 import styles from "./styles.module.css";
 import { IconType } from "react-icons";
 import InputMask from "react-input-mask";
 import { Text } from "../Text";
 
-type Input = InputHTMLAttributes<HTMLInputElement> & {
+type Input = {
+  name: string;
   label?: string;
   icon?: IconType;
   iconSize?: number;
   mask?: string;
+  form?: [any, Dispatch<SetStateAction<any>>];
+  type?: HTMLInputTypeAttribute;
+  required?: boolean;
+  placeholder?: string;
 };
 
 export function Input(props: Input) {
   const {
+    name,
     label,
     icon: Icon,
     iconSize,
-    type,
+    type = "text",
     required,
     placeholder,
     mask,
+    form,
   } = props;
+
+  // const [formValues, setFormValues] = form;
 
   return (
     <div className={styles.content}>
@@ -31,16 +40,21 @@ export function Input(props: Input) {
 
       {mask ? (
         <InputMask
+          name={name}
           mask={mask}
           placeholder={placeholder}
           className={styles.input}
         />
       ) : (
         <input
+          name={name}
           className={styles.input}
           type={type}
           placeholder={placeholder}
           required={required}
+          // onChange={(event) =>
+          //   setFormValues({ formValues, ...{ name: event.target.value } })
+          // }
         />
       )}
 
