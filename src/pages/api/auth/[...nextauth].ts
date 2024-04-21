@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { User } from "@/utils/types";
-import { createUser, getUser } from "@/services/api/userService";
+import { getUser } from "@/services/api/userService";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
           ...session,
           user: {
             ...session.user,
-            ...(user.id && { id: user.id }),
+            ...{ id: user.id },
           },
         };
 
@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
         return session;
       }
     },
-    async signIn({ profile, ...rest }) {
+    async signIn({ profile }) {
       try {
         if (!profile) {
           throw new Error("Empty profile while trying to sign in");
@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
         if (!profile.email) {
           throw new Error("Empty email while trying to sign in");
         }
-        
+
         return true;
       } catch (error) {
         console.log(error);
