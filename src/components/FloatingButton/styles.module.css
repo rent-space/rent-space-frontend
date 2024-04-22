@@ -1,0 +1,29 @@
+.container {
+    position: relative;
+  }
+  
+  .floatingButton {
+    display: flex;
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--laranja);
+    color: var(--branco);
+    font-size: 4rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  
+
+.floatingButton:hover {
+  box-shadow: 1px 2px 1px 2px #bdbdbd;
+  transform: translateX(-5px);
+}
