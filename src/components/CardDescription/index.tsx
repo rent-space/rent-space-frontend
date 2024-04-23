@@ -11,7 +11,7 @@ type CardProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     onClick: ()=>void
 }
 
-export function CardDescription({title, description, maxCapacity, pricePerHour, image,onClick, ...props}: CardProps) {
+export function CardDescription({title, description, maxCapacity, pricePerHour, image, onClick}: CardProps) {
     return (
         <div className={styles.card} onClick={onClick}>
             <div className={styles.imageContainer}>

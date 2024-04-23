@@ -65,7 +65,6 @@ export default function Home() {
         <div className={styles.cardContainer}>
           {mock.slice(0,5).map((card,index) => {
             return (
-            <div key={index}>
             <CardDescription
               description={card.description}
               title={card.title}
@@ -73,8 +72,8 @@ export default function Home() {
               onClick={navigateToDetailsSpace}
               maxCapacity={card.maxPeople}
               pricePerHour={card.pricePerHour}
+              key={index}
             />
-            </div>
           )})}
         </div>
       </div>
