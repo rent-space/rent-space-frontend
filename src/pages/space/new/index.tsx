@@ -26,19 +26,6 @@ export interface SpaceForm {
   zipCode: string;
 }
 
-const EMPTY_SPACE: SpaceForm = {
-  title: "",
-  description: "",
-  media: [],
-  address: "",
-  neighborhood: "",
-  city: "",
-  pricePerHour: 0,
-  maximumCapacity: 0,
-  complement: "",
-  zipCode: "",
-};
-
 export default function SpaceNew() {
   const { data } = useSession();
   const router = useRouter();

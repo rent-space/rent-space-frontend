@@ -18,8 +18,6 @@ interface Props {
 export function Form(props: Props) {
   const { name, children, onSubmit, action, title, subtitle } = props;
 
-  // const [form, setForm] = useState<>({});
-
   const router = useRouter();
 
   const handleBack = () => {

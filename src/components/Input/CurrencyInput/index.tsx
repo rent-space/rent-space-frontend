@@ -13,8 +13,6 @@ interface Props {
 export function CurrencyInput(props: Props) {
   const { label, required, name, setValue } = props;
 
-  const { register } = useForm();
-
   return (
     <div className={styles.content}>
       <Text size="label" color="gray">
@@ -22,7 +20,7 @@ export function CurrencyInput(props: Props) {
         {required && " *"}
       </Text>
       <ReactCurrencyInput
-        {...register(name)}
+        name={name}
         id={label}
         placeholder="R$ 0,00"
         decimalScale={2}

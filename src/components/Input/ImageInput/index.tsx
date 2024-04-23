@@ -13,8 +13,6 @@ interface Props {
 export function ImageInput(props: Props) {
   const { name, images, setImages } = props;
 
-  const { register } = useForm();
-
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => {
@@ -47,7 +45,7 @@ export function ImageInput(props: Props) {
         Clique ou arraste para adicionar sua imagem
       </button>
       <input
-        {...register(name)}
+        name={name}
         key={images.length}
         id={name}
         className={styles.imageInput}

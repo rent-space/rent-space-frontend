@@ -83,11 +83,13 @@ export default function SelectUserType() {
         telephone: "",
         webSite: "",
       };
-      console.log("user body", newUser);
-      const response = await createUser(newUser);
-      console.log(response);
 
-      router.push("/home");
+      try {
+        await createUser(newUser);
+        router.push("/home");
+      } catch (error) {
+        console.log("Erro ao criar usuário");
+      }
     } else {
       console.log("Erro ao criar usuário");
     }
