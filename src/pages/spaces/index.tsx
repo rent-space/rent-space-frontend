@@ -1,133 +1,69 @@
-import { Button } from "@/components/Button";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { List } from "@/components/List";
 import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { CardDescription } from "@/components/CardDescription";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 import { FloatingButton } from "@/components/FloatingButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getSpace, getSpaces } from "@/services/api/space";
+import { AllSpaces, Space } from "@/utils/types";
 
-
-let preenchendoCards = [
-  {
-    title: "Titulo do primeiro",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 300,
-    pricePerHour: 120,
-    image:"rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do segundo",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 200,
-    pricePerHour: 100,
-    image:"src/assets/rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do terceiro",
-    description: "Uma descrição. Sim, isso e sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 150,
-    pricePerHour: 70,
-    image:"src/assets/rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-]
-
+const PAGE_SIZE = 9;
 
 export default function Spaces() {
+  const [allSpaces, setAllSpaces] = useState<AllSpaces>([]);
+  const [spaces, setSpaces] = useState<Space[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [cards, setCards] = useState<Space[]>([]);
+
   const [page, setPage] = useState(1);
-  const totalPage = Math.ceil(preenchendoCards.length/6);
+  const totalPages = Math.ceil(allSpaces.length / PAGE_SIZE);
   const router = useRouter();
 
-  const goToPreviousPage = () => {
-    if (page > 1){
-      return setPage(page - 1);
-    } 
-  }
+  useEffect(() => {
+    setLoading(true);
+    getSpaces().then((response) => setAllSpaces(response));
+  }, []);
 
-  const goToNextPage = () => {
-    if (totalPage > page){
-      return setPage(page + 1);
+  useEffect(() => {
+    allSpaces.forEach((space, i) =>
+      getSpace(space.id).then((response) => {
+        setSpaces((prevSpaces) => [...prevSpaces, response]);
+        if (i == allSpaces.length - 1) {
+          setLoading(false);
+        }
+      })
+    );
+  }, [allSpaces]);
+
+  useEffect(() => {
+    const startIndex = (page - 1) * 6;
+    const endIndex = startIndex + 6;
+    const updatedCards = spaces
+      .slice(startIndex, endIndex)
+      .sort((a, b) => a.title.localeCompare(b.title));
+
+    !loading && setCards(updatedCards);
+  }, [loading, page, spaces]);
+
+  const goToPreviousPage = () => {
+    if (page > 1) {
+      return setPage(page - 1);
     }
-    
-  }
-  const navigateToDetailsSpace = () => {
-    router.push("/space/details");
   };
 
-  const navigateToNewSpace = () => {
-    router.push("/space/new");
+  const goToNextPage = () => {
+    if (totalPages > page) {
+      return setPage(page + 1);
+    }
+  };
+
+  const navigateToDetailsSpace = () => {
+    router.push("/space/details");
   };
 
   useSession({
@@ -137,64 +73,57 @@ export default function Spaces() {
     },
   });
 
-  const startIndex = (page - 1) * 6;
-  const endIndex = startIndex + 6;
-  const currentCards = preenchendoCards.slice(startIndex, endIndex);
-
-
   return (
     <>
       <Header>
         <NavBar />
         <UserAvatar />
       </Header>
-        
-        <FloatingButton/>
-        <div className={styles.container}>
-          <div className={styles.titleContainer}>
-            <span className={styles.title}>Espaços para alugar</span>
-          </div>
-          
-          <div className={styles.listContainer}>
-          
-            {currentCards.map((card,i)=>{
-            return (
-              <div className={styles.card} key={i}>
-                <CardDescription 
-                  title={card.title} 
-                  maxCapacity={card.maxPeople}
-                  description={card.description}
-                  image={card.image} 
-                  pricePerHour={card.pricePerHour}
-                  onClick={navigateToDetailsSpace}/>
-              </div>
-            )
-          })}
-          </div>
+
+      <FloatingButton />
+      <div className={styles.container}>
+        <div className={styles.titleContainer}>
+          <span className={styles.title}>Espaços para alugar</span>
         </div>
-        <Footer justify="center" className={styles.footer}>
-            <SlArrowLeft className={styles.footerArrow} onClick={goToPreviousPage}/>
-            <div className={styles.footerPage}>
-              { Array.from({length: totalPage}).map((_,indice) => {
-                return (
-                  <>
-                    {
-                      page == indice+1 
-                      ? 
-                      (<span className={styles.currentPage}>
-                        {`${indice+1} `}
-                      </span>)
-                      :
-                      (<span>
-                        {`${indice+1} `}
-                      </span>)
-                    }                
-                  </>
-                )
-              })}
-            </div>
-            <SlArrowRight className={styles.footerArrow} onClick={goToNextPage}/>
-        </Footer>
+
+        <div className={styles.listContainer}>
+          {!loading &&
+            cards.map((card, i) => {
+              return (
+                <div className={styles.card} key={i}>
+                  <CardDescription
+                    title={card.title}
+                    maxCapacity={card.maximumCapacity}
+                    description={card.description}
+                    image=""
+                    pricePerHour={card.pricePerHour}
+                    onClick={navigateToDetailsSpace}
+                  />
+                </div>
+              );
+            })}
+        </div>
+      </div>
+      <Footer justify="center" className={styles.footer}>
+        <SlArrowLeft
+          className={styles.footerArrow}
+          onClick={goToPreviousPage}
+        />
+        <div className={styles.footerPage}>
+          {Array.from({ length: totalPages }).map((_, indice) => {
+            return (
+              <>
+                {page == indice + 1 ? (
+                  <span className={styles.currentPage}>{`${indice + 1} `}</span>
+                ) : (
+                  <span>{`${indice + 1} `}</span>
+                )}
+              </>
+            );
+          })}
+        </div>
+        <SlArrowRight className={styles.footerArrow} onClick={goToNextPage} />
+      </Footer>
     </>
   );
 }

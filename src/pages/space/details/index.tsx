@@ -5,6 +5,7 @@ import { DetailsCard } from "@/components/DetailsCard";
 import { Footer } from "@/components/Footer";
 
 const space = {
+  id: 4,
   title: "Espaco Verde",
   description:
     "Um lugar muito agradável e espaçoso para quem gosta de ar livre para seus eventos onde você pode aproveitar da natureza para criar um ambiente perfeito para todos os seus convidados. Disponibilizamos diversos serviços que podem ser contratados juntamente com nosso local, venha fazer sua festa conosco.",
