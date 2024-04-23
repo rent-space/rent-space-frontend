@@ -6,10 +6,122 @@ import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { CardDescription } from "@/components/CardDescription";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import styles from './styles.module.css';
+import { FloatingButton } from "@/components/FloatingButton";
+import { useState } from "react";
+
+
+let preenchendoCards = [
+  {
+    title: "Titulo do primeiro",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 300,
+    pricePerHour: 120,
+    image:"rentspace_logo.svg"
+  },
+  {
+    title: "Titulo do segundo",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 200,
+    pricePerHour: 100,
+    image:"src/assets/rentspace_logo.svg"
+  },
+  {
+    title: "Titulo do terceiro",
+    description: "Uma descrição. Sim, isso e sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 150,
+    pricePerHour: 70,
+    image:"src/assets/rentspace_logo.svg"
+  },
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+
+  } ,
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+
+  } ,
+
+  {
+    title: "Titulo do quarto",
+    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
+    maxPeople: 123,       
+    pricePerHour: 20,
+    image:"src/assets/rentspace_logo.svg"
+
+  } ,
+]
+
 
 export default function Spaces() {
+  const [page, setPage] = useState(1);
+  const totalPage = Math.ceil(preenchendoCards.length/6);
   const router = useRouter();
 
+  const goToPreviousPage = () => {
+    if (page > 1){
+      return setPage(page - 1);
+    } 
+  }
+
+  const goToNextPage = () => {
+    if (totalPage > page){
+      return setPage(page + 1);
+    }
+    
+  }
   const navigateToDetailsSpace = () => {
     router.push("/space/details");
   };
@@ -25,28 +137,64 @@ export default function Spaces() {
     },
   });
 
+  const startIndex = (page - 1) * 6;
+  const endIndex = startIndex + 6;
+  const currentCards = preenchendoCards.slice(startIndex, endIndex);
+
+
   return (
     <>
       <Header>
         <NavBar />
         <UserAvatar />
       </Header>
-      <List>
-        <div>
-          <Button variant="primary" size="small" onClick={navigateToNewSpace}>
-            Cadastrar espaço
-          </Button>
-          <br />
-          <Button
-            variant="primary"
-            size="small"
-            onClick={navigateToDetailsSpace}
-          >
-            detalhes de espaço
-          </Button>
+        
+        <FloatingButton/>
+        <div className={styles.container}>
+          <div className={styles.titleContainer}>
+            <span className={styles.title}>Espaços para alugar</span>
+          </div>
+          
+          <div className={styles.listContainer}>
+          
+            {currentCards.map((card,i)=>{
+            return (
+              <div className={styles.card} key={i}>
+                <CardDescription 
+                  title={card.title} 
+                  maxCapacity={card.maxPeople}
+                  description={card.description}
+                  image={card.image} 
+                  pricePerHour={card.pricePerHour}
+                  onClick={navigateToDetailsSpace}/>
+              </div>
+            )
+          })}
+          </div>
         </div>
-      </List>
-      <Footer></Footer>
+        <Footer justify="center" className={styles.footer}>
+            <SlArrowLeft className={styles.footerArrow} onClick={goToPreviousPage}/>
+            <div className={styles.footerPage}>
+              { Array.from({length: totalPage}).map((_,indice) => {
+                return (
+                  <>
+                    {
+                      page == indice+1 
+                      ? 
+                      (<span className={styles.currentPage}>
+                        {`${indice+1} `}
+                      </span>)
+                      :
+                      (<span>
+                        {`${indice+1} `}
+                      </span>)
+                    }                
+                  </>
+                )
+              })}
+            </div>
+            <SlArrowRight className={styles.footerArrow} onClick={goToNextPage}/>
+        </Footer>
     </>
   );
 }

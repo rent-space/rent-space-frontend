@@ -1,0 +1,78 @@
+.pageBackground {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to bottom, var(--branco), var(--laranja));
+  z-index: -100;
+  opacity: 0.25;
+}
+
+.userTypeSelectCont {
+  max-width: 50vw;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.pageTitle {
+  color: var(--laranja);
+  font-size: var(--font-size-4x-large);
+  margin: 0px;
+}
+
+.pageSubtitle {
+  color: var(--cinza-escuro);
+  font-size: var(--font-size-medium);
+  margin-top: 8px;
+  margin-bottom: 56px;
+  display: block;
+}
+
+.selectionCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 48px;
+}
+
+.selectionButton {
+  cursor: pointer;
+  width: 320px;
+  min-width: 240px;
+  height: 400px;
+  border: none;
+  border-radius: 24px;
+  background-color: var(--branco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 6px rgba(0,0,0,.25);
+  transition: all 0.25s linear;
+}
+
+.selectionButton[data-variant="selected"] {
+  border: 1px solid var(--laranja);
+  box-shadow: 0px 2px 6px var(--laranja);
+  transform: scale(1.1);
+}
+
+.selectionButton:hover {
+  transform: scale(1.1);
+}
+
+.selectionSpan {
+  padding-top: 24px;
+  color: var(--preto);
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  width: 80%;
+  text-align: center;
+}
+
+.confirmSelection {
+  width: 100vw;
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

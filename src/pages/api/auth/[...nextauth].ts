@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { User } from "@/utils/types";
-import { createUser, getUser } from "@/services/api/userService";
+import { getUser } from "@/services/api/userService";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
@@ -43,21 +43,6 @@ export const authOptions: NextAuthOptions = {
 
         if (!profile.email) {
           throw new Error("Empty email while trying to sign in");
-        }
-
-        const user: User = await getUser(profile.email);
-
-        if (!user) {
-          const newUser: User = {
-            userType: "EVENT_OWNER",
-            name: profile.name,
-            profilePhoto: profile.image ?? "",
-            email: profile.email,
-            telephone: "",
-            webSite: "",
-          };
-
-          await createUser(newUser);
         }
 
         return true;
