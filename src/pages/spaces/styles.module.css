@@ -1,0 +1,49 @@
+.listContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+@media screen and (min-width: 2000px) {
+    .listContainer {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+.card {
+    align-items: center;
+    justify-content: center;
+}
+
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.titleContainer {
+  margin-top: 1.5rem;
+  margin-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+
+.footerArrow {
+  cursor: pointer;
+  color: var(--laranja); 
+}
+
+.footerPage {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.currentPage {
+  color: var(--laranja); 
+}
+
+
+.footer {
+  margin-top: 5rem;
+}
