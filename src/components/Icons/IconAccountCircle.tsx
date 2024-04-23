@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 
 interface Props {
@@ -5,10 +6,16 @@ interface Props {
 }
 
 export function IconAccountCircle(props: Props) {
+  const session = useSession();
+
   return (
     <Image
-      src="/account_circle.svg"
+      src={(session && session.data?.user?.image) ? 
+        session.data?.user?.image :
+        "/account_circle.svg"
+      }
       alt="Account Icon"
+      style={{ borderRadius: '50%' }}
       width={45}
       height={45}
       onClick={props.onClick}

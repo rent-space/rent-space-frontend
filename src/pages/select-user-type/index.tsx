@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { Header } from "@/components/Header";
 import styles from './styles.module.css';
 
 import EventOwner from '@/assets/eventOwner.svg';
@@ -88,6 +87,7 @@ export default function SelectUserType() {
         };
   
         await createUser(newUser);
+        router.push("/home");
     } else {
       console.log("Erro ao criar usuário")
     }
@@ -96,8 +96,6 @@ export default function SelectUserType() {
   return (
     <>
       <div className={styles.pageBackground}></div>
-      {/* <Header>
-      </Header> */}
 
       <section className={styles.userTypeSelectCont}>
         <h1 className={styles.pageTitle}>Selecione o seu perfil de usuário para começar a utilizar a aplicação!</h1>

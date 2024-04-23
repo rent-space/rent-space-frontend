@@ -1,0 +1,93 @@
+.container {
+  margin: 40px;
+}
+
+.pageTitle {
+  color: var(--laranja);
+  font-size: var(--font-size-4x-large);
+  font-weight: 600;
+}
+
+.sectionTitle {
+  color: var(--preto);
+  font-size: var(--font-size-large);
+  font-weight: 600;
+}
+
+.cardsContainer {
+  padding-top: 24px;
+}
+
+.cards {
+  width: 100%;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 16px;
+}
+
+.cardStyle {
+  max-width: 600px;
+  max-height: 225px;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  transform: none;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.cardInfoCont {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  max-width: 40%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  color: var(--laranja);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+
+.cardInfo {
+  color: var(--cinza-escuro);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.userInfoCont {
+  display: flex;
+  align-items: center;
+}
+
+.cardInfoValue {
+  font-weight: 400;
+}
+
+.userInfoTitle {
+  width: 100%;
+  color: var(--cinza-escuro);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+
+.userName {
+  color: var(--preto);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+.userInfo {
+  color: var(--cinza-escuro);
+  font-size: 12px;
+}

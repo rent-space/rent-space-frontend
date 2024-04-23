@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
@@ -11,34 +11,8 @@ import { Text } from "@/components/Text";
 import { Page } from "@/components/Page";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { getUser } from "@/services/api/userService";
-import { User } from "@/utils/types";
 
 export default function LandingPage() {
-  const { status, data } = useSession();
-
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   async function userCreationOrLogin() {
-  //     if (status === "authenticated") {
-  //       if (data.user?.email) {
-  //         const user: User = await getUser(data.user?.email);
-  //         console.log(user)
-  //         if (!user) {
-  //           router.push("/select-user-type")
-  //         } else {
-  //           router.push("/home");
-  //         }
-  //       }
-  //     } 
-  //   }
-
-  //   userCreationOrLogin();
-  // }, [router, status]);
-
   return (
     <>
       <Header>
