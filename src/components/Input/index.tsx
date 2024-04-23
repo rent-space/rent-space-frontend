@@ -10,7 +10,7 @@ type Input = {
   icon?: IconType;
   iconSize?: number;
   mask?: string;
-  form?: [any, Dispatch<SetStateAction<any>>];
+  setValue?: (values: any) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   placeholder?: string;
@@ -26,10 +26,8 @@ export function Input(props: Input) {
     required,
     placeholder,
     mask,
-    form,
+    setValue,
   } = props;
-
-  // const [formValues, setFormValues] = form;
 
   return (
     <div className={styles.content}>
@@ -44,6 +42,7 @@ export function Input(props: Input) {
           mask={mask}
           placeholder={placeholder}
           className={styles.input}
+          onChange={(event) => setValue && setValue(event.target.value)}
         />
       ) : (
         <input
@@ -52,9 +51,7 @@ export function Input(props: Input) {
           type={type}
           placeholder={placeholder}
           required={required}
-          // onChange={(event) =>
-          //   setFormValues({ formValues, ...{ name: event.target.value } })
-          // }
+          onChange={(event) => setValue && setValue(event.target.value)}
         />
       )}
 

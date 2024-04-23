@@ -7,10 +7,11 @@ interface Props {
   name: string;
   label: string;
   required?: boolean;
+  setValue?: (value: any) => void;
 }
 
 export function CurrencyInput(props: Props) {
-  const { label, required, name } = props;
+  const { label, required, name, setValue } = props;
 
   const { register } = useForm();
 
@@ -28,6 +29,7 @@ export function CurrencyInput(props: Props) {
         decimalsLimit={2}
         className={styles.input}
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+        onChange={(e) => setValue && setValue(e.target.value)}
       />
     </div>
   );

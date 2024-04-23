@@ -10,7 +10,7 @@ import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { createSpace } from "@/services/api/spaces";
-import { SpacePayload } from "@/utils/types";
+import { SpacePayload, User } from "@/utils/types";
 
 export interface SpaceForm {
   title: string;
@@ -39,6 +39,7 @@ const EMPTY_SPACE: SpaceForm = {
 };
 
 export default function SpaceNew() {
+  const { data } = useSession();
   const router = useRouter();
 
   useSession({
@@ -48,30 +49,40 @@ export default function SpaceNew() {
     },
   });
 
-  const form = useState<SpaceForm>(EMPTY_SPACE);
-
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [city, setCity] = useState("");
+  const [pricePerHour, setPricePerHour] = useState(0);
+  const [maximumCapacity, setMaximumCapacity] = useState(0);
+  const [complement, setComplement] = useState("");
+  const [zipCode, setZipCode] = useState("");
 
   const onSubmit = async (event: React.FormEvent) => {
-    console.log(form);
+    if (!data?.user?.email) {
+      console.error("User not logged in");
+      return;
+    }
+
     const space: SpacePayload = {
-      title: "espaco1",
-      description: "espaco descricao",
+      title,
+      description,
       media: [],
-      address: "rua numero 2",
-      neighborhood: "catole",
-      city: "cg",
-      pricePerHour: 3,
-      maximumCapacity: 5,
-      complement: "bloco e",
-      zipCode: "43",
-      ownerId: 152,
+      address,
+      neighborhood,
+      city,
+      pricePerHour,
+      maximumCapacity,
+      complement,
+      zipCode,
+      ownerId: (data?.user as User).id as number,
     };
 
-    createSpace(space);
-    // console.log(response);
+    console.log(space);
+    // event.preventDefault();
 
-    event.preventDefault();
+    await createSpace(space);
   };
 
   return (
@@ -89,6 +100,7 @@ export default function SpaceNew() {
           placeholder="Insira o título do local"
           type="text"
           required
+          setValue={setTitle}
         />
         <TextArea
           name="description"
@@ -104,8 +116,14 @@ export default function SpaceNew() {
             label="Capacidade máxima"
             placeholder="0"
             type="number"
+            setValue={setMaximumCapacity}
           />
-          <CurrencyInput name="pricePerHour" label="Valor por hora" required />
+          <CurrencyInput
+            name="pricePerHour"
+            label="Valor por hora"
+            required
+            setValue={setPricePerHour}
+          />
         </div>
       </FormSection>
       <FormSection title="Mídias do local" rowSpan={2}>
@@ -121,6 +139,7 @@ export default function SpaceNew() {
             mask="99999-999"
             placeholder="_____-___"
             icon={PiHouseLight}
+            setValue={setZipCode}
           />
           <Input name="telephone" label="Número" type="number" required />
         </div>
@@ -129,6 +148,7 @@ export default function SpaceNew() {
           label="Cidade"
           placeholder="Insira a cidade"
           required
+          setValue={setCity}
         />
         <div className={styles.inline}>
           <Input
@@ -136,6 +156,7 @@ export default function SpaceNew() {
             label="Rua"
             placeholder="Insira a rua"
             required
+            setValue={setAddress}
           />
         </div>
         <div className={styles.inline}>
@@ -144,11 +165,13 @@ export default function SpaceNew() {
             label="Bairro"
             placeholder="Insira o bairro"
             required
+            setValue={setNeighborhood}
           />
           <Input
             name="complement"
             label="Complemento"
             placeholder="Insira o complemento"
+            setValue={setComplement}
           />
         </div>
       </FormSection>
