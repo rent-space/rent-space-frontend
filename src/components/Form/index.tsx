@@ -8,7 +8,6 @@ import { useState } from "react";
 
 interface Props {
   name: string;
-  action: string;
   onSubmit: (event: React.FormEvent) => void;
   children?: React.ReactNode;
   title: string;
@@ -16,7 +15,7 @@ interface Props {
 }
 
 export function Form(props: Props) {
-  const { name, children, onSubmit, action, title, subtitle } = props;
+  const { name, children, onSubmit, title, subtitle } = props;
 
   const router = useRouter();
 
@@ -27,12 +26,7 @@ export function Form(props: Props) {
   return (
     <>
       <Header justify="center" />
-      <form
-        id={name}
-        action={action}
-        className={styles.form}
-        onSubmit={onSubmit}
-      >
+      <form id={name} className={styles.form} onSubmit={onSubmit}>
         <FormTitle title={title} subtitle={subtitle} />
         <div className={styles.formContent}>{children}</div>
 

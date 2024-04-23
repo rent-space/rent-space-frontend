@@ -49,6 +49,7 @@ export default function SpaceNew() {
   const [zipCode, setZipCode] = useState("");
 
   const onSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!data?.user?.email) {
       console.error("User not logged in");
       return;
@@ -73,12 +74,11 @@ export default function SpaceNew() {
           zipCode,
           ownerId: (data?.user as User).id as number,
         };
-        console.log(space);
-        await createSpace(space);
+
+        createSpace(space).then(() => router.push("/spaces")); // change to go to details page of corresponding id
       })
       .catch((error) => {
         console.error("Error processing images:", error);
-        event.preventDefault();
       });
   };
 
@@ -86,7 +86,6 @@ export default function SpaceNew() {
     <Form
       name="Espaço"
       onSubmit={onSubmit}
-      action="/spaces"
       title="Cadastro de Espaço"
       subtitle="Adicione abaixo as informações que serão exibidas sobre o seu espaço"
     >
