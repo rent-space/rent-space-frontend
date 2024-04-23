@@ -26,3 +26,17 @@ export type Space = {
   complement: string;
   zipCode: number;
 };
+
+export type SpacePayload = {
+  title: string;
+  description: string;
+  media: string[];
+  address: string;
+  neighborhood: string;
+  city: string;
+  pricePerHour: number;
+  ownerId: number;
+  maximumCapacity: number;
+  complement: string;
+  zipCode: string;
+};

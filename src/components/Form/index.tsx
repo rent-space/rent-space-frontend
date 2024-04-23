@@ -4,11 +4,12 @@ import { Footer } from "../Footer";
 import styles from "./style.module.css";
 import { Header } from "../Header";
 import FormTitle from "./FormTitle";
+import { useState } from "react";
 
 interface Props {
   name: string;
   action: string;
-  onSubmit: () => void;
+  onSubmit: (event: React.FormEvent) => void;
   children?: React.ReactNode;
   title: string;
   subtitle: string;

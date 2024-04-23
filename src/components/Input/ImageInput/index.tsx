@@ -2,15 +2,16 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { FiUpload } from "react-icons/fi";
 import { ImageCard } from "./ImageCard";
+import { useForm } from "react-hook-form";
 
 interface Props {
   name: string;
+  images: File[];
+  setImages: any;
 }
 
 export function ImageInput(props: Props) {
-  const { name } = props;
-
-  const [images, setImages] = useState<File[]>([]);
+  const { name, images, setImages } = props;
 
   const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -28,7 +29,7 @@ export function ImageInput(props: Props) {
   };
 
   const handleRemove = (imageName: string) => {
-    setImages((prevImages) =>
+    setImages((prevImages: File[]) =>
       prevImages.filter((image) => image.name !== imageName)
     );
   };
@@ -44,6 +45,7 @@ export function ImageInput(props: Props) {
         Clique ou arraste para adicionar sua imagem
       </button>
       <input
+        name={name}
         key={images.length}
         id={name}
         className={styles.imageInput}

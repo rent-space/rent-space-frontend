@@ -9,7 +9,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { useSession } from "next-auth/react";
 import { User } from "@/utils/types";
-import { createUser } from "@/services/api/userService";
+import { createUser } from "@/services/api/user";
 import { useRouter } from "next/router";
 
 interface SelectionButtonProps {
@@ -66,8 +66,8 @@ export default function SelectUserType() {
   ];
 
   const getUserType = () => {
-    if (selectedOption == 3) return "SERVICE_OFFER";
-    else if (selectedOption == 2) return "SPACE_OWNER";
+    if (selectedOption == 2) return "SERVICE_OWNER";
+    else if (selectedOption == 1) return "PLACE_OWNER";
     else return "EVENT_OWNER";
   };
 
@@ -83,10 +83,13 @@ export default function SelectUserType() {
         telephone: "",
         webSite: "",
       };
-      const response = await createUser(newUser);
-      console.log(response);
 
-      router.push("/home");
+      try {
+        await createUser(newUser);
+        router.push("/home");
+      } catch (error) {
+        console.log("Erro ao criar usuário");
+      }
     } else {
       console.log("Erro ao criar usuário");
     }
