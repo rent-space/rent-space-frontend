@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { createSpace } from "@/services/api/spaces";
 import { SpacePayload, User } from "@/utils/types";
+import { getBase64 } from "@/utils/utils";
 
 export interface SpaceForm {
   title: string;
@@ -51,6 +52,7 @@ export default function SpaceNew() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [images, setImages] = useState<File[]>([]);
   const [address, setAddress] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
   const [city, setCity] = useState("");
@@ -65,24 +67,34 @@ export default function SpaceNew() {
       return;
     }
 
-    const space: SpacePayload = {
-      title,
-      description,
-      media: [],
-      address,
-      neighborhood,
-      city,
-      pricePerHour,
-      maximumCapacity,
-      complement,
-      zipCode,
-      ownerId: (data?.user as User).id as number,
-    };
+    const mediaPromises = images.map(async (image) => {
+      return await getBase64(image);
+    });
 
-    console.log(space);
-    // event.preventDefault();
+    Promise.all(mediaPromises)
+      .then((media: string[]) => {
+        const space: SpacePayload = {
+          title,
+          description,
+          media,
+          address,
+          neighborhood,
+          city,
+          pricePerHour,
+          maximumCapacity,
+          complement,
+          zipCode,
+          ownerId: (data?.user as User).id as number,
+        };
+        console.log(space);
+      })
+      .catch((error) => {
+        console.error("Error processing images:", error);
+      });
 
-    await createSpace(space);
+    event.preventDefault();
+
+    // await createSpace(space);
   };
 
   return (
@@ -127,7 +139,7 @@ export default function SpaceNew() {
         </div>
       </FormSection>
       <FormSection title="Mídias do local" rowSpan={2}>
-        <ImageInput name="media" />
+        <ImageInput name="media" images={images} setImages={setImages} />
       </FormSection>
       <FormSection title="Endereço do local">
         <div className={styles.inline}>

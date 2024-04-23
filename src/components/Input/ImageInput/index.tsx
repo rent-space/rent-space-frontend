@@ -6,14 +6,14 @@ import { useForm } from "react-hook-form";
 
 interface Props {
   name: string;
+  images: File[];
+  setImages: any;
 }
 
 export function ImageInput(props: Props) {
-  const { name } = props;
+  const { name, images, setImages } = props;
 
   const { register } = useForm();
-
-  const [images, setImages] = useState<File[]>([]);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +31,7 @@ export function ImageInput(props: Props) {
   };
 
   const handleRemove = (imageName: string) => {
-    setImages((prevImages) =>
+    setImages((prevImages: File[]) =>
       prevImages.filter((image) => image.name !== imageName)
     );
   };
