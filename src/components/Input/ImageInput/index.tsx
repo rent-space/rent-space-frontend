@@ -5,12 +5,12 @@ import { ImageCard } from "./ImageCard";
 
 interface Props {
   name: string;
+  images: File[];
+  setImages: any;
 }
 
 export function ImageInput(props: Props) {
-  const { name } = props;
-
-  const [images, setImages] = useState<File[]>([]);
+  const { name, images, setImages } = props;
 
   const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -28,7 +28,7 @@ export function ImageInput(props: Props) {
   };
 
   const handleRemove = (imageName: string) => {
-    setImages((prevImages) =>
+    setImages((prevImages: File[]) =>
       prevImages.filter((image) => image.name !== imageName)
     );
   };
@@ -44,6 +44,7 @@ export function ImageInput(props: Props) {
         Clique ou arraste para adicionar sua imagem
       </button>
       <input
+        name={name}
         key={images.length}
         id={name}
         className={styles.imageInput}

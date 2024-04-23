@@ -7,15 +7,15 @@ import FormTitle from "./FormTitle";
 
 interface Props {
   name: string;
-  action: string;
-  onSubmit: () => void;
+  onSubmit: (event: React.FormEvent) => void;
   children?: React.ReactNode;
   title: string;
   subtitle: string;
+  loading: boolean;
 }
 
 export function Form(props: Props) {
-  const { name, children, onSubmit, action, title, subtitle } = props;
+  const { name, children, onSubmit, title, subtitle, loading } = props;
 
   const router = useRouter();
 
@@ -26,12 +26,7 @@ export function Form(props: Props) {
   return (
     <>
       <Header justify="center" />
-      <form
-        id={name}
-        action={action}
-        className={styles.form}
-        onSubmit={onSubmit}
-      >
+      <form id={name} className={styles.form} onSubmit={onSubmit}>
         <FormTitle title={title} subtitle={subtitle} />
         <div className={styles.formContent}>{children}</div>
 
@@ -44,8 +39,14 @@ export function Form(props: Props) {
           >
             Voltar
           </Button>
-          <Button variant="primary" size="small" type="submit" form={name}>
-            Cadastrar
+          <Button
+            variant="primary"
+            size="small"
+            type="submit"
+            form={name}
+            disabled={loading}
+          >
+            {loading ? "Cadastrando..." : "Cadastrar"}
           </Button>
         </Footer>
       </form>

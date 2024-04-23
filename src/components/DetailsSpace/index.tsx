@@ -11,6 +11,7 @@ interface Props {
 
 export function DetailsSpace(props: Props) {
   const { space, children } = props;
+
   const {
     title,
     description,

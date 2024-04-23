@@ -3,13 +3,14 @@ import styles from "./styles.module.css";
 import { Text } from "../../Text";
 
 type Input = InputHTMLAttributes<HTMLTextAreaElement> & {
+  name: string;
   label?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export function TextArea(props: Input) {
-  const { label, required, placeholder, value, onChange } = props;
+  const { name, label, required, placeholder, value, onChange } = props;
 
   return (
     <div className={styles.content}>
@@ -23,6 +24,7 @@ export function TextArea(props: Input) {
         </Text>
       </div>
       <textarea
+        name={name}
         value={value}
         onChange={onChange}
         className={styles.textarea}

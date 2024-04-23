@@ -9,11 +9,13 @@ export type User = {
 };
 
 export type Space = {
+  id: number;
   title: string;
   description: string;
   address: string;
   city: string;
   pricePerHour: number;
+  media?: string[]; // Missing field from back-end
   owner: {
     name: string;
     profilePhoto: string;
@@ -26,3 +28,19 @@ export type Space = {
   complement: string;
   zipCode: number;
 };
+
+export type SpacePayload = {
+  title: string;
+  description: string;
+  media: string[];
+  address: string;
+  neighborhood: string;
+  city: string;
+  pricePerHour: number;
+  ownerId: number;
+  maximumCapacity: number;
+  complement: string;
+  zipCode: string;
+};
+
+export type AllSpaces = { id: number; title: string }[];

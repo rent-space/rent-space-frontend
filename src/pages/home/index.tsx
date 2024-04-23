@@ -9,11 +9,13 @@ import HomeImage from "@/assets/home_image.svg";
 import { useRouter } from "next/router";
 import styles from './styles.module.css';
 import { CardDescription } from "@/components/CardDescription";
-import mock from '../spaces/mock';
 import MockImage from '@/assets/noImageFile.svg';
+import { useState } from "react";
+import { Space } from "@/utils/types";
 
 export default function Home() {
   const router = useRouter();
+  const [cards, setCards] = useState<Space[]>([]);
 
   useSession({
     required: true,
@@ -63,14 +65,14 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.cardContainer}>
-          {mock.slice(0,5).map((card,index) => {
+          {cards.slice(0,5).map((card,index) => {
             return (
             <CardDescription
               description={card.description}
               title={card.title}
               image={MockImage}
               onClick={navigateToDetailsSpace}
-              maxCapacity={card.maxPeople}
+              maxCapacity={card.maximumCapacity}
               pricePerHour={card.pricePerHour}
               key={index}
             />

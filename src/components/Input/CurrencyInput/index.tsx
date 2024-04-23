@@ -3,12 +3,14 @@ import styles from "../styles.module.css";
 import { Text } from "@/components/Text";
 
 interface Props {
+  name: string;
   label: string;
   required?: boolean;
+  setValue?: (value: any) => void;
 }
 
 export function CurrencyInput(props: Props) {
-  const { label, required } = props;
+  const { label, required, name, setValue } = props;
 
   return (
     <div className={styles.content}>
@@ -17,13 +19,14 @@ export function CurrencyInput(props: Props) {
         {required && " *"}
       </Text>
       <ReactCurrencyInput
+        name={name}
         id={label}
-        name={label}
         placeholder="R$ 0,00"
         decimalScale={2}
         decimalsLimit={2}
         className={styles.input}
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+        onChange={(e) => setValue && setValue(e.target.value)}
       />
     </div>
   );
