@@ -11,10 +11,11 @@ interface Props {
   children?: React.ReactNode;
   title: string;
   subtitle: string;
+  loading: boolean;
 }
 
 export function Form(props: Props) {
-  const { name, children, onSubmit, title, subtitle } = props;
+  const { name, children, onSubmit, title, subtitle, loading } = props;
 
   const router = useRouter();
 
@@ -38,8 +39,14 @@ export function Form(props: Props) {
           >
             Voltar
           </Button>
-          <Button variant="primary" size="small" type="submit" form={name}>
-            Cadastrar
+          <Button
+            variant="primary"
+            size="small"
+            type="submit"
+            form={name}
+            disabled={loading}
+          >
+            {loading ? "Cadastrando..." : "Cadastrar"}
           </Button>
         </Footer>
       </form>
