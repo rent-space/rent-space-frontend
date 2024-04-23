@@ -62,8 +62,8 @@ export default function Spaces() {
     }
   };
 
-  const navigateToDetailsSpace = () => {
-    router.push("/space/details");
+  const navigateToDetailsSpace = (id: number) => {
+    router.push(`/space/${id}`);
   };
 
   useSession({
@@ -97,7 +97,7 @@ export default function Spaces() {
                     description={card.description}
                     image=""
                     pricePerHour={card.pricePerHour}
-                    onClick={navigateToDetailsSpace}
+                    onClick={() => navigateToDetailsSpace(card.id)}
                   />
                 </div>
               );

@@ -4,10 +4,10 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  padding: 1rem 5rem;
 }
 
 .topTitle {
-  margin-left: 1.5rem;
   font-size: 1.1rem;
   font-weight: bold;
   color: #000;
@@ -15,15 +15,14 @@
 
 .userContainer {
   display: flex;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  margin-left: 1.5rem;
-  flex-direction: row;
+  margin-top: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .userDetails {
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
   align-items: center;
   justify-content: center;
 }
@@ -44,6 +43,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 1rem;
 }
 .buttonContainer Button {
   width: 250px;
