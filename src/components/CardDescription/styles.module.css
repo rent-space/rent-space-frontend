@@ -9,6 +9,7 @@
     margin-left: 3rem;
     transition: transform 0.3s ease;
     cursor: pointer;
+    gap: 1rem;
 }
 
 .card:hover {
@@ -19,13 +20,15 @@
 .imageContainer {
     display: flex;
     flex: 1;
-    height: 100%;
-    width: 45%;
+    height: auto;
+    max-width: 40%;
+    overflow: hidden;
+
 }
 .descriptionSide {
     display: flex;
     height: 100%;
-    width: 55%;
+    width: 50%;
     flex-direction: column;
 }
 

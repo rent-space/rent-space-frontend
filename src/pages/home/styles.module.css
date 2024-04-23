@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.overlayText {
+    position: absolute;
+    top:8%;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.eventPhrase {
+    font-size: 70px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.eventPhraseBold {
+    font-size: 70px;
+    color: var(--laranja);
+    font-weight: 600;
+}
+
+.subtitleContainer {
+    display: flex;
+    padding-top: 40px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.subtitle {
+    display: inline;
+    display: inline-block; 
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    font-size: 24px;
+    max-width: 500px;
+}
+
+.textContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    width: 85%;
+}
+
+.spaceText {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.seeAll {
+    text-decoration: underline;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--laranja)
+}
+
+.cardContainer {
+    display: flex;
+    padding-top: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row;
+    width: 92%;
+    
+}

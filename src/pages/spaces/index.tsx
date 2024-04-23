@@ -11,103 +11,12 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import styles from './styles.module.css';
 import { FloatingButton } from "@/components/FloatingButton";
 import { useState } from "react";
-
-
-let preenchendoCards = [
-  {
-    title: "Titulo do primeiro",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 300,
-    pricePerHour: 120,
-    image:"rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do segundo",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 200,
-    pricePerHour: 100,
-    image:"src/assets/rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do terceiro",
-    description: "Uma descrição. Sim, isso e sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 150,
-    pricePerHour: 70,
-    image:"src/assets/rentspace_logo.svg"
-  },
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-
-  {
-    title: "Titulo do quarto",
-    description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
-    maxPeople: 123,       
-    pricePerHour: 20,
-    image:"src/assets/rentspace_logo.svg"
-
-  } ,
-]
-
+import mock from './mock.js';
+import MockImage from '@/assets/noImageFile.svg';
 
 export default function Spaces() {
   const [page, setPage] = useState(1);
-  const totalPage = Math.ceil(preenchendoCards.length/6);
+  const totalPage = Math.ceil(mock.length/6);
   const router = useRouter();
 
   const goToPreviousPage = () => {
@@ -139,9 +48,7 @@ export default function Spaces() {
 
   const startIndex = (page - 1) * 6;
   const endIndex = startIndex + 6;
-  const currentCards = preenchendoCards.slice(startIndex, endIndex);
-
-
+  const currentCards = mock.slice(startIndex, endIndex);
   return (
     <>
       <Header>
@@ -164,7 +71,7 @@ export default function Spaces() {
                   title={card.title} 
                   maxCapacity={card.maxPeople}
                   description={card.description}
-                  image={card.image} 
+                  image={MockImage} 
                   pricePerHour={card.pricePerHour}
                   onClick={navigateToDetailsSpace}/>
               </div>
@@ -172,7 +79,7 @@ export default function Spaces() {
           })}
           </div>
         </div>
-        <Footer justify="center" className={styles.footer}>
+        <div className={styles.footer}>
             <SlArrowLeft className={styles.footerArrow} onClick={goToPreviousPage}/>
             <div className={styles.footerPage}>
               { Array.from({length: totalPage}).map((_,indice) => {
@@ -194,7 +101,7 @@ export default function Spaces() {
               })}
             </div>
             <SlArrowRight className={styles.footerArrow} onClick={goToNextPage}/>
-        </Footer>
+        </div>
     </>
   );
 }
