@@ -9,7 +9,7 @@ import { PiHouseLight } from "react-icons/pi";
 import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { createSpace } from "@/services/api/spaces";
+import { createSpace } from "@/services/api/space";
 import { SpacePayload, User } from "@/utils/types";
 import { getBase64 } from "@/utils/utils";
 
@@ -72,7 +72,7 @@ export default function SpaceNew() {
     });
 
     Promise.all(mediaPromises)
-      .then((media: string[]) => {
+      .then(async (media: string[]) => {
         const space: SpacePayload = {
           title,
           description,
@@ -87,14 +87,12 @@ export default function SpaceNew() {
           ownerId: (data?.user as User).id as number,
         };
         console.log(space);
+        await createSpace(space);
       })
       .catch((error) => {
         console.error("Error processing images:", error);
+        event.preventDefault();
       });
-
-    event.preventDefault();
-
-    // await createSpace(space);
   };
 
   return (

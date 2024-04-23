@@ -13,3 +13,15 @@ export async function createSpace(space: SpacePayload): Promise<Space> {
 
   return data;
 }
+
+export async function getSpaces(): Promise<Space[]> {
+  const { data, error } = await fetchApi(`/espaco/allPlaces}`, {
+    method: "GET",
+  });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
+}
