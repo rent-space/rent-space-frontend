@@ -48,7 +48,10 @@ export default function SpaceNew() {
   const [complement, setComplement] = useState("");
   const [zipCode, setZipCode] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (event: React.FormEvent) => {
+    setLoading(true);
     event.preventDefault();
     if (!data?.user?.email) {
       console.error("User not logged in");
@@ -74,11 +77,14 @@ export default function SpaceNew() {
           zipCode,
           ownerId: (data?.user as User).id as number,
         };
-
-        createSpace(space).then(() => router.push("/spaces")); // change to go to details page of corresponding id
+        createSpace(space).then((response) => {
+          setLoading(false);
+          response && router.push("/spaces"); // change to go to details page of corresponding id
+        });
       })
       .catch((error) => {
         console.error("Error processing images:", error);
+        setLoading(false);
       });
   };
 
@@ -88,6 +94,7 @@ export default function SpaceNew() {
       onSubmit={onSubmit}
       title="Cadastro de Espaço"
       subtitle="Adicione abaixo as informações que serão exibidas sobre o seu espaço"
+      loading={loading}
     >
       <FormSection title="Sobre o local">
         <Input
@@ -137,7 +144,7 @@ export default function SpaceNew() {
             icon={PiHouseLight}
             setValue={setZipCode}
           />
-          <Input name="telephone" label="Número" type="number" required />
+          <Input name="telephone" label="Número" type="number" />
         </div>
         <Input
           name="city"
