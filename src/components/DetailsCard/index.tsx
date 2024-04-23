@@ -28,7 +28,7 @@ export function DetailsCard(props: Props) {
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <Button size="small" variant="primary">
+        <Button size="small" variant="secondary">
           Ligar
         </Button>
         <Button size="small" variant="secondary">

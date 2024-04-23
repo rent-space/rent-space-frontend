@@ -3,6 +3,7 @@ import { Page } from "@/components/Page";
 import { DetailsSpace } from "@/components/DetailsSpace";
 import { DetailsCard } from "@/components/DetailsCard";
 import { Footer } from "@/components/Footer";
+import ReserveModal from "@/components/ReserveModal";
 
 const space = {
   title: "Espaco Verde",
@@ -33,6 +34,7 @@ export default function DetailsPageSpace() {
           <DetailsCard owner={space.owner} />
         </DetailsSpace>
       </Page>
+      {modal && <ReserveModal close={closeModal} />}
       <Footer />
     </>
   );

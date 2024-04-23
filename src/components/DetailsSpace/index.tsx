@@ -3,6 +3,9 @@ import styles from "./styles.module.css";
 import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
+import { Button } from "../Button";
+import { useState } from "react";
+import ReserveModal from "../ReserveModal";
 
 interface Props {
   space: Space;
@@ -21,6 +24,12 @@ export function DetailsSpace(props: Props) {
     city,
     zipCode,
   } = space;
+
+  const [modal, setModal] = useState(false);
+
+  const openModal = () => setModal(true);
+
+  const closeModal = () => setModal(false);
 
   return (
     <div className={styles.container}>
@@ -84,6 +93,12 @@ export function DetailsSpace(props: Props) {
               <Text size="body" color="gray" weight="regular">
                 {address} - {neighborhood}, {city} - {zipCode}
               </Text>
+            </div>
+
+            <div>
+              <Button variant="primary" size="small" onClick={openModal}>
+                Reservar
+              </Button>
             </div>
           </div>
           <div className={styles.card}>{children}</div>
