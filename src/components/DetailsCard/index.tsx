@@ -21,7 +21,7 @@ export function DetailsCard(props: Props) {
     <div className={styles.container}>
       <span className={styles.topTitle}> Disponibilizado por: </span>
       <div className={styles.userContainer}>
-        <div className={styles.userPhoto}>{profilePhoto}</div>
+        <img className={styles.userPhoto} src={profilePhoto} />
         <div className={styles.userDetails}>
           <span className={styles.userName}>{name}</span>
           <span className={styles.userEmail}>{email}</span>
