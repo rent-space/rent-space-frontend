@@ -13,8 +13,7 @@ import { FloatingButton } from "@/components/FloatingButton";
 import { useState } from "react";
 import MockImage from '@/assets/noImageFile.svg';
 
-let mock = [
-  {
+let preenchendoCards = [{
     title: "Titulo do primeiro",
     description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
     maxPeople: 300,
@@ -108,7 +107,7 @@ let mock = [
 
 export default function Spaces() {
   const [page, setPage] = useState(1);
-  const totalPage = Math.ceil(mock.length/6);
+  const totalPage = Math.ceil(preenchendoCards.length/6);
   const router = useRouter();
 
   const goToPreviousPage = () => {
@@ -140,7 +139,7 @@ export default function Spaces() {
 
   const startIndex = (page - 1) * 6;
   const endIndex = startIndex + 6;
-  const currentCards = mock.slice(startIndex, endIndex);
+  const currentCards = preenchendoCards.slice(startIndex, endIndex);
   return (
     <>
       <Header>
