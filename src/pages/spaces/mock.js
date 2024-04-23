@@ -1,4 +1,4 @@
-const preenchendoCards = [
+export default preenchendoCards = [
     {
       title: "Titulo do primeiro",
       description: "Uma descrição. Sim, isso e´sim uma descrição. Uma descrição mockada e se a descrição for maior? Como iremos ficar? sabes lá como iremos ficar cas o a descrição fique mjuito grande. É uma ótima perguna a se",
@@ -90,4 +90,4 @@ const preenchendoCards = [
   ]
 
 
-  export default preenchendoCards;
+  ;
