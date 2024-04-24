@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HomeImg from "@/assets/home.svg";
 import { Button } from "@/components/Button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import styles from "./styles.module.css";
 import { IconArrowRight } from "@/components/Icons/IconArrowRight";
@@ -11,8 +11,20 @@ import { Text } from "@/components/Text";
 import { Page } from "@/components/Page";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function LandingPage() {
+  const router = useRouter();
+
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/home");
+    }
+  }, [router, status]);
+
   return (
     <>
       <Header>
@@ -59,12 +71,6 @@ export default function LandingPage() {
                 <IconArrowRight />
                 <p>Aproveite 100% da sua festa.</p>
               </span>
-            </div>
-
-            <div>
-              <Button variant="primary" size="large">
-                Planejar agora
-              </Button>
             </div>
           </section>
 

@@ -31,7 +31,7 @@ export function IconAccountCircle(props: Props) {
       {showPopover &&
         <div className={styles.profileOptions}>
           <button className={styles.button} onClick={() => router.push("/requested-solicitations")}>Reservas</button>
-          <button className={styles.button} onClick={() => props.onClick}>Logout</button>
+          <button className={styles.button} onClick={props.onClick}>Logout</button>
         </div>
       }
     </div>

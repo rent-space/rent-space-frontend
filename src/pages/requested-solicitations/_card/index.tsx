@@ -13,9 +13,10 @@ import { updatePlaceReservation } from "@/services/api/reservations";
 
 interface PageCardProps {
   placeReservation: PlaceReservation
+  shouldClick?: boolean
 }
 
-export default function PageCard({ placeReservation }: PageCardProps) {
+export default function PageCard({ placeReservation, shouldClick = true }: PageCardProps) {
   const [placeImage, setPlaceImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -43,9 +44,15 @@ export default function PageCard({ placeReservation }: PageCardProps) {
     });
   }
 
+  const openModal = () => {
+    if (shouldClick) {
+      setIsModalOpen(true)
+    }
+  }
+
   return (
     <>
-      <Card hasMargin={false} aditionalStyles={styles.cardStyle} onClick={() => setIsModalOpen(true)}>
+      <Card hasMargin={false} aditionalStyles={`${styles.cardStyle} ${!shouldClick && styles.noClick}`} onClick={openModal}>
         {placeImage !== null ?
           <Image src={placeImage} alt="Imagem do local" /> :
           <div className={styles.noImagePlace}>

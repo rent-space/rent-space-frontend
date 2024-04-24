@@ -21,7 +21,7 @@ export default function RequestedSolicitations() {
   const [pageData, setPageData] = useState<PageDataProps>({
     title: "Suas reservas",
     firstSection: "Solicitações pendentes",
-    secSection: "Solicitações confirmadas"
+    secSection: "Solicitações respondidas"
   });
 
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function RequestedSolicitations() {
     if (data?.user?.userType === 'SPACE_OWNER' || data?.user?.userType === 'SERVICE_OFFER') {
       const pageInfos = {
         title: "Solicitações recebidas",
-        firstSection: "Reservas solicitadas",
-        secSection: "Reservas confirmadas"
+        firstSection: "Reservas requisitadas",
+        secSection: "Reservas respondidas"
       }
 
       setPageData({
@@ -74,7 +74,7 @@ export default function RequestedSolicitations() {
 
           <div className={styles.cards}>
             {placeReservation !== null && placeReservation[0] &&
-            <PageCard placeReservation={placeReservation[0]}/>}
+            <PageCard placeReservation={placeReservation[0]} shouldClick={false} />}
           </div>
         </div>
       </section>
