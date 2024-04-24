@@ -75,63 +75,69 @@ export default function PageCard({
           </div>
         )}
 
-        <section className={styles.cardInfoCont}>
-          <strong className={styles.cardTitle}>
-            {placeReservation?.product?.title}
-          </strong>
-          <strong className={styles.cardInfo}>
-            Início:{" "}
-            <span className={styles.cardInfoValue}>
-              {getFormattedDate(placeReservation.startsAt)}
-            </span>
-          </strong>
-          <strong className={styles.cardInfo}>
-            Fim:{" "}
-            <span className={styles.cardInfoValue}>
-              {getFormattedDate(placeReservation.endsAt)}
-            </span>
-          </strong>
-          <strong className={styles.cardInfo}>
-            Qnt. pessoas:{" "}
-            <span className={styles.cardInfoValue}>
-              {placeReservation.numOfParticipants}
-            </span>
-          </strong>
-          <strong className={styles.cardInfo}>
-            Valor:{" "}
-            <span className={styles.cardInfoValue}>
-              R$ {placeReservation.placeFinalPrice}
-            </span>
-          </strong>
+        {placeReservation && (
+          <>
+            <section className={styles.cardInfoCont}>
+              <strong className={styles.cardTitle}>
+                {placeReservation?.product?.title}
+              </strong>
+              <strong className={styles.cardInfo}>
+                Início:{" "}
+                <span className={styles.cardInfoValue}>
+                  {getFormattedDate(placeReservation.startsAt)}
+                </span>
+              </strong>
+              <strong className={styles.cardInfo}>
+                Fim:{" "}
+                <span className={styles.cardInfoValue}>
+                  {getFormattedDate(placeReservation.endsAt)}
+                </span>
+              </strong>
+              <strong className={styles.cardInfo}>
+                Qnt. pessoas:{" "}
+                <span className={styles.cardInfoValue}>
+                  {placeReservation.numOfParticipants}
+                </span>
+              </strong>
+              <strong className={styles.cardInfo}>
+                Valor:{" "}
+                <span className={styles.cardInfoValue}>
+                  R$ {placeReservation.placeFinalPrice}
+                </span>
+              </strong>
 
-          <StatusTag
-            status={placeReservation.status.toLowerCase() as any}
-            tagText={getStatusText(placeReservation.status)}
-          />
-        </section>
+              <StatusTag
+                status={placeReservation.status.toLowerCase() as any}
+                tagText={getStatusText(placeReservation.status)}
+              />
+            </section>
 
-        <div className={styles.separator}></div>
+            <div className={styles.separator}></div>
 
-        <section className={`${styles.cardInfoCont} ${styles.userInfoCont}`}>
-          <strong className={styles.userInfoTitle}>Solicitado por:</strong>
+            <section
+              className={`${styles.cardInfoCont} ${styles.userInfoCont}`}
+            >
+              <strong className={styles.userInfoTitle}>Solicitado por:</strong>
 
-          <UserAccountCircle
-            image={
-              placeReservation.eventOwner.profilePhoto == "string"
-                ? null
-                : placeReservation.eventOwner.profilePhoto || null
-            }
-          />
-          <strong className={styles.userName}>
-            {placeReservation.eventOwner.name}
-          </strong>
-          <span className={styles.userInfo}>
-            {placeReservation.eventOwner.email}
-          </span>
-          <span className={styles.userInfo}>
-            {placeReservation.eventOwner.telephone}
-          </span>
-        </section>
+              <UserAccountCircle
+                image={
+                  placeReservation.eventOwner.profilePhoto == "string"
+                    ? null
+                    : placeReservation.eventOwner.profilePhoto || null
+                }
+              />
+              <strong className={styles.userName}>
+                {placeReservation.eventOwner.name}
+              </strong>
+              <span className={styles.userInfo}>
+                {placeReservation.eventOwner.email}
+              </span>
+              <span className={styles.userInfo}>
+                {placeReservation.eventOwner.telephone}
+              </span>
+            </section>
+          </>
+        )}
       </Card>
 
       {isModalOpen && (
