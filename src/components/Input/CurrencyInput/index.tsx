@@ -1,7 +1,6 @@
 import ReactCurrencyInput from "react-currency-input-field";
 import styles from "../styles.module.css";
 import { Text } from "@/components/Text";
-import { useForm } from "react-hook-form";
 
 interface Props {
   name: string;

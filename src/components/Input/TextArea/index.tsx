@@ -1,7 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes } from "react";
 import styles from "./styles.module.css";
 import { Text } from "../../Text";
-import { useForm } from "react-hook-form";
 
 type Input = InputHTMLAttributes<HTMLTextAreaElement> & {
   name: string;

@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { FiUpload } from "react-icons/fi";
 import { ImageCard } from "./ImageCard";
-import { useForm } from "react-hook-form";
 
 interface Props {
   name: string;
