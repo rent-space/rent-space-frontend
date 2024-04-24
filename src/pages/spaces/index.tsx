@@ -23,16 +23,15 @@ export default function Spaces() {
   const router = useRouter();
 
   useEffect(() => {
-    getSpaces().then((response) => setSpaces(response));
+    getSpaces().then((response) =>
+      setSpaces(response.sort((a, b) => b.id - a.id))
+    );
   }, []);
 
   useEffect(() => {
     const startIndex = (page - 1) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
-    const updatedCards = spaces
-      .slice(startIndex, endIndex)
-      .sort((a, b) => a.title.localeCompare(b.title));
-
+    const updatedCards = spaces.slice(startIndex, endIndex);
     setCards(updatedCards);
   }, [page, spaces]);
 
@@ -58,8 +57,6 @@ export default function Spaces() {
       router.push("/");
     },
   });
-
-  console.log("spaces", spaces);
 
   return (
     <>

@@ -81,7 +81,7 @@ export default function SpaceNew() {
         };
         createSpace(space).then((response) => {
           setLoading(false);
-          response && router.push("/spaces"); // change to go to details page of corresponding id
+          response && router.push(`/space/${response.id}`);
         });
       })
       .catch((error) => {
