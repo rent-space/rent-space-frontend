@@ -22,6 +22,7 @@ export const authOptions: NextAuthOptions = {
           user: {
             ...session.user,
             ...(user.id && { id: user.id }),
+            ...(user.userType && { userType: user.userType }),
           },
         };
 

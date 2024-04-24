@@ -9,46 +9,32 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import styles from "./styles.module.css";
 import { FloatingButton } from "@/components/FloatingButton";
 import { useEffect, useState } from "react";
-import { getSpace, getSpaces } from "@/services/api/space";
-import { AllSpaces, Space } from "@/utils/types";
+import { getSpaces } from "@/services/api/space";
+import { AllSpaces } from "@/utils/types";
 
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 6;
 
 export default function Spaces() {
-  const [allSpaces, setAllSpaces] = useState<AllSpaces>([]);
-  const [spaces, setSpaces] = useState<Space[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [cards, setCards] = useState<Space[]>([]);
+  const [spaces, setSpaces] = useState<AllSpaces>([]);
+  const [cards, setCards] = useState<AllSpaces>([]);
 
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(allSpaces.length / PAGE_SIZE);
+  const totalPages = Math.ceil(spaces.length / PAGE_SIZE);
   const router = useRouter();
 
   useEffect(() => {
-    setLoading(true);
-    getSpaces().then((response) => setAllSpaces(response));
+    getSpaces().then((response) => setSpaces(response));
   }, []);
 
   useEffect(() => {
-    allSpaces.forEach((space, i) =>
-      getSpace(space.id).then((response) => {
-        setSpaces((prevSpaces) => [...prevSpaces, response]);
-        if (i == allSpaces.length - 1) {
-          setLoading(false);
-        }
-      })
-    );
-  }, [allSpaces]);
-
-  useEffect(() => {
-    const startIndex = (page - 1) * 6;
-    const endIndex = startIndex + 6;
+    const startIndex = (page - 1) * PAGE_SIZE;
+    const endIndex = startIndex + PAGE_SIZE;
     const updatedCards = spaces
       .slice(startIndex, endIndex)
       .sort((a, b) => a.title.localeCompare(b.title));
 
-    !loading && setCards(updatedCards);
-  }, [loading, page, spaces]);
+    setCards(updatedCards);
+  }, [page, spaces]);
 
   const goToPreviousPage = () => {
     if (page > 1) {
@@ -87,21 +73,21 @@ export default function Spaces() {
         </div>
 
         <div className={styles.listContainer}>
-          {!loading &&
-            cards.map((card, i) => {
-              return (
-                <div className={styles.card} key={i}>
-                  <CardDescription
-                    title={card.title}
-                    maxCapacity={card.maximumCapacity}
-                    description={card.description}
-                    image=""
-                    pricePerHour={card.pricePerHour}
-                    onClick={() => navigateToDetailsSpace(card.id)}
-                  />
-                </div>
-              );
-            })}
+          {cards.map((card, i) => {
+            return (
+              <div className={styles.card} key={i}>
+                <CardDescription
+                  key={card.id}
+                  title={card.title}
+                  maxCapacity={card.maximumCapacity}
+                  description={card.description}
+                  image={card.media?.length ? card.media[0] : ""}
+                  pricePerHour={card.pricePerHour}
+                  onClick={() => navigateToDetailsSpace(card.id)}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
       <Footer justify="center" className={styles.footer}>

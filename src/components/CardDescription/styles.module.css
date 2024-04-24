@@ -1,66 +1,62 @@
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 24.45rem;
-    height: 14rem;
-    border-radius: 1rem;
-    box-shadow: 2px 4px 4px 1px #bdbdbd;
-    margin-left: 3rem;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    gap: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 24.45rem;
+  height: 14rem;
+  border-radius: 1rem;
+  box-shadow: 2px 4px 4px 1px #bdbdbd;
+  margin-left: 3rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 6px 8px 12px 4px #bdbdbd;
+  transform: translateY(-5px);
+  box-shadow: 6px 8px 12px 4px #bdbdbd;
 }
 
 .imageContainer {
-    display: flex;
-    flex: 1;
-    height: auto;
-    max-width: 40%;
-    overflow: hidden;
-
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 45%;
 }
 .descriptionSide {
-    display: flex;
-    height: 100%;
-    width: 50%;
-    flex-direction: column;
+  display: flex;
+  height: 100%;
+  width: 50%;
+  flex-direction: column;
 }
 
 .title {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: var(--laranja)
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--laranja);
 }
 
 .description {
-    margin-top: 0.5rem;
-    font-size: 16px;
-    font-weight: 300;
-    display: -webkit-box; 
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 180px;
+  margin-top: 0.5rem;
+  font-size: 16px;
+  font-weight: 300;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
 }
 
-
 .maxCapacity {
-    font-size: 16px;
-    margin-top: 0.5rem;
-    color: var(--laranja);
+  font-size: 16px;
+  margin-top: 0.5rem;
+  color: var(--laranja);
 }
 
 .price {
-    position: absolute;
-    bottom: 1rem;
-    font-size: 16px;
-    margin-top: 0.5rem;
-    color: var(--laranja);
+  position: absolute;
+  bottom: 1rem;
+  font-size: 16px;
+  margin-top: 0.5rem;
+  color: var(--laranja);
 }
