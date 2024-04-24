@@ -43,6 +43,7 @@ export function Input(props: Input) {
           placeholder={placeholder}
           className={styles.input}
           onChange={(event) => setValue && setValue(event.target.value)}
+          required={required}
         />
       ) : (
         <input

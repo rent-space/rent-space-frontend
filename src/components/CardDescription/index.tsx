@@ -23,12 +23,13 @@ export function CardDescription({
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageContainer}>
-        {image ?
-          <Image src={image} alt="Imagem do Espaço" width={175} height={225} /> :
+        {image.length && image.includes("base64") ? (
+          <Image src={image} alt="Imagem do Espaço" width={175} height={225} />
+        ) : (
           <div className={styles.noImagePlace}>
             <FiCameraOff color="#FFF" size={32} />
           </div>
-        }
+        )}
       </div>
       <div className={styles.descriptionSide}>
         <div className={styles.title}>{title}</div>
