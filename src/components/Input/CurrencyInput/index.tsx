@@ -1,6 +1,7 @@
 import ReactCurrencyInput from "react-currency-input-field";
 import styles from "../styles.module.css";
 import { Text } from "@/components/Text";
+import { removeCurrencySymbolAndParse } from "./utils";
 
 interface Props {
   name: string;
@@ -26,7 +27,10 @@ export function CurrencyInput(props: Props) {
         decimalsLimit={2}
         className={styles.input}
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
-        onChange={(e) => setValue && setValue(e.target.value)}
+        onChange={(e) =>
+          setValue && setValue(removeCurrencySymbolAndParse(e.target.value))
+        }
+        required={required}
       />
     </div>
   );

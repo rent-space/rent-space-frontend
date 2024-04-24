@@ -60,3 +60,14 @@
   margin-top: 0.5rem;
   color: var(--laranja);
 }
+
+.noImagePlace {
+  height: 100%;
+  width: 90%;
+  background-color: var(--cinza);
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

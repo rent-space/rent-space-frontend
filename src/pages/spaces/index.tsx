@@ -59,6 +59,8 @@ export default function Spaces() {
     },
   });
 
+  console.log("spaces", spaces);
+
   return (
     <>
       <Header>

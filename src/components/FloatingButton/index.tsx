@@ -8,8 +8,7 @@ export function FloatingButton() {
   const router = useRouter();
   const { data } = useSession();
 
-  const isPlaceOwner =
-    data?.user && (data?.user as User).userType === "PLACE_OWNER";
+  const isPlaceOwner = data?.user && data?.user?.userType === "PLACE_OWNER";
 
   if (!isPlaceOwner) return null;
 

@@ -1,0 +1,27 @@
+
+.statusTag {
+  margin-top: 24px;
+  border-radius: 24px;
+  width: 170px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.statusTag span {
+  font-weight: 600;
+}
+
+.pending {
+  background-color: #FFBE9D;
+}
+.pending span {
+  color: #EB5B14;
+}
+
+.accepted {
+  background-color: #CEFA96;
+}
+.accepted span {
+  color: #4D9416;
+}

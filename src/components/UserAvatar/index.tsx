@@ -9,7 +9,7 @@ export function UserAvatar() {
   };
 
   return (
-    <div onClick={logout}>
+    <div>
       <IconAccountCircle onClick={logout} />
     </div>
   );

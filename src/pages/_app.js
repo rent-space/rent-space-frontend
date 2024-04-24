@@ -1,5 +1,6 @@
 
 import { SessionProvider } from "next-auth/react"
+import Head from 'next/head';
 
 import "../styles/global.css";
 
@@ -12,6 +13,10 @@ export default function App({ Component,
 }) {
   return (
     <main className={montserrat.className}>
+      <Head>
+        <title>RentSpace</title>
+        <meta property="og:title" content="RentSpace" key="rentspace" />
+      </Head>
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>

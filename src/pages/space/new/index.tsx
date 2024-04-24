@@ -37,16 +37,18 @@ export default function SpaceNew() {
     },
   });
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [images, setImages] = useState<File[]>([]);
-  const [address, setAddress] = useState("");
-  const [neighborhood, setNeighborhood] = useState("");
-  const [city, setCity] = useState("");
-  const [pricePerHour, setPricePerHour] = useState(0);
-  const [maximumCapacity, setMaximumCapacity] = useState(0);
-  const [complement, setComplement] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const [address, setAddress] = useState<string>("");
+  const [neighborhood, setNeighborhood] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [pricePerHour, setPricePerHour] = useState<number>(0);
+  const [maximumCapacity, setMaximumCapacity] = useState<number>(0);
+  const [complement, setComplement] = useState<string>("");
+  const [zipCode, setZipCode] = useState<string>("");
+
+  console.log(pricePerHour);
 
   const [loading, setLoading] = useState(false);
 
@@ -75,7 +77,7 @@ export default function SpaceNew() {
           maximumCapacity,
           complement,
           zipCode,
-          ownerId: (data?.user as User).id as number,
+          ownerId: parseInt(data.user.id),
         };
         createSpace(space).then((response) => {
           setLoading(false);
@@ -138,7 +140,7 @@ export default function SpaceNew() {
             name="zipCode"
             label="CEP"
             type="number"
-            required={true}
+            required
             mask="99999-999"
             placeholder="_____-___"
             icon={PiHouseLight}
