@@ -95,7 +95,7 @@ export default function Spaces() {
                     title={card.title}
                     maxCapacity={card.maximumCapacity}
                     description={card.description}
-                    image=""
+                    image={card.media[0]}
                     pricePerHour={card.pricePerHour}
                     onClick={() => navigateToDetailsSpace(card.id)}
                   />
