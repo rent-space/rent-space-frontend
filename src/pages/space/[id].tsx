@@ -26,6 +26,7 @@ export default function DetailsPageSpace() {
 
   return (
     <>
+      <ReserveModal modal={modal} close={closeModal} />
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space && (
@@ -33,7 +34,6 @@ export default function DetailsPageSpace() {
             <DetailsCard owner={space.owner} />
           </DetailsSpace>
         )}
-        <ReserveModal modal={modal} close={closeModal} />
       </Page>
       <Footer />
     </>
