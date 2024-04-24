@@ -15,7 +15,7 @@ export default function LoginLoader() {
 
   useEffect(() => {
     if (status === "authenticated") {
-      if (data.user && !(data.user as User).id) {
+      if (data?.user && !data?.user?.id) {
         router.push("/select-user-type");
       } else {
         router.push("/home");
