@@ -35,13 +35,14 @@ export async function fetchApi(url: string, options?: FetchOptions) {
       },
     });
 
+    console.log(response);
     return { data: response.data, error: null };
   } catch (error: any) {
+    console.error(error);
     return {
       data: null,
       error:
-        (error?.response?.data?.errorMessage as string) ||
-        DEFAULT_ERROR_MESSAGE,
+        (error?.response?.data?.message as string) || DEFAULT_ERROR_MESSAGE,
     };
   }
 }

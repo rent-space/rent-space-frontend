@@ -7,7 +7,7 @@ export async function getUser(email: string): Promise<User> {
   });
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return data;
@@ -20,7 +20,7 @@ export async function createUser(user: User): Promise<User> {
   });
 
   if (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return data;

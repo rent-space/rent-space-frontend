@@ -1,73 +1,53 @@
-import { Card } from "@/components/AuthCard";
 import { Header } from "@/components/Header";
-import { IconAccountCircle } from "@/components/Icons/IconAccountCircle";
 import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import styles from './styles.module.css';
-import StatusTag from "@/components/StatusTag";
+import { getPlaceReservationById } from "@/services/api/reservations";
+import { PlaceReservation } from "@/utils/types";
+import PageCard from "./_card";
 
 interface PageDataProps {
-  title: string
-}
-
-const PageCard = () => {
-  return (
-    <Card hasMargin={false} aditionalStyles={styles.cardStyle}>
-      <div></div>
-
-      <section className={styles.cardInfoCont}>
-        <strong className={styles.cardTitle}>Espaço verde</strong>
-        <strong className={styles.cardInfo}>Dia:{" "}
-          <span className={styles.cardInfoValue}>24/08/2024</span>
-        </strong>
-        <strong className={styles.cardInfo}>Horário:{" "}
-          <span className={styles.cardInfoValue}>24/08/2024</span>
-        </strong>
-        <strong className={styles.cardInfo}>Qnt. pessoas:{" "}
-          <span className={styles.cardInfoValue}>450</span>
-        </strong>
-        <strong className={styles.cardInfo}>Valor:{" "}
-          <span className={styles.cardInfoValue}>24/08/2024</span>
-        </strong>
-
-        <StatusTag status="pending" tagText="PENDENTE" />
-      </section>
-      
-      <section className={`${styles.cardInfoCont} ${styles.userInfoCont}`}>
-        <strong className={styles.userInfoTitle}>Solicitado por:</strong>
-
-        <IconAccountCircle />
-        <strong className={styles.userName}>Juanita</strong>
-        <span className={styles.userInfo}>juanita@gmail.com</span>
-        <span className={styles.userInfo}>(83) 9100000000</span>
-      </section>
-    </Card>
-  )
+  title: string,
+  firstSection: string,
+  secSection: string
 }
 
 export default function RequestedSolicitations() {
   const { data } = useSession();
+  const [placeReservation, setPlaceReservation] = useState<PlaceReservation[] | null>(null);
   const [pageData, setPageData] = useState<PageDataProps>({
-    title: ''
+    title: "Suas reservas",
+    firstSection: "Solicitações pendentes",
+    secSection: "Solicitações confirmadas"
   });
 
   useEffect(() => {
-    console.log(data)
-    let pageTitle = "Solicitações"
-
-    if (data?.user?.userType === 'SPACE_OWNER' || data?.user?.userType === 'SERVICE_OFFER') {
-      pageTitle = "Solicitações recebidas"
-    } else if (data?.user?.userType === 'EVENT_OWNER') {
-      pageTitle = "Suas reservas"
+    const getReservation = async () => {
+      const reservationConfirmed = await getPlaceReservationById(1);
+      const reservation = await getPlaceReservationById(2);
+      setPlaceReservation([reservationConfirmed, reservation]);
     }
 
-    setPageData({
-      ...pageData,
-      title: pageTitle
-    })
+    getReservation();
+  }, [])
+
+  useEffect(() => {
+    if (data?.user?.userType === 'SPACE_OWNER' || data?.user?.userType === 'SERVICE_OFFER') {
+      const pageInfos = {
+        title: "Solicitações recebidas",
+        firstSection: "Reservas solicitadas",
+        secSection: "Reservas confirmadas"
+      }
+
+      setPageData({
+        ...pageData,
+        ...pageInfos
+      })
+    }
+
   }, [data])
 
   return (
@@ -81,12 +61,20 @@ export default function RequestedSolicitations() {
         <h1 className={styles.pageTitle}>{pageData.title}</h1>
 
         <div className={styles.cardsContainer}>
-          <span className={styles.sectionTitle}>Solicitações pendentes</span>
+          <span className={styles.sectionTitle}>{pageData.firstSection}</span>
 
           <div className={styles.cards}>
-            {[1,2,3].map(index => (
-              <PageCard key={index}/>
-            ))}
+            {placeReservation !== null && placeReservation[1] &&
+            <PageCard placeReservation={placeReservation[1]}/>}
+          </div>
+        </div>
+
+        <div className={styles.cardsContainer}>
+          <span className={styles.sectionTitle}>{pageData.secSection}</span>
+
+          <div className={styles.cards}>
+            {placeReservation !== null && placeReservation[0] &&
+            <PageCard placeReservation={placeReservation[0]}/>}
           </div>
         </div>
       </section>

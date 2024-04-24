@@ -24,9 +24,10 @@ export default function LandingPage() {
           >
             Login
           </Button>
-          <Button 
+          <Button
             onClick={() => signIn("google", { callbackUrl: "/login-loader" })}
-            variant="secondary" size="small"
+            variant="secondary"
+            size="small"
           >
             Cadastrar
           </Button>

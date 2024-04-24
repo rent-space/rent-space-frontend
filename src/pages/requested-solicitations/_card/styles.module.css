@@ -1,0 +1,132 @@
+.cardStyle {
+  max-width: 600px;
+  max-height: 225px;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  transform: none;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cardInfoCont {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  max-width: 40%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  color: var(--laranja);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+
+.cardInfo {
+  color: var(--cinza-escuro);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.noImagePlace {
+  height: 100%;
+  width: 30%;
+  background-color: var(--cinza-medio);
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator {
+  width: 1px;
+  height: 80%;
+  background-color: #C7C7C7;
+  margin: auto 0px;
+}
+
+.userInfoCont {
+  display: flex;
+  align-items: center;
+}
+
+.cardInfoValue {
+  font-weight: 400;
+}
+
+.userInfoTitle {
+  width: 100%;
+  color: var(--cinza-escuro);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-bottom: 16px;
+}
+
+.userName {
+  color: var(--preto);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-top: 16px;
+  padding-bottom: 8px;
+}
+
+.userInfo {
+  color: var(--cinza-escuro);
+  font-size: 12px;
+}
+
+.modalTitle {
+  padding-top: 16px;
+  color: var(--laranja);
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  width: 100px;
+  height: 120px;
+  box-shadow: 4px 4px 4px #eb5b1440;
+  border: none;
+  background-color: var(--laranja);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  gap: 8px;
+  cursor: pointer;
+  padding: 0.5rem;
+
+}
+
+.secButton {
+  background: var(--branco);
+  border: 1px solid var(--laranja);
+}
+
+.buttonText {
+  color: var(--branco);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+}
+
+.secButtonText {
+  color: var(--laranja);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+}
