@@ -4,16 +4,15 @@ import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
-import { useState } from "react";
-import ReserveModal from "../ReserveModal";
 
 interface Props {
   space: Space;
   children: React.ReactNode;
+  openModal: () => void;
 }
 
 export function DetailsSpace(props: Props) {
-  const { space, children } = props;
+  const { space, children, openModal } = props;
 
   const {
     title,
@@ -25,12 +24,6 @@ export function DetailsSpace(props: Props) {
     city,
     zipCode,
   } = space;
-
-  const [modal, setModal] = useState(false);
-
-  const openModal = () => setModal(true);
-
-  const closeModal = () => setModal(false);
 
   return (
     <div className={styles.container}>

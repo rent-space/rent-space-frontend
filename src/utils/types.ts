@@ -15,7 +15,7 @@ export type Space = {
   address: string;
   city: string;
   pricePerHour: number;
-  media?: string[]; // Missing field from back-end
+  media: string[];
   owner: {
     name: string;
     profilePhoto: string;

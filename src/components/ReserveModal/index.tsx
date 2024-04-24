@@ -2,11 +2,14 @@ import styles from "./styles.module.css";
 import { FaRegTimesCircle } from "react-icons/fa";
 
 interface Props {
+  modal: boolean;
   close: () => void;
 }
 
 export default function ReserveModal(props: Props) {
-  const { close } = props;
+  const { close, modal } = props;
+
+  if (!modal) return null;
 
   return (
     <div className={styles.background}>
