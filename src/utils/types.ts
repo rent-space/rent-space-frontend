@@ -43,4 +43,11 @@ export type SpacePayload = {
   zipCode: string;
 };
 
-export type AllSpaces = { id: number; title: string }[];
+export type AllSpaces = {
+  id: number;
+  title: string;
+  media: string[];
+  maximumCapacity: number;
+  pricePerHour: number;
+  description: string;
+}[];

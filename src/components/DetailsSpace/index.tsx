@@ -23,6 +23,7 @@ export function DetailsSpace(props: Props) {
     neighborhood,
     city,
     zipCode,
+    media,
   } = space;
 
   return (

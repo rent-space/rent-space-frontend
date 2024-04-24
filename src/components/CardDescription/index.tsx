@@ -19,12 +19,12 @@ export function CardDescription({
   image,
   onClick,
 }: CardProps) {
-  console.log(image);
-
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageContainer}>
-        <Image src={image} alt="Imagem do Espaço" width={175} height={225} />
+        {image && (
+          <Image src={image} alt="Imagem do Espaço" width={175} height={225} />
+        )}
       </div>
       <div className={styles.descriptionSide}>
         <div className={styles.title}>{title}</div>
