@@ -3,14 +3,16 @@ import styles from "./styles.module.css";
 import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
+import { Button } from "../Button";
 
 interface Props {
   space: Space;
   children: React.ReactNode;
+  openModal: () => void;
 }
 
 export function DetailsSpace(props: Props) {
-  const { space, children } = props;
+  const { space, children, openModal } = props;
 
   const {
     title,
@@ -21,6 +23,7 @@ export function DetailsSpace(props: Props) {
     neighborhood,
     city,
     zipCode,
+    media,
   } = space;
 
   return (
@@ -85,6 +88,12 @@ export function DetailsSpace(props: Props) {
               <Text size="body" color="gray" weight="regular">
                 {address} - {neighborhood}, {city} - {zipCode}
               </Text>
+            </div>
+
+            <div>
+              <Button variant="primary" size="small" onClick={openModal}>
+                Reservar
+              </Button>
             </div>
           </div>
           <div className={styles.card}>{children}</div>

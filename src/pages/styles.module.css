@@ -3,7 +3,7 @@
 }
 
 .homeInformations {
-  width: 50vw;
+  width: 40%;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -48,10 +48,6 @@
   margin: 0;
 }
 
-.homeImageCont {
-  position: relative;
-}
-
 .homeImg {
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
@@ -72,6 +68,6 @@
 
 .bulletPoint {
   font-size: 8px;
-  color: #A5A5A5;
+  color: #a5a5a5;
   margin: 0 0.75rem;
 }
