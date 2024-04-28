@@ -8,7 +8,7 @@
 
 .overlayText {
     position: absolute;
-    top:8%;
+    top:5%;
 }
 
 .titleContainer {
@@ -32,7 +32,7 @@
 
 .subtitleContainer {
     display: flex;
-    padding-top: 40px;
+    padding-top: 0.5rem;
     justify-content: center;
     align-items: center;
     
@@ -50,8 +50,10 @@
 .textContainer {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
-    width: 85%;
+    margin-top: 2rem;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    width: 88%;
 }
 
 .spaceText {
@@ -70,10 +72,12 @@
 
 .cardContainer {
     display: flex;
-    padding-top: 1.5rem;
-    overflow-x: auto;
+    overflow-x: scroll;
     overflow-y: hidden;
-    flex-direction: row;
-    width: 92%;
-    
+    width: 88%;
+   
+}
+
+.cards {
+    margin-right: 2rem;   
 }

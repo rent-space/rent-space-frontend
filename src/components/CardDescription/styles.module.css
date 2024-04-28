@@ -6,9 +6,9 @@
   height: 14rem;
   border-radius: 1rem;
   box-shadow: 2px 4px 4px 1px #bdbdbd;
-  margin-left: 3rem;
   transition: transform 0.3s ease;
   cursor: pointer;
+  gap: 1rem;
 }
 
 .card:hover {
@@ -21,7 +21,15 @@
   flex: 1;
   height: 100%;
   width: 45%;
+  overflow: hidden;
 }
+
+.image {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  flex:1
+}
+
 .descriptionSide {
   display: flex;
   height: 100%;

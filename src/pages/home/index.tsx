@@ -9,13 +9,14 @@ import HomeImage from "@/assets/home_image.svg";
 import { useRouter } from "next/router";
 import styles from './styles.module.css';
 import { CardDescription } from "@/components/CardDescription";
-import MockImage from '@/assets/noImageFile.svg';
-import { useState } from "react";
-import { Space } from "@/utils/types";
+import { useEffect, useState } from "react";
+import { AllSpaces } from "@/utils/types";
+import { getSpaces } from "@/services/api/space";
 
 export default function Home() {
   const router = useRouter();
-  const [cards, setCards] = useState<Space[]>([]);
+  const [cards, setCards] = useState<AllSpaces>([]);
+  const [spaces, setSpaces] = useState<AllSpaces>([]);
 
   useSession({
     required: true,
@@ -24,12 +25,23 @@ export default function Home() {
     },
   });
 
+  useEffect(() => {
+    getSpaces().then((response) =>
+      setSpaces(response.sort((a, b) => b.id - a.id))
+    );
+  }, []);
+
+  useEffect(() => {
+    const updatedCards = spaces.slice(0, 4);
+    setCards(updatedCards);
+  }, [spaces]);
+
   const navigateToListSpace = () => {
     router.push("/spaces");
   };
 
-  const navigateToDetailsSpace = () => {
-    router.push("/space/details");
+  const navigateToDetailsSpace = (id: number) => {
+    router.push(`/space/${id}`);
   };
 
   return (
@@ -65,17 +77,18 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.cardContainer}>
-          {cards.slice(0,5).map((card,index) => {
+          {cards.map((card,_) => {
             return (
-            <CardDescription
-              description={card.description}
-              title={card.title}
-              image={MockImage}
-              onClick={navigateToDetailsSpace}
-              maxCapacity={card.maximumCapacity}
-              pricePerHour={card.pricePerHour}
-              key={index}
-            />
+              <div className={styles.cards} key={card.id}>
+                <CardDescription
+                  title={card.title}
+                  description={card.description}
+                  maxCapacity={card.maximumCapacity}
+                  image={card.media?.length ? card.media[0] : ""}
+                  pricePerHour={card.pricePerHour}
+                  onClick={() => navigateToDetailsSpace(card.id)}
+                />
+              </div>
           )})}
         </div>
       </div>
