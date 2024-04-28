@@ -82,7 +82,6 @@ export default function Home() {
               <div className={styles.cards} key={card.id}>
                 <CardDescription
                   title={card.title}
-                  description={card.description}
                   maxCapacity={card.maximumCapacity}
                   image={card.media?.length ? card.media[0] : ""}
                   pricePerHour={card.pricePerHour}
