@@ -10,7 +10,6 @@ type CardProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   pricePerHour: number;
   image: string;
   onClick: () => void;
-  secondary?: boolean;
 };
 
 export function CardDescription({
@@ -20,7 +19,6 @@ export function CardDescription({
   pricePerHour,
   image,
   onClick,
-  secondary = false
 }: CardProps) {
   return (
     <div className={styles.card} onClick={onClick}>

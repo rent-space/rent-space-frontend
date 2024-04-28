@@ -19,13 +19,13 @@
     
 }
 .eventPhrase {
-    font-size: 70px;
+    font-size: 54px;
     color: #fff;
     font-weight: 500;
 }
 
 .eventPhraseBold {
-    font-size: 70px;
+    font-size: 54px;
     color: var(--laranja);
     font-weight: 600;
 }
@@ -43,7 +43,7 @@
     text-align: center;
     color: #fff;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 16px;
     max-width: 500px;
 }
 
@@ -53,7 +53,7 @@
     margin-top: 2rem;
     padding-bottom: 0.3rem;
     margin-bottom: 1rem;
-    width: 88%;
+    width: 92%;
 }
 
 .spaceText {
@@ -72,15 +72,15 @@
 
 .cardContainer {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
-    width: 88%;
-    max-height: 140px;
+    width: 92%;
 }
 
 .cards {
+    display: flex;
     margin-top: 0.5rem;
-    margin-right: 2rem;
+    justify-content: space-between;
+    flex: 1;
     margin-bottom: 0.5rem;   
-    max-height: 140px;
 }

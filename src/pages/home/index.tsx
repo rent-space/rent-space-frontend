@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const updatedCards = spaces.slice(0, 4);
+    const updatedCards = spaces.slice(0, 3);
     setCards(updatedCards);
   }, [spaces]);
 
@@ -55,7 +55,6 @@ export default function Home() {
           src={HomeImage}
           alt="RentSpace Logo"
           style={{filter: "brightness(0.5)"}}
-          height={406}
         />  
         <div className={styles.overlayText}>
           <div className={styles.titleContainer}>
@@ -86,6 +85,7 @@ export default function Home() {
                   image={card.media?.length ? card.media[0] : ""}
                   pricePerHour={card.pricePerHour}
                   onClick={() => navigateToDetailsSpace(card.id)}
+                  description={card.description}
                 />
               </div>
           )})}
