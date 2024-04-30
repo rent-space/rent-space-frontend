@@ -101,12 +101,11 @@ export default function SelectUserType() {
 
       <section className={styles.userTypeSelectCont}>
         <h1 className={styles.pageTitle}>
-          Selecione o seu perfil de usuário para começar a utilizar a aplicação!
+          Selecione o seu perfil de usuário!
         </h1>
         <span className={styles.pageSubtitle}>
-          Selecione a opção que mais se encaixa no seu objeto pois isso irá
-          determinar as funcionalidades as quais você tem acesso dentro da
-          plataforma e essa opção não poderá ser modificada posteriormente.
+          Selecione a opção que mais se encaixa com você, pois isso irá
+          determinar as funcionalidades as quais você terá acesso. Não será possível alterá-la no futuro.
         </span>
 
         <div className={styles.selectionCont}>
