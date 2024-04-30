@@ -1,86 +1,80 @@
 .container {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .overlayText {
-    position: absolute;
-    top:5%;
+  position: absolute;
+  top: 5%;
 }
 
 .titleContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .eventPhrase {
-    font-size: 54px;
-    color: #fff;
-    font-weight: 500;
+  font-size: 54px;
+  color: #fff;
+  font-weight: 500;
 }
 
 .eventPhraseBold {
-    font-size: 54px;
-    color: var(--laranja);
-    font-weight: 600;
+  font-size: 54px;
+  color: var(--laranja);
+  font-weight: 600;
 }
 
 .subtitleContainer {
-    display: flex;
-    padding-top: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  padding-top: 0.5rem;
+  justify-content: center;
+  align-items: center;
 }
 .subtitle {
-    display: inline;
-    display: inline-block; 
-    text-align: center;
-    color: #fff;
-    font-weight: 400;
-    font-size: 16px;
-    max-width: 500px;
+  display: inline;
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  max-width: 500px;
 }
 
 .textContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-    width: 92%;
-}
-
-.spaceText {
-    font-weight: 600;
-    font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .seeAll {
-    text-decoration: underline;
-    border: 0;
-    background: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--laranja)
+  text-decoration: underline;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--laranja);
 }
 
 .cardContainer {
-    display: flex;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    width: 92%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cards {
-    display: flex;
-    margin-top: 0.5rem;
-    justify-content: space-between;
-    flex: 1;
-    margin-bottom: 0.5rem;   
+  width: 30%;
+}
+
+.spacesContainter {
+  display: flex;
+  justify-content: center;
+}
+
+.spaces {
+  width: 1376px;
 }

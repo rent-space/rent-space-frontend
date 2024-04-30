@@ -2,13 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 24.45rem;
-  height: 14rem;
+  height: 13rem;
   border-radius: 1rem;
   box-shadow: 2px 4px 4px 1px #bdbdbd;
   transition: transform 0.3s ease;
   cursor: pointer;
-  gap: 1rem;  
+  gap: 1rem;
   background-color: #eeeeeedc;
 }
 
@@ -28,7 +27,7 @@
 .image {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  flex:1
+  flex: 1;
 }
 
 .descriptionSide {
@@ -43,6 +42,9 @@
   font-weight: 600;
   color: var(--laranja);
   font-size: 18px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description {
