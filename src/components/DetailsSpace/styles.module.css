@@ -101,3 +101,17 @@
   display: flex;
   gap: 1.2rem;
 }
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.deleteButton {
+  border: 12px solid var(--laranja);
+  display: flex;
+  background-color: var(--laranja);
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -8,14 +8,18 @@ import { useEffect, useState } from "react";
 import { Space } from "@/utils/types";
 import { getSpace } from "@/services/api/space";
 import ReserveModal from "@/components/ReserveModal";
+import DeleteModal from "@/components/DeleteModal";
 
 export default function DetailsPageSpace() {
   const [space, setSpace] = useState<Space | undefined>(undefined);
-  const [modal, setModal] = useState(false);
+  const [reserveModal, setReserveModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
-  const openModal = () => setModal(true);
+  const openDeleteModal = () => setDeleteModal(true);
+  const openReserveModal = () => setReserveModal(true);
 
-  const closeModal = () => setModal(false);
+  const closeReserveModal = () => setReserveModal(false);
+  const closeDeleteModal = () => setDeleteModal(false);
 
   const router = useRouter();
 
@@ -26,11 +30,13 @@ export default function DetailsPageSpace() {
 
   return (
     <>
-      <ReserveModal modal={modal} close={closeModal} />
+      <ReserveModal modal={reserveModal} close={closeReserveModal} />
+      <DeleteModal modal={deleteModal} close={closeDeleteModal}/>
+      
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space && (
-          <DetailsSpace space={space} openModal={openModal}>
+          <DetailsSpace space={space} openModal={openReserveModal} openDeleteModal={openDeleteModal}>
             <DetailsCard owner={space.owner} />
           </DetailsSpace>
         )}

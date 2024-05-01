@@ -4,15 +4,16 @@ import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
-
+import { FiTrash } from "react-icons/fi"
 interface Props {
   space: Space;
   children: React.ReactNode;
   openModal: () => void;
+  openDeleteModal: () => void;
 }
 
 export function DetailsSpace(props: Props) {
-  const { space, children, openModal } = props;
+  const { space, children, openModal, openDeleteModal } = props;
 
   const {
     title,
@@ -90,10 +91,14 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
-            <div>
+            <div className={styles.buttonContainer}>
               <Button variant="primary" size="small" onClick={openModal}>
                 Reservar
               </Button>
+              <button className={styles.deleteButton} onClick={openDeleteModal}>
+                <FiTrash style={{color:"white", fontSize:'18px'}}/>
+              </button>
+              
             </div>
           </div>
           <div className={styles.card}>{children}</div>
