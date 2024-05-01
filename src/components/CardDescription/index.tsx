@@ -5,7 +5,7 @@ import { FiCameraOff } from "react-icons/fi";
 
 type CardProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
-  description: string;
+  description?: string;
   maxCapacity: number;
   pricePerHour: number;
   image: string;
@@ -24,7 +24,7 @@ export function CardDescription({
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageContainer}>
         {image.length && image.includes("base64") ? (
-          <Image src={image} alt="Imagem do Espaço" width={175} height={225} />
+          <Image src={image} alt="Imagem do Espaço" width={175} height={225} className={styles.image}/>
         ) : (
           <div className={styles.noImagePlace}>
             <FiCameraOff color="#FFF" size={32} />
