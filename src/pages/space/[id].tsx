@@ -26,7 +26,7 @@ export default function DetailsPageSpace() {
 
   return (
     <>
-      <ReserveModal modal={modal} close={closeModal} />
+      <ReserveModal open={modal} close={closeModal} />
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space && (

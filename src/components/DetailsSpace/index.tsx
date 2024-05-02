@@ -4,6 +4,7 @@ import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
+import { useSession } from "next-auth/react";
 
 interface Props {
   space: Space;
@@ -13,6 +14,10 @@ interface Props {
 
 export function DetailsSpace(props: Props) {
   const { space, children, openModal } = props;
+
+  const { data } = useSession();
+
+  const isEventOwner = data?.user && data?.user?.userType === "EVENT_OWNER";
 
   const {
     title,
@@ -90,11 +95,13 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
-            <div>
-              <Button variant="primary" size="small" onClick={openModal}>
-                Reservar
-              </Button>
-            </div>
+            {isEventOwner && (
+              <div>
+                <Button variant="primary" size="small" onClick={openModal}>
+                  Reservar
+                </Button>
+              </div>
+            )}
           </div>
           <div className={styles.card}>{children}</div>
         </div>

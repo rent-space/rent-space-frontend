@@ -1,12 +1,11 @@
-import { Dispatch, HTMLInputTypeAttribute, SetStateAction } from "react";
+import { HTMLInputTypeAttribute } from "react";
 import styles from "./styles.module.css";
 import { IconType } from "react-icons";
 import InputMask from "react-input-mask";
 import { Text } from "../Text";
 
-type Input = {
+type InputComponentProps = {
   name: string;
-  label?: string;
   icon?: IconType;
   iconSize?: number;
   mask?: string;
@@ -16,26 +15,17 @@ type Input = {
   placeholder?: string;
 };
 
-export function Input(props: Input) {
-  const {
-    name,
-    label,
-    icon: Icon,
-    iconSize,
-    type = "text",
-    required,
-    placeholder,
-    mask,
-    setValue,
-  } = props;
+type InputProps = InputComponentProps & {
+  label?: string;
+  icon?: IconType;
+  iconSize?: number;
+};
+
+function InputComponent(props: InputComponentProps) {
+  const { name, type = "text", required, placeholder, mask, setValue } = props;
 
   return (
-    <div className={styles.content}>
-      <Text size="label" color="gray">
-        {label}
-        {required && " *"}
-      </Text>
-
+    <>
       {mask ? (
         <InputMask
           name={name}
@@ -55,6 +45,21 @@ export function Input(props: Input) {
           onChange={(event) => setValue && setValue(event.target.value)}
         />
       )}
+    </>
+  );
+}
+
+export function Input(props: InputProps) {
+  const { label, icon: Icon, iconSize, required } = props;
+
+  return (
+    <div className={styles.content}>
+      <Text size="label" color="gray">
+        {label}
+        {required && " *"}
+      </Text>
+
+      <InputComponent {...props} />
 
       {Icon && (
         <div>

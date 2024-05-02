@@ -1,21 +1,22 @@
+import { Input } from "../Input";
+import Modal from "../Modal";
+import { Text } from "../Text";
 import styles from "./styles.module.css";
-import { FaRegTimesCircle } from "react-icons/fa";
 
 interface Props {
-  modal: boolean;
+  open: boolean;
   close: () => void;
 }
 
 export default function ReserveModal(props: Props) {
-  const { close, modal } = props;
-
-  if (!modal) return null;
+  const { close, open } = props;
 
   return (
-    <div className={styles.background}>
-      <div className={styles.modal}>
-        <FaRegTimesCircle className={styles.close} size={24} onClick={close} />
-      </div>
-    </div>
+    <Modal open={open} onClose={close}>
+      <Text size="title1" weight="semibold">
+        Reservando
+      </Text>
+      <Input name="startDate" label="Selecione a data de início" type="date" />
+    </Modal>
   );
 }
