@@ -1,15 +1,15 @@
 .modal {
     position: relative;
-    z-index: 999;
     background-color: white;
-    height: 50%;
-    width: 30%;
+    height: 35%;
+    width: 35%;
     border-radius: 24px;
   }
   
   .close {
     float: right;
     padding: 2rem;
+    cursor: pointer;
   }
   
   .background {
@@ -25,3 +25,34 @@
     align-items: center;
   }
   
+  .textContainer {
+    padding-top: 1.8rem;
+    padding-left: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    color: var(--laranja);
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    font-weight: 300;
+    padding-right: 8rem;
+  }
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  padding-top: 3.5rem;
+  padding-left: 2rem;
+
+}
+
+.removeButton {
+  gap: 2rem;
+}

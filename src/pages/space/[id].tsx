@@ -30,9 +30,11 @@ export default function DetailsPageSpace() {
 
   return (
     <>
-      <ReserveModal modal={reserveModal} close={closeReserveModal} />
-      <DeleteModal modal={deleteModal} close={closeDeleteModal}/>
+      <ReserveModal modal={reserveModal} close={closeReserveModal}/>
       
+      { space?.id &&
+        <DeleteModal modal={deleteModal} close={closeDeleteModal}  deleteSpaceId={space.id}/>
+      }
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space && (

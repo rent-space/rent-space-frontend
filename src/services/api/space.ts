@@ -37,3 +37,15 @@ export async function getSpace(id: number): Promise<Space> {
 
   return data;
 }
+
+export async function deleteSpace(id:number): Promise<Space> {
+  const { data, error } = await fetchApi(`/espaco/${id}`, {
+    method: "DELETE",
+  });
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data;
+}
