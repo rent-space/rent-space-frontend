@@ -53,3 +53,9 @@
 .text[data-color="gray"] {
   color: var(--cinza-medio);
 }
+
+.text[data-no-overflow] {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

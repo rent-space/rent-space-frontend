@@ -67,7 +67,7 @@ export default function PageCard({
         }`}
         onClick={openModal}
       >
-        {placeImage !== null ? (
+        {placeImage?.length && placeImage.includes("base64") ? (
           <Image src={placeImage} alt="Imagem do local" />
         ) : (
           <div className={styles.noImagePlace}>
@@ -140,29 +140,25 @@ export default function PageCard({
         )}
       </Card>
 
-      {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)}>
-          <h3 className={styles.modalTitle}>
-            Deseja aceitar essa solicitação?
-          </h3>
-          <section className={styles.buttonsContainer}>
-            <button
-              className={styles.button}
-              onClick={() => updateReservationStatus(true)}
-            >
-              <FiThumbsUp color="#FFF" size={24} />
-              <span className={styles.buttonText}>Aceitar</span>
-            </button>
-            <button
-              className={`${styles.button} ${styles.secButton}`}
-              onClick={() => updateReservationStatus(false)}
-            >
-              <FiThumbsDown color="#eb5b14" size={24} />
-              <span className={styles.secButtonText}>Recusar</span>
-            </button>
-          </section>
-        </Modal>
-      )}
+      <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h3 className={styles.modalTitle}>Deseja aceitar essa solicitação?</h3>
+        <section className={styles.buttonsContainer}>
+          <button
+            className={styles.button}
+            onClick={() => updateReservationStatus(true)}
+          >
+            <FiThumbsUp color="#FFF" size={24} />
+            <span className={styles.buttonText}>Aceitar</span>
+          </button>
+          <button
+            className={`${styles.button} ${styles.secButton}`}
+            onClick={() => updateReservationStatus(false)}
+          >
+            <FiThumbsDown color="#eb5b14" size={24} />
+            <span className={styles.secButtonText}>Recusar</span>
+          </button>
+        </section>
+      </Modal>
     </>
   );
 }

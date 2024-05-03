@@ -48,8 +48,6 @@ export default function SpaceNew() {
   const [complement, setComplement] = useState<string>("");
   const [zipCode, setZipCode] = useState<string>("");
 
-  console.log(pricePerHour);
-
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (event: React.FormEvent) => {
