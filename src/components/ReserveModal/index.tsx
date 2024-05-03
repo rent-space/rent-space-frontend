@@ -3,42 +3,76 @@ import { Input } from "../Input";
 import Modal from "../Modal";
 import { Text } from "../Text";
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DateTime } from "next-auth/providers/kakao";
 import { Button } from "../Button";
+import {
+  PaymentMethods,
+  PlaceReservationBody,
+  Space,
+  SpaceReservationBody,
+} from "@/utils/types";
+import { useSession } from "next-auth/react";
+import { createPlaceReservation } from "@/services/api/reservations";
+import { useRouter } from "next/router";
 
 interface Props {
+  space: Space;
   open: boolean;
   close: () => void;
 }
 
 export default function ReserveModal(props: Props) {
-  const { close, open } = props;
+  const { close, open, space } = props;
 
-  const [startsAt, setStartsAt] = useState<DateTime>();
-  const [endsAt, setEndsAt] = useState<DateTime>();
-  const [numOfParticipants, setNumOfParticipants] = useState<number>();
-  const [paymentMethod, setPaymentMethod] = useState<string>();
-  const [numOfInstallments, setNumOfInstallments] = useState<number>();
+  const { data } = useSession();
+  const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const [userId, setUserId] = useState<number>();
+  const [startsAt, setStartsAt] = useState<DateTime>(new Date().toISOString());
+  const [endsAt, setEndsAt] = useState<DateTime>(new Date().toISOString());
+  const [numOfParticipants, setNumOfParticipants] = useState<number>(0);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethods>("PIX");
+  const [numOfInstallments, setNumOfInstallments] = useState<number>(0);
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    data?.user.id && setUserId(parseInt(data?.user.id));
+  }, [data?.user.id]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const reservation = {
+    if (!userId) throw new Error("ERROR_FETCHING_USER_ID");
+
+    const reservation: PlaceReservationBody = {
       startsAt,
       endsAt,
       numOfParticipants,
       paymentMethod,
       numOfInstallments,
+      productId: space.id,
+      eventOwnerId: userId,
+      hiredRelatedServicesIds: [],
     };
 
-    console.log(reservation);
+    setLoading(true);
+    createPlaceReservation(reservation)
+      .then((res) => {
+        setLoading(false);
+        res && router.push("/requested-solicitations");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error(error);
+      });
   };
 
   return (
     <Modal open={open} onClose={close}>
       <Text size="title1" weight="semibold">
-        Reservando
+        Reservando {space.title}
       </Text>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input
@@ -89,7 +123,7 @@ export default function ReserveModal(props: Props) {
             variant="primary"
             className={styles.reserve}
           >
-            Solicitar Reserva
+            {loading ? "Solicitando..." : "Solicitar Reserva"}
           </Button>
         </div>
       </form>

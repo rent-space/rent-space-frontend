@@ -1,4 +1,4 @@
-import { PlaceReservation } from "@/utils/types";
+import { PlaceReservation, PlaceReservationBody } from "@/utils/types";
 import { fetchApi } from "./utils";
 
 export async function getPlaceReservationById(
@@ -18,6 +18,17 @@ export async function updatePlaceReservation(
   const { data } = await fetchApi(`/solicitacao/espaco/${id}`, {
     data: status,
     method: "PUT",
+  });
+
+  return data;
+}
+
+export async function createPlaceReservation(
+  reservation: PlaceReservationBody
+): Promise<PlaceReservation> {
+  const { data } = await fetchApi(`/solicitacao/espaco`, {
+    method: "POST",
+    data: reservation,
   });
 
   return data;
