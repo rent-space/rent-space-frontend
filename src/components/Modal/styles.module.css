@@ -13,7 +13,7 @@
 
 .modal {
   padding: 2rem 3rem;
-  min-width: 25rem;
+  min-width: 20rem;
   background-color: var(--branco);
   position: relative;
   border-radius: 0.5rem;

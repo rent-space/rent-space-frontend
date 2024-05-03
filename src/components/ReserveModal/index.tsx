@@ -1,4 +1,3 @@
-import { FaUsers } from "react-icons/fa";
 import { Input } from "../Input";
 import Modal from "../Modal";
 import { Text } from "../Text";
@@ -67,23 +66,28 @@ export default function ReserveModal(props: Props) {
   return (
     <Modal open={open} onClose={close}>
       <Text size="title1" weight="semibold">
-        Reservando {space.title}
+        Solicitação de Reserva
+      </Text>
+      <Text size="subtitle" color="gray">
+        {space.title}
       </Text>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input
-          name="startsAt"
-          label="O evento inicia às"
-          type="datetime-local"
-          setValue={setStartsAt}
-          required
-        />
-        <Input
-          name="endsAt"
-          label="O evento termina às"
-          type="datetime-local"
-          setValue={setEndsAt}
-          required
-        />
+        <div className={styles.inline}>
+          <Input
+            name="startsAt"
+            label="O evento inicia às"
+            type="datetime-local"
+            setValue={setStartsAt}
+            required
+          />
+          <Input
+            name="endsAt"
+            label="O evento termina às"
+            type="datetime-local"
+            setValue={setEndsAt}
+            required
+          />
+        </div>
         <Input
           name="numOfParticipants"
           label="Quantidade de participantes"
@@ -92,25 +96,29 @@ export default function ReserveModal(props: Props) {
           min={0}
           required
         />
-        <Input
-          name="paymentMethod"
-          label="Método de pagamento"
-          type="select"
-          options={[
-            { value: "PIX", label: "PIX" },
-            { value: "CREDIT", label: "Crédito" },
-          ]}
-          setValue={setPaymentMethod}
-          required
-        />
-        <Input
-          name="numOfInstallments"
-          label="Quantidade de parcelas"
-          type="number"
-          setValue={setNumOfInstallments}
-          min={0}
-          max={10}
-        />
+        <div className={styles.inline}>
+          <Input
+            name="paymentMethod"
+            label="Método de pagamento"
+            type="select"
+            options={[
+              { value: "PIX", label: "PIX" },
+              { value: "CREDIT", label: "Crédito" },
+            ]}
+            setValue={setPaymentMethod}
+            required
+          />
+          {paymentMethod === "CREDIT" && (
+            <Input
+              name="numOfInstallments"
+              label="Quantidade de parcelas"
+              type="number"
+              setValue={setNumOfInstallments}
+              min={0}
+              max={10}
+            />
+          )}
+        </div>
         <div>
           <Button
             type="submit"
