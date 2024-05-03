@@ -6,7 +6,8 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   size: "small" | "large";
 };
 export function Button(props: ButtonProps) {
-  const { variant, size, disabled, children, onClick, type, form } = props;
+  const { variant, size, disabled, children, onClick, type, form, className } =
+    props;
 
   return (
     <button
@@ -15,7 +16,7 @@ export function Button(props: ButtonProps) {
       data-size={size}
       data-variant={variant}
       data-disabled={disabled}
-      className={styles.button}
+      className={`${styles.button} ${className}`}
       onClick={onClick}
     >
       {children}

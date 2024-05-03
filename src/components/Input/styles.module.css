@@ -20,7 +20,7 @@
   height: 3rem;
   padding-left: 1.5rem;
   width: 100%;
-  padding-right: 2rem;
+  padding-right: 1rem;
   border-radius: 8px;
   background-color: var(--cinza-claro);
   box-sizing: border-box;
@@ -32,12 +32,13 @@
   height: 3rem;
   padding-left: 1.5rem;
   width: 100%;
-  padding-right: 2rem;
   border-radius: 8px;
   background-color: var(--cinza-claro);
   box-sizing: border-box;
   border: 0;
-  border-right: 16px solid transparent;
+  border-right: 1rem solid transparent;
+  outline: none;
+  box-shadow: none;
 }
 
 .input:focus {

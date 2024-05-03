@@ -50,7 +50,10 @@ function InputComponent(props: InputComponentProps) {
           required={required}
         />
       ) : type === "select" ? (
-        <select className={styles.inputSelect}>
+        <select
+          className={styles.inputSelect}
+          onChange={(event) => setValue && setValue(event.target.value)}
+        >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
