@@ -8,11 +8,15 @@ type InputComponentProps = {
   name: string;
   icon?: IconType;
   iconSize?: number;
+  iconOnClick?: () => void;
   mask?: string;
   setValue?: (values: any) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
   placeholder?: string;
+  options?: { value: string; label: string }[];
+  min?: number;
+  max?: number;
 };
 
 type InputProps = InputComponentProps & {
@@ -22,7 +26,17 @@ type InputProps = InputComponentProps & {
 };
 
 function InputComponent(props: InputComponentProps) {
-  const { name, type = "text", required, placeholder, mask, setValue } = props;
+  const {
+    name,
+    type = "text",
+    required,
+    placeholder,
+    mask,
+    setValue,
+    options = [],
+    min,
+    max,
+  } = props;
 
   return (
     <>
@@ -35,6 +49,14 @@ function InputComponent(props: InputComponentProps) {
           onChange={(event) => setValue && setValue(event.target.value)}
           required={required}
         />
+      ) : type === "select" ? (
+        <select className={styles.inputSelect}>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       ) : (
         <input
           name={name}
@@ -43,6 +65,8 @@ function InputComponent(props: InputComponentProps) {
           placeholder={placeholder}
           required={required}
           onChange={(event) => setValue && setValue(event.target.value)}
+          min={min}
+          max={max}
         />
       )}
     </>
@@ -50,7 +74,7 @@ function InputComponent(props: InputComponentProps) {
 }
 
 export function Input(props: InputProps) {
-  const { label, icon: Icon, iconSize, required } = props;
+  const { label, icon: Icon, iconSize, iconOnClick, required } = props;
 
   return (
     <div className={styles.content}>
@@ -64,7 +88,7 @@ export function Input(props: InputProps) {
       {Icon && (
         <div>
           <span className={styles.icon}>
-            <Icon size={iconSize ? iconSize : 24} />
+            <Icon size={iconSize ? iconSize : 24} onClick={iconOnClick} />
           </span>
         </div>
       )}
