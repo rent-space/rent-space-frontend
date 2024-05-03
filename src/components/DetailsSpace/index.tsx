@@ -96,7 +96,7 @@ export function DetailsSpace(props: Props) {
                 Reservar
               </Button>
               <button className={styles.deleteButton} onClick={openDeleteModal}>
-                <FiTrash style={{color:"white", fontSize:'18px'}}/>
+                <FiTrash className={styles.icon}/>
               </button>
               
             </div>
