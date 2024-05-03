@@ -109,17 +109,21 @@
 }
 
 .deleteButton {
+  display: flex;
+  position: absolute;
   padding: 14px;
   border:0;
   display: flex;
-  background-color: var(--laranja);
+  background-color: transparent;
   border-radius: 8px;
   cursor: pointer;
+  top: 5.2rem;
+  right: 10.75rem;
 }
 
 .icon {
-  color: #fff;
-  font-size: 22px
+  color: var(--laranja);
+  font-size: 25px
 }
 
 

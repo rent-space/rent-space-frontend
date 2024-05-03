@@ -16,7 +16,7 @@ export default function DeleteModal(props: Props) {
   const router = useRouter();
 
  const handleDeleteSpace = (id:number) => {
-     deleteSpace(id);
+    deleteSpace(id);
     router.push("/spaces");
   }
 
