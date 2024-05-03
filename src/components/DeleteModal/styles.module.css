@@ -49,8 +49,9 @@
   flex-direction: row;
   gap: 0.5rem;
   padding-top: 3.5rem;
-  padding-left: 2rem;
-
+  padding-right: 2rem;
+  justify-content: end;
+  align-items: end;
 }
 
 .removeButton {
