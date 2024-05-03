@@ -6,12 +6,7 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { DateTime } from "next-auth/providers/kakao";
 import { Button } from "../Button";
-import {
-  PaymentMethods,
-  PlaceReservationBody,
-  Space,
-  SpaceReservationBody,
-} from "@/utils/types";
+import { PaymentMethods, PlaceReservationBody, Space } from "@/utils/types";
 import { useSession } from "next-auth/react";
 import { createPlaceReservation } from "@/services/api/reservations";
 import { useRouter } from "next/router";
