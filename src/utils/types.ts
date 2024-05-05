@@ -28,7 +28,7 @@ export type Space = {
   maximumCapacity: number;
   neighborhood: string;
   complement: string;
-  zipCode: number;
+  zipCode: string;
 };
 
 export type SpacePayload = {

@@ -108,7 +108,8 @@
   color: var(--laranja);
 }
 
-.viewMore:hover, .viewLess:hover {
+.viewMore:hover,
+.viewLess:hover {
   text-decoration: underline;
 }
 
@@ -122,4 +123,11 @@
   flex-direction: flex-start;
   display: flex;
   gap: 1.2rem;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }

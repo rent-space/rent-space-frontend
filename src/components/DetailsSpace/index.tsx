@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { useEffect, useState } from "react";
 import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
+import { EditButton } from "../EditButton";
 
 interface Props {
   space: Space;
@@ -94,9 +95,12 @@ export function DetailsSpace(props: Props) {
         </div>
       </div>
       <div className={styles.detailsBox}>
-        <Text size="title2" weight="semibold" color="orange">
-          {title}
-        </Text>
+        <div className={styles.inline}>
+          <Text size="title2" weight="semibold" color="orange">
+            {title}
+          </Text>
+          <EditButton id={space.id} />
+        </div>
 
         <Text size="subtitle" color="gray" weight="regular">
           {description}

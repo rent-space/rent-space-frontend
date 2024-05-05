@@ -11,6 +11,30 @@ function readFile(file: File): Promise<string> {
   });
 }
 
+export function stringToFile(fileContents: string[] | undefined): File[] {
+  if (!fileContents) return [];
+
+  return fileContents.map((content, index) => {
+    {
+      const base64Data = content.split(",")[1];
+      const byteCharacters = atob(base64Data);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "application/octet-stream" });
+
+      const fileName = `space_image_${index + 1}.bin`;
+      const file = new File([blob], fileName, {
+        type: "application/octet-stream",
+      });
+
+      return file;
+    }
+  });
+}
+
 export async function getBase64(file: File): Promise<string> {
   try {
     const base64String = await readFile(file);
@@ -19,4 +43,11 @@ export async function getBase64(file: File): Promise<string> {
     console.error("Error reading file:", error);
     return "";
   }
+}
+
+export function zipCodeToInt(zip: string | undefined): number | undefined {
+  if (!zip) return undefined;
+
+  const zipCodeNumber = parseInt(zip.replace(/[^0-9]/g, ""));
+  return zipCodeNumber === 0 ? undefined : zipCodeNumber;
 }

@@ -1,0 +1,5 @@
+.button {
+  float: right;
+  color: var(--laranja);
+  cursor: pointer;
+}

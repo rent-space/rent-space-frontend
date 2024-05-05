@@ -9,25 +9,18 @@ import { PiHouseLight } from "react-icons/pi";
 import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { createSpace } from "@/services/api/space";
-import { SpacePayload } from "@/utils/types";
-import { getBase64 } from "@/utils/utils";
+import { Space, SpacePayload, User } from "@/utils/types";
+import { getBase64, stringToFile, zipCodeToInt } from "@/utils/utils";
 import { toast } from "react-toastify";
 
-export interface SpaceForm {
-  title: string;
-  description: string;
-  media: string[];
-  address: string;
-  neighborhood: string;
-  city: string;
-  pricePerHour: number;
-  maximumCapacity: number;
-  complement: string;
-  zipCode: string;
+interface Props {
+  space: Space | undefined;
+  handleSubmit: () => void;
 }
 
-export default function SpaceNew() {
+export default function SpaceForm(props: Props) {
+  const { space, handleSubmit } = props;
+
   const { data } = useSession();
   const router = useRouter();
 
@@ -38,16 +31,26 @@ export default function SpaceNew() {
     },
   });
 
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [images, setImages] = useState<File[]>([]);
-  const [address, setAddress] = useState<string>("");
-  const [neighborhood, setNeighborhood] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [pricePerHour, setPricePerHour] = useState<number>(0);
-  const [maximumCapacity, setMaximumCapacity] = useState<number>(0);
-  const [complement, setComplement] = useState<string>("");
-  const [zipCode, setZipCode] = useState<string>("");
+  const [title, setTitle] = useState<string>(space?.title ?? "");
+  const [description, setDescription] = useState<string>(
+    space?.description ?? ""
+  );
+  const [images, setImages] = useState<File[]>(stringToFile(space?.media));
+  const [address, setAddress] = useState<string>(space?.address ?? "");
+  const [neighborhood, setNeighborhood] = useState<string>(
+    space?.neighborhood ?? ""
+  );
+  const [city, setCity] = useState<string>(space?.city ?? "");
+  const [pricePerHour, setPricePerHour] = useState<number>(
+    space?.pricePerHour ?? 0
+  );
+  const [maximumCapacity, setMaximumCapacity] = useState<number>(
+    space?.maximumCapacity ?? 0
+  );
+  const [complement, setComplement] = useState<string>(space?.complement ?? "");
+  const [zipCode, setZipCode] = useState<number | undefined>(
+    zipCodeToInt(space?.zipCode)
+  );
 
   const [loading, setLoading] = useState(false);
 
@@ -75,13 +78,14 @@ export default function SpaceNew() {
           pricePerHour,
           maximumCapacity,
           complement,
-          zipCode,
+          zipCode: zipCode?.toString() ?? "",
           ownerId: parseInt(data.user.id),
         };
-        createSpace(space).then((response) => {
-          setLoading(false);
-          response && router.push(`/space/${response.id}`);
-        });
+        handleSubmit();
+        // createSpace(space).then((response) => {
+        //   setLoading(false);
+        //   response && router.push(`/space/${response.id}`);
+        // });
       })
       .catch((error) => {
         toast.error("Error processing images:", error);
@@ -100,6 +104,7 @@ export default function SpaceNew() {
       <FormSection title="Sobre o local">
         <Input
           name="title"
+          value={title}
           label="Título do anúncio"
           placeholder="Insira o título do local"
           type="text"
@@ -117,6 +122,7 @@ export default function SpaceNew() {
         <div className={styles.inline}>
           <Input
             name="maximumCapacity"
+            value={maximumCapacity}
             label="Capacidade máxima"
             placeholder="0"
             type="number"
@@ -124,6 +130,7 @@ export default function SpaceNew() {
           />
           <CurrencyInput
             name="pricePerHour"
+            value={pricePerHour}
             label="Valor por hora"
             required
             setValue={setPricePerHour}
@@ -137,6 +144,7 @@ export default function SpaceNew() {
         <div className={styles.inline}>
           <Input
             name="zipCode"
+            value={zipCode}
             label="CEP"
             type="number"
             required
@@ -145,13 +153,13 @@ export default function SpaceNew() {
             icon={PiHouseLight}
             setValue={setZipCode}
           />
-          <Input name="telephone" label="Número" type="number" />
         </div>
         <Input
           name="city"
           label="Cidade"
           placeholder="Insira a cidade"
           required
+          value={city}
           setValue={setCity}
         />
         <div className={styles.inline}>
@@ -160,6 +168,7 @@ export default function SpaceNew() {
             label="Rua"
             placeholder="Insira a rua"
             required
+            value={address}
             setValue={setAddress}
           />
         </div>
@@ -169,12 +178,14 @@ export default function SpaceNew() {
             label="Bairro"
             placeholder="Insira o bairro"
             required
+            value={neighborhood}
             setValue={setNeighborhood}
           />
           <Input
             name="complement"
             label="Complemento"
             placeholder="Insira o complemento"
+            value={complement}
             setValue={setComplement}
           />
         </div>
