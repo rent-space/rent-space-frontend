@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 import styles from "./styles.module.css";
 import WaitLoading from "@/assets/waitLoading.svg";
-import { User } from "@/utils/types";
 
 export default function LoginLoader() {
   const { status, data } = useSession();

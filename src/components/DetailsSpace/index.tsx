@@ -7,6 +7,7 @@ import { Button } from "../Button";
 import { useEffect, useState } from "react";
 import { FiCameraOff } from "react-icons/fi";
 import { DetailsCard } from "../DetailsCard";
+import { useSession } from "next-auth/react";
 
 interface Props {
   space: Space;
@@ -20,6 +21,10 @@ export function DetailsSpace(props: Props) {
   const [maxImagesShowed, setMaxImagesShowed] = useState<number>(3);
   const [showAllImages, setShowAllImages] = useState<boolean>(false);
   const { space, children, openModal } = props;
+
+  const { data } = useSession();
+
+  const isEventOwner = data?.user && data?.user?.userType === "EVENT_OWNER";
 
   const {
     title,
@@ -110,11 +115,13 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
-            <div>
-              <Button variant="primary" size="small" onClick={openModal}>
-                Reservar
-              </Button>
-            </div>
+            {isEventOwner && (
+              <div>
+                <Button variant="primary" size="small" onClick={openModal}>
+                  Reservar
+                </Button>
+              </div>
+            )}
           </div>
           <div className={styles.card}>{children}</div>
         </div>

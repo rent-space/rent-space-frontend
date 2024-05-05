@@ -14,6 +14,9 @@ import Loading from "@/components/Loading";
 import searchGif from "@/assets/searching.gif";
 
 export default function DetailsPageSpace() {
+  const router = useRouter();
+
+  const [id, setId] = useState<number>();
   const [space, setSpace] = useState<Space | undefined>(undefined);
   const [modal, setModal] = useState(false);
 
@@ -21,16 +24,17 @@ export default function DetailsPageSpace() {
 
   const closeModal = () => setModal(false);
 
-  const router = useRouter();
+  useEffect(() => {
+    setId(parseInt(router.query.id as string));
+  }, [router.query.id]);
 
   useEffect(() => {
-    const id = parseInt(router.query.id as string);
-    getSpace(id).then((response) => response && setSpace(response));
-  }, [router.query.id]);
+    id && getSpace(id).then((response) => response && setSpace(response));
+  }, [id]);
 
   return (
     <>
-      <ReserveModal modal={modal} close={closeModal} />
+      {space && <ReserveModal space={space} open={modal} close={closeModal} />}
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space ? (
