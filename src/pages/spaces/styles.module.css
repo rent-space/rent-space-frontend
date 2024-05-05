@@ -1,17 +1,17 @@
 .listContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 1.5rem;
-    justify-content: center;
-    padding-right: 2.5rem;
-    padding-bottom: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-left: 3rem;
+  justify-content: center;
+  padding-right: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .card {
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 
 .title {
   font-weight: 600;
@@ -24,10 +24,9 @@
   margin-bottom: 2rem;
 }
 
-
 .footerArrow {
   cursor: pointer;
-  color: var(--laranja); 
+  color: var(--laranja);
 }
 
 .footerPage {
@@ -36,7 +35,7 @@
 }
 
 .currentPage {
-  color: var(--laranja); 
+  color: var(--laranja);
 }
 
 .footer {
@@ -44,5 +43,4 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  padding-top: 2rem;
 }

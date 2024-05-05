@@ -5,6 +5,8 @@ import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
 import { FiTrash } from "react-icons/fi"
+import { useSession } from "next-auth/react";
+
 interface Props {
   space: Space;
   children: React.ReactNode;
@@ -14,6 +16,11 @@ interface Props {
 
 export function DetailsSpace(props: Props) {
   const { space, children, openModal, openDeleteModal } = props;
+
+  const { data } = useSession();
+
+  const isEventOwner = data?.user && data?.user?.userType === "EVENT_OWNER";
+  const isPlaceOwner = data?.user && data?.user?.userType === "PLACE_OWNER";
 
   const {
     title,
@@ -91,15 +98,24 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
-            <div className={styles.buttonContainer}>
-              <Button variant="primary" size="small" onClick={openModal}>
-                Reservar
-              </Button>
-              <button className={styles.deleteButton} onClick={openDeleteModal}>
-                <FiTrash className={styles.icon}/>
-              </button>
-              
-            </div>
+
+            {isEventOwner && (
+              <div>
+                <Button variant="primary" size="small" onClick={openModal}>
+                  Reservar
+                </Button>
+              </div>
+            )}
+
+            {isPlaceOwner && (
+              <div>
+                <button className={styles.deleteButton} onClick={openDeleteModal}>
+                  <FiTrash className={styles.icon}/>
+                </button>
+              </div>
+            )
+
+            }
           </div>
           <div className={styles.card}>{children}</div>
         </div>

@@ -2,13 +2,13 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 24.45rem;
-  height: 14rem;
+  height: 13rem;
   border-radius: 1rem;
   box-shadow: 2px 4px 4px 1px #bdbdbd;
-  margin-left: 3rem;
   transition: transform 0.3s ease;
   cursor: pointer;
+  gap: 1rem;
+  background-color: #eeeeeedc;
 }
 
 .card:hover {
@@ -21,7 +21,15 @@
   flex: 1;
   height: 100%;
   width: 45%;
+  overflow: hidden;
 }
+
+.image {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  flex: 1;
+}
+
 .descriptionSide {
   display: flex;
   height: 100%;
@@ -33,11 +41,15 @@
   margin-top: 1rem;
   font-weight: 600;
   color: var(--laranja);
+  font-size: 18px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description {
   margin-top: 0.5rem;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
   display: -webkit-box;
   -webkit-box-orient: vertical;

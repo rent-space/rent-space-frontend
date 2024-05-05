@@ -11,6 +11,9 @@ import ReserveModal from "@/components/ReserveModal";
 import DeleteModal from "@/components/DeleteModal";
 
 export default function DetailsPageSpace() {
+  const router = useRouter();
+
+  const [id, setId] = useState<number>();
   const [space, setSpace] = useState<Space | undefined>(undefined);
   const [reserveModal, setReserveModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -21,20 +24,21 @@ export default function DetailsPageSpace() {
   const closeReserveModal = () => setReserveModal(false);
   const closeDeleteModal = () => setDeleteModal(false);
 
-  const router = useRouter();
+  useEffect(() => {
+    setId(parseInt(router.query.id as string));
+  }, [router.query.id]);
 
   useEffect(() => {
-    const id = parseInt(router.query.id as string);
-    getSpace(id).then((response) => response && setSpace(response));
-  }, [router.query.id]);
+    id && getSpace(id).then((response) => response && setSpace(response));
+  }, [id]);
 
   return (
     <>
-      <ReserveModal modal={reserveModal} close={closeReserveModal}/>
+      {space && <>
+        <ReserveModal space={space} open={reserveModal} close={closeReserveModal} />
+        <DeleteModal modal={deleteModal} close={closeDeleteModal}  deleteSpaceId={space.id}/> 
+      </>}
       
-      { space?.id &&
-        <DeleteModal modal={deleteModal} close={closeDeleteModal}  deleteSpaceId={space.id}/>
-      }
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space && (

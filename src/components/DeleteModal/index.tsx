@@ -4,12 +4,12 @@ import styles from "./styles.module.css";
 import { FaRegTimesCircle } from "react-icons/fa";
 import {deleteSpace} from '../../../src/services/api/space'
 import { useRouter } from "next/router";
+
 interface Props {
   modal: boolean;
   close: () => void;
   deleteSpaceId: number;
 }
-
 
 export default function DeleteModal(props: Props) {
   const { close, modal, deleteSpaceId } = props;

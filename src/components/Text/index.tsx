@@ -13,15 +13,17 @@ interface Props {
   color?: "black" | "gray" | "orange";
   children: React.ReactNode;
   onClick?: () => void;
+  noOverFlow?: boolean;
 }
 
 export function Text(props: Props) {
-  const { size, children, weight, color, onClick } = props;
+  const { size, children, weight, color, onClick, noOverFlow } = props;
 
   return (
     <span
       data-size={size}
       data-weight={weight}
+      data-no-overflow={noOverFlow}
       data-color={color}
       className={styles.text}
       onClick={onClick}

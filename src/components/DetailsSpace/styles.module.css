@@ -102,12 +102,6 @@
   gap: 1.2rem;
 }
 
-.buttonContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-}
-
 .deleteButton {
   display: flex;
   position: absolute;
