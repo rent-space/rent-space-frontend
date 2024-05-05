@@ -27,7 +27,7 @@ export default function Spaces() {
   useEffect(() => {
     getSpaces().then((response) => {
       setLoading(false);
-      setSpaces(response.sort((a, b) => b.id - a.id))
+      setSpaces(response.sort((a, b) => b.id - a.id));
     });
   }, []);
 
@@ -75,28 +75,27 @@ export default function Spaces() {
         </div>
 
         <div className={styles.listContainer}>
-          {loading ?
-            (Array.from(Array(6).keys()).map((_, i) => 
-              <div className={`${styles.card} ${styles.loadingCard}`} key={i}>
-                <Loading loadingLabel="Carregando..." />
-              </div>
-            )) :
-            cards.map((card, i) => {
-              return (
-                <div className={styles.card} key={i}>
-                  <CardDescription
-                    key={card.id}
-                    title={card.title}
-                    maxCapacity={card.maximumCapacity}
-                    description={card.description}
-                    image={card.media?.length ? card.media[0] : ""}
-                    pricePerHour={card.pricePerHour}
-                    onClick={() => navigateToDetailsSpace(card.id)}
-                  />
+          {loading
+            ? Array.from(Array(6).keys()).map((_, i) => (
+                <div className={`${styles.card} ${styles.loadingCard}`} key={i}>
+                  <Loading key={i} loadingLabel="Carregando..." />
                 </div>
-              );
-            })
-          }
+              ))
+            : cards.map((card, i) => {
+                return (
+                  <div className={styles.card} key={i}>
+                    <CardDescription
+                      key={card.id}
+                      title={card.title}
+                      maxCapacity={card.maximumCapacity}
+                      description={card.description}
+                      image={card.media?.length ? card.media[0] : ""}
+                      pricePerHour={card.pricePerHour}
+                      onClick={() => navigateToDetailsSpace(card.id)}
+                    />
+                  </div>
+                );
+              })}
         </div>
       </div>
       <Footer justify="center" className={styles.footer}>
@@ -109,9 +108,11 @@ export default function Spaces() {
             return (
               <>
                 {page == indice + 1 ? (
-                  <span className={styles.currentPage}>{`${indice + 1} `}</span>
+                  <span key={indice} className={styles.currentPage}>{`${
+                    indice + 1
+                  } `}</span>
                 ) : (
-                  <span>{`${indice + 1} `}</span>
+                  <span key={indice}>{`${indice + 1} `}</span>
                 )}
               </>
             );
