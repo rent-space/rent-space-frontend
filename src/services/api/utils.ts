@@ -23,7 +23,6 @@ export async function fetchApi(url: string, options?: FetchOptions) {
   if (options?.isUrlEncoded) {
     contentType = "application/x-www-form-urlencoded";
   }
-  console.log("contentType", contentType);
   try {
     const response = await api({
       url,
@@ -32,11 +31,10 @@ export async function fetchApi(url: string, options?: FetchOptions) {
       params: options?.params,
       headers: {
         "Content-Type": contentType,
+        crossDomain: true,
       },
     });
-    console.log("response", response);
 
-    console.log(response);
     return { data: response.data, error: null };
   } catch (error: any) {
     console.error(error);
