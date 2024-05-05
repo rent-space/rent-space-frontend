@@ -31,6 +31,7 @@ export async function fetchApi(url: string, options?: FetchOptions) {
       params: options?.params,
       headers: {
         "Content-Type": contentType,
+        crossDomain: true,
       },
     });
 
