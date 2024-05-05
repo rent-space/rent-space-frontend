@@ -38,19 +38,22 @@ export default function DetailsPageSpace() {
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
         {space ? (
-          <DetailsSpace space={space} openModal={openModal}>        
-           <DetailsCard owner={space.owner} />
-          </DetailsSpace> )
-          :
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-            <Image 
-              src={searchGif}
-              width={200}
-              alt="Searching"
-            />
+          <DetailsSpace space={space} openModal={openModal}>
+            <DetailsCard owner={space.owner} />
+          </DetailsSpace>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image src={searchGif} width={200} alt="Searching" />
             <Loading loadingLabel="Estamos carregando as informações desse spaço" />
           </div>
-        }
+        )}
       </Page>
       <Footer />
     </>

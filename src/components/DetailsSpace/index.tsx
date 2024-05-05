@@ -38,7 +38,7 @@ export function DetailsSpace(props: Props) {
 
   useEffect(() => {
     if (media.length > 0) {
-      let [firstImg, ...rest] = media;
+      let [firstImg, ...rest] = media.filter((img) => img.includes("base64"));
       setMainImage(firstImg);
       setAnotherImages(rest);
     }
