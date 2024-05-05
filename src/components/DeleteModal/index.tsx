@@ -62,7 +62,7 @@ export default function DeleteModal(props: Props) {
               }}
             >
               {loading ? "Excluindo..." : "Excluir espaço"}
-              <FiTrash style={{ paddingLeft: "0.7rem" }} />
+              <FiTrash />
             </Button>
           </div>
         </div>
