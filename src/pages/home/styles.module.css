@@ -70,6 +70,13 @@
   width: 30%;
 }
 
+.loadingCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
 .spacesContainter {
   display: flex;
   justify-content: center;

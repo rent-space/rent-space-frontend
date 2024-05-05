@@ -1,10 +1,11 @@
 import Image from "next/image";
 import styles from "./styles.module.css";
-import detailsPrincipal from "@/assets/detailsTop.svg";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
 import { FiTrash } from "react-icons/fi"
+import { useEffect, useState } from "react";
+import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
 
 interface Props {
@@ -15,6 +16,11 @@ interface Props {
 }
 
 export function DetailsSpace(props: Props) {
+
+  const [mainImage, setMainImage] = useState<string>();
+  const [anotherImages, setAnotherImages] = useState<string[]>([]);
+  const [maxImagesShowed, setMaxImagesShowed] = useState<number>(3);
+  const [showAllImages, setShowAllImages] = useState<boolean>(false);
   const { space, children, openModal, openDeleteModal } = props;
 
   const { data } = useSession();
@@ -34,37 +40,61 @@ export function DetailsSpace(props: Props) {
     media,
   } = space;
 
+  useEffect(() => {
+    if (media.length > 0) {
+      let [firstImg, ...rest] = media.filter((img) => img.includes("base64"));
+      setMainImage(firstImg);
+      setAnotherImages(rest);
+    }
+  }, [space]);
+
+  const openImages = () => {
+    setMaxImagesShowed(anotherImages.length);
+    setShowAllImages(true);
+  };
+
+  const hideImages = () => {
+    setMaxImagesShowed(3);
+    setShowAllImages(false);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.imageBox}>
         <div className={styles.topImage}>
-          <Image
-            className={styles.topImage}
-            src={detailsPrincipal}
-            alt="Imagem principal"
-          />
+          {mainImage ? (
+            <Image
+              className={styles.topImage}
+              layout="fill"
+              src={mainImage}
+              alt="Imagem principal"
+            />
+          ) : (
+            <div className={styles.noImagePlace}>
+              <FiCameraOff color="#FFF" size={32} />
+            </div>
+          )}
         </div>
         <div className={styles.bottomImage}>
-          <div className={styles.leftImage}>
+          {anotherImages.slice(0, maxImagesShowed).map((image, i) => (
             <Image
+              key={i}
               className={styles.sided}
-              src={detailsPrincipal}
-              alt="Imagem principal"
+              src={image}
+              layout="fill"
+              alt="Place image"
             />
-            <Image
-              className={styles.sided}
-              src={detailsPrincipal}
-              alt="Imagem principal"
-            />
-          </div>
-          <div className={styles.rightImage}>
-            <Image
-              className={styles.sided}
-              src={detailsPrincipal}
-              alt="Imagem principal"
-            />
-            <button className={styles.viewMore}>Ver mais...</button>
-          </div>
+          ))}
+          {anotherImages.length > 4 && !showAllImages && (
+            <button className={styles.viewMore} onClick={openImages}>
+              Ver mais...
+            </button>
+          )}
+          {anotherImages.length > 4 && showAllImages && (
+            <button className={styles.viewLess} onClick={hideImages}>
+              Mostrar menos...
+            </button>
+          )}
         </div>
       </div>
       <div className={styles.detailsBox}>

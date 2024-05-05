@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { createSpace } from "@/services/api/space";
 import { SpacePayload, User } from "@/utils/types";
 import { getBase64 } from "@/utils/utils";
+import { toast } from "react-toastify";
 
 export interface SpaceForm {
   title: string;
@@ -83,7 +84,7 @@ export default function SpaceNew() {
         });
       })
       .catch((error) => {
-        console.error("Error processing images:", error);
+        toast.error("Error processing images:", error);
         setLoading(false);
       });
   };

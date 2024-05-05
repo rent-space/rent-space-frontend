@@ -1,6 +1,4 @@
-import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { List } from "@/components/List";
 import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
@@ -14,11 +12,13 @@ import { AllSpaces } from "@/utils/types";
 import { getSpaces } from "@/services/api/space";
 import { Page } from "@/components/Page";
 import { Text } from "@/components/Text";
+import Loading from "@/components/Loading";
 
 export default function Home() {
   const router = useRouter();
   const [cards, setCards] = useState<AllSpaces>([]);
   const [spaces, setSpaces] = useState<AllSpaces>([]);
+  const [loading, setLoading] = useState<Boolean>(true);
 
   useSession({
     required: true,
@@ -28,9 +28,10 @@ export default function Home() {
   });
 
   useEffect(() => {
-    getSpaces().then((response) =>
-      setSpaces(response.sort((a, b) => b.id - a.id))
-    );
+    getSpaces().then((response) => {
+      setLoading(false);
+      setSpaces(response.sort((a, b) => b.id - a.id));
+    });
   }, []);
 
   useEffect(() => {
@@ -86,20 +87,30 @@ export default function Home() {
             </div>
 
             <div className={styles.cardContainer}>
-              {cards.map((card, _) => {
-                return (
-                  <div className={styles.cards} key={card.id}>
-                    <CardDescription
-                      title={card.title}
-                      maxCapacity={card.maximumCapacity}
-                      image={card.media?.length ? card.media[0] : ""}
-                      pricePerHour={card.pricePerHour}
-                      onClick={() => navigateToDetailsSpace(card.id)}
-                      description={card.description}
-                    />
-                  </div>
-                );
-              })}
+              {loading
+                ? Array.from(Array(3).keys()).map((_, i) => (
+                    <div
+                      className={`${styles.cards} ${styles.loadingCard}`}
+                      key={i}
+                    >
+                      <Loading key={i} loadingLabel="Carregando..." />
+                    </div>
+                  ))
+                : cards.map((card, _) => {
+                    return (
+                      <div className={styles.cards} key={card.id}>
+                        <CardDescription
+                          key={card.id}
+                          title={card.title}
+                          maxCapacity={card.maximumCapacity}
+                          image={card.media?.length ? card.media[0] : ""}
+                          pricePerHour={card.pricePerHour}
+                          onClick={() => navigateToDetailsSpace(card.id)}
+                          description={card.description}
+                        />
+                      </div>
+                    );
+                  })}
             </div>
           </div>
         </div>
