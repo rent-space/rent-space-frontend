@@ -24,7 +24,10 @@ export function CardDescription({
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageContainer}>
         {image.length && image.includes("base64") ? (
-          <Image src={image} alt="Imagem do Espaço" width={175} height={225} className={styles.image}/>
+          <Image src={image} alt="Imagem do Espaço" width={175} 
+            layout="contain"
+            height={225} className={styles.image}
+          />
         ) : (
           <div className={styles.noImagePlace}>
             <FiCameraOff color="#FFF" size={32} />

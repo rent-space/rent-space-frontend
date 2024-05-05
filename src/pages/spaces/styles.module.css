@@ -13,6 +13,13 @@
   justify-content: center;
 }
 
+.loadingCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
 .title {
   font-weight: 600;
   font-size: 24px;

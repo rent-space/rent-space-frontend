@@ -25,7 +25,11 @@ export default function PageCard({
 
   useEffect(() => {
     if (placeReservation?.product?.media?.length > 0) {
-      setPlaceImage(placeReservation?.product?.media[0]);
+      setPlaceImage(
+        placeReservation?.product?.media[0].includes("/") ?
+        placeReservation?.product?.media[0] : 
+        null
+      );
     }
   }, []);
 
@@ -67,8 +71,8 @@ export default function PageCard({
         }`}
         onClick={openModal}
       >
-        {placeImage?.length && placeImage.includes("base64") ? (
-          <Image src={placeImage} alt="Imagem do local" />
+        {(placeImage !== null && placeImage?.length && placeImage.includes("base64")) ? (
+          <Image src={placeImage} alt="Imagem do local" layout="fill" />
         ) : (
           <div className={styles.noImagePlace}>
             <FiCameraOff color="#FFF" size={32} />
