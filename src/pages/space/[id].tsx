@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import { Space } from "@/utils/types";
 import { getSpace } from "@/services/api/space";
 import ReserveModal from "@/components/ReserveModal";
+import Image from "next/image";
+import Loading from "@/components/Loading";
+
+import searchGif from "@/assets/searching.gif";
 
 export default function DetailsPageSpace() {
   const [space, setSpace] = useState<Space | undefined>(undefined);
@@ -29,11 +33,20 @@ export default function DetailsPageSpace() {
       <ReserveModal modal={modal} close={closeModal} />
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
-        {space && (
-          <DetailsSpace space={space} openModal={openModal}>
-            <DetailsCard owner={space.owner} />
-          </DetailsSpace>
-        )}
+        {space ? (
+          <DetailsSpace space={space} openModal={openModal}>        
+           <DetailsCard owner={space.owner} />
+          </DetailsSpace> )
+          :
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+            <Image 
+              src={searchGif}
+              width={200}
+              alt="Searching"
+            />
+            <Loading loadingLabel="Estamos carregando as informações desse spaço" />
+          </div>
+        }
       </Page>
       <Footer />
     </>
