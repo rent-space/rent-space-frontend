@@ -48,7 +48,7 @@ export default function DetailsPageSpace() {
               width={200}
               alt="Searching"
             />
-            <Loading loadingLabel="Estamos carregando as informações desse spaço" />
+            <Loading loadingLabel="Estamos carregando as informações desse espaço" />
           </div>
         }
       </Page>

@@ -10,6 +10,7 @@ import { UserAccountCircle } from "@/components/Icons/UserAccountCircle";
 import styles from "./styles.module.css";
 import Modal from "@/components/Modal";
 import { updatePlaceReservation } from "@/services/api/reservations";
+import Loading from "@/components/Loading";
 
 interface PageCardProps {
   placeReservation: PlaceReservation;
@@ -22,6 +23,7 @@ export default function PageCard({
 }: PageCardProps) {
   const [placeImage, setPlaceImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (placeReservation?.product?.media?.length > 0) {
@@ -41,16 +43,18 @@ export default function PageCard({
 
   const getFormattedDate = (date: string) => {
     return moment
-      .tz(date, "YYYY-MM-DDT00:00:00.000Z", "America/Sao_Paulo")
-      .format("DD/MM/YYYY 00:00")
+      .tz(date, "YYYY-MM-DDTH:mm:ss.000Z", "America/Sao_Paulo")
+      .format("DD/MM/YYYY HH:mm")
       .toString();
   };
 
   const updateReservationStatus = (accepted: boolean) => {
+    setLoading(true);
     updatePlaceReservation(
       placeReservation.id,
-      accepted ? "ACCEPTED" : "REJECTED"
+      accepted ? "ACCEPTED" : "REFUSED"
     ).then((response) => {
+      setLoading(false);
       placeReservation = response;
       setIsModalOpen(false);
     });
@@ -72,7 +76,7 @@ export default function PageCard({
         onClick={openModal}
       >
         {(placeImage !== null && placeImage?.length && placeImage.includes("base64")) ? (
-          <Image src={placeImage} alt="Imagem do local" layout="fill" />
+          <Image className={styles.image} src={placeImage} alt="Imagem do local" layout="fill" />
         ) : (
           <div className={styles.noImagePlace}>
             <FiCameraOff color="#FFF" size={32} />
@@ -124,11 +128,7 @@ export default function PageCard({
               <strong className={styles.userInfoTitle}>Solicitado por:</strong>
 
               <UserAccountCircle
-                image={
-                  placeReservation.eventOwner.profilePhoto == "string"
-                    ? null
-                    : placeReservation.eventOwner.profilePhoto || null
-                }
+                image={placeReservation.eventOwner.profilePhoto || null}
               />
               <strong className={styles.userName}>
                 {placeReservation.eventOwner.name}
@@ -150,16 +150,30 @@ export default function PageCard({
           <button
             className={styles.button}
             onClick={() => updateReservationStatus(true)}
+            disabled={loading}
           >
-            <FiThumbsUp color="#FFF" size={24} />
-            <span className={styles.buttonText}>Aceitar</span>
+            {loading ?
+              <Loading loadingLabel="" color="white" />
+              :
+              <>
+                <FiThumbsUp color="#FFF" size={24} />
+                <span className={styles.buttonText}>Aceitar</span>
+              </>
+            }
           </button>
           <button
             className={`${styles.button} ${styles.secButton}`}
             onClick={() => updateReservationStatus(false)}
+            disabled={loading}
           >
-            <FiThumbsDown color="#eb5b14" size={24} />
-            <span className={styles.secButtonText}>Recusar</span>
+            {loading ?
+              <Loading loadingLabel="" />
+              :
+              <>
+                <FiThumbsDown color="#eb5b14" size={24} />
+                <span className={styles.secButtonText}>Recusar</span>
+              </>
+            }
           </button>
         </section>
       </Modal>
