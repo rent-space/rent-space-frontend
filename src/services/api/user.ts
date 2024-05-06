@@ -1,5 +1,6 @@
 import { User } from "@/utils/types";
 import { fetchApi } from "./utils";
+import { toast } from "react-toastify";
 
 export async function getUser(email: string): Promise<User> {
   const { data, error } = await fetchApi(`/usuario/${email}`, {
@@ -7,7 +8,7 @@ export async function getUser(email: string): Promise<User> {
   });
 
   if (error) {
-    console.error(error);
+    toast.error("Erro ao carregar usuário: " + error);
   }
 
   return data;
@@ -20,7 +21,9 @@ export async function createUser(user: User): Promise<User> {
   });
 
   if (error) {
-    console.error(error);
+    toast.error("Erro ao criar usuário: " + error);
+  } else {
+    toast.success("Usuário criado com sucesso!");
   }
 
   return data;
