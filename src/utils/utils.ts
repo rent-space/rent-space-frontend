@@ -25,7 +25,7 @@ export function stringToFile(fileContents: string[] | undefined): File[] {
       const byteArray = new Uint8Array(byteNumbers);
       const blob = new Blob([byteArray], { type: "application/octet-stream" });
 
-      const fileName = `space_image_${index + 1}.bin`;
+      const fileName = `imagem_${index + 1}.bin`;
       const file = new File([blob], fileName, {
         type: "application/octet-stream",
       });

@@ -17,6 +17,21 @@ export async function createSpace(space: SpacePayload): Promise<Space> {
   return data;
 }
 
+export async function editSpace(space: SpacePayload): Promise<Space> {
+  const { data, error } = await fetchApi("/espaco", {
+    data: space,
+    method: "PUT",
+  });
+
+  if (error) {
+    toast.error("Erro ao editar espaço: " + error);
+  } else {
+    toast.success("Espaço editar com sucesso!");
+  }
+
+  return data;
+}
+
 export async function getSpaces(): Promise<AllSpaces> {
   const { data, error } = await fetchApi(`/espaco/allPlaces`, {
     method: "GET",

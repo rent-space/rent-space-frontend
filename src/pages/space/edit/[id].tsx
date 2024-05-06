@@ -1,6 +1,6 @@
 import SpaceForm from "@/components/SpaceForm";
-import { getSpace } from "@/services/api/space";
-import { Space } from "@/utils/types";
+import { editSpace, getSpace } from "@/services/api/space";
+import { Space, SpacePayload } from "@/utils/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -19,8 +19,10 @@ export default function EditSpace() {
     setId(parseInt(router.query.id as string));
   }, [router.query.id]);
 
-  const handleSubmit = () => {
-    console.log("edit");
+  const handleSubmit = (space: SpacePayload) => {
+    return editSpace(space).then((res) => {
+      res && router.push(`/space/${res.id}`);
+    });
   };
 
   return (

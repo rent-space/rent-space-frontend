@@ -2,20 +2,20 @@ import { Form } from "@/components/Form";
 import FormSection from "@/components/Form/FormSection";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/Input/TextArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { CurrencyInput } from "@/components/Input/CurrencyInput";
 import { PiHouseLight } from "react-icons/pi";
 import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { Space, SpacePayload, User } from "@/utils/types";
+import { Space, SpacePayload } from "@/utils/types";
 import { getBase64, stringToFile, zipCodeToInt } from "@/utils/utils";
 import { toast } from "react-toastify";
 
 interface Props {
   space: Space | undefined;
-  handleSubmit: () => void;
+  handleSubmit: (space: SpacePayload) => Promise<any>;
 }
 
 export default function SpaceForm(props: Props) {
@@ -35,7 +35,7 @@ export default function SpaceForm(props: Props) {
   const [description, setDescription] = useState<string>(
     space?.description ?? ""
   );
-  const [images, setImages] = useState<File[]>(stringToFile(space?.media));
+  const [images, setImages] = useState<File[]>([]);
   const [address, setAddress] = useState<string>(space?.address ?? "");
   const [neighborhood, setNeighborhood] = useState<string>(
     space?.neighborhood ?? ""
@@ -53,6 +53,10 @@ export default function SpaceForm(props: Props) {
   );
 
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setImages(stringToFile(space?.media));
+  }, [space?.media]);
 
   const onSubmit = async (event: React.FormEvent) => {
     setLoading(true);
@@ -81,11 +85,7 @@ export default function SpaceForm(props: Props) {
           zipCode: zipCode?.toString() ?? "",
           ownerId: parseInt(data.user.id),
         };
-        handleSubmit();
-        // createSpace(space).then((response) => {
-        //   setLoading(false);
-        //   response && router.push(`/space/${response.id}`);
-        // });
+        handleSubmit(space).then(() => setLoading(false));
       })
       .catch((error) => {
         toast.error("Error processing images:", error);
