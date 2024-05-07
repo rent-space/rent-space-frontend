@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
+import { FiTrash } from "react-icons/fi"
 import { useEffect, useState } from "react";
 import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
@@ -12,18 +13,21 @@ interface Props {
   space: Space;
   children: React.ReactNode;
   openModal: () => void;
+  openDeleteModal: () => void;
 }
 
 export function DetailsSpace(props: Props) {
+
   const [mainImage, setMainImage] = useState<string>();
   const [anotherImages, setAnotherImages] = useState<string[]>([]);
   const [maxImagesShowed, setMaxImagesShowed] = useState<number>(3);
   const [showAllImages, setShowAllImages] = useState<boolean>(false);
-  const { space, children, openModal } = props;
+  const { space, children, openModal, openDeleteModal } = props;
 
   const { data } = useSession();
 
   const isEventOwner = data?.user && data?.user?.userType === "EVENT_OWNER";
+  const isPlaceOwner = data?.user && data?.user?.userType === "PLACE_OWNER";
 
   const {
     title,
@@ -128,6 +132,7 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
+
             {isEventOwner && (
               <div>
                 <Button variant="primary" size="small" onClick={openModal}>
@@ -135,6 +140,16 @@ export function DetailsSpace(props: Props) {
                 </Button>
               </div>
             )}
+
+            {isPlaceOwner && (
+              <div>
+                <button className={styles.deleteButton} onClick={openDeleteModal}>
+                  <FiTrash className={styles.icon}/>
+                </button>
+              </div>
+            )
+
+            }
           </div>
           <div className={styles.card}>{children}</div>
         </div>

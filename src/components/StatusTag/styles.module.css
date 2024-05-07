@@ -25,3 +25,10 @@
 .accepted span {
   color: #4D9416;
 }
+
+.refused {
+  background-color: #FF9D9D;
+}
+.refused span {
+  color: #EB1414;
+}
