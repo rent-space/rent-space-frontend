@@ -39,6 +39,15 @@
   padding-bottom: 2px;
 }
 
+.image {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  width: 30% !important;
+  height: 100% !important;
+  object-fit: cover;
+  position: relative !important;
+}
+
 .noImagePlace {
   height: 100%;
   width: 30%;
@@ -80,6 +89,7 @@
   font-weight: 600;
   padding-top: 16px;
   padding-bottom: 8px;
+  text-align: center;
 }
 
 .userInfo {

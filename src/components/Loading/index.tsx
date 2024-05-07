@@ -1,17 +1,22 @@
 import styles from './styles.module.css';
 
-export default function Loading({ loadingLabel }: { loadingLabel: string}) {
+interface LoadingProps {
+  loadingLabel: string;
+  color?: 'orange' | 'white'
+}
+
+export default function Loading({ loadingLabel, color = 'orange' }: LoadingProps) {
   return (
-    <section className={styles.loadingContainer}>
+    <section className={`${styles.loadingContainer} ${color == 'white' && styles.white}`}>
       <div className={styles['col-3']}>
-        <div className={styles.snippet} data-title="dot-flashing">
-          <div className={styles.stage}>
-            <div className={styles['dot-flashing']}></div>
+        <div className={`${styles.snippet} ${color == 'white' && styles.white}`} data-title="dot-flashing">
+          <div className={`${styles.stage} ${color == 'white' && styles.white}`}>
+            <div className={`${styles['dot-flashing']} ${color == 'white' && styles.white}`}></div>
           </div>
         </div>
       </div>
 
-      <span className={styles.loadingLabel}>{loadingLabel}</span>
+      <span className={`${styles.loadingLabel} ${color == 'white' && styles.white}`}>{loadingLabel}</span>
     </section>
   )
 }

@@ -10,6 +10,9 @@
   font-size: var(--font-size-medium);
   font-weight: 500;
 }
+.loadingLabel.white {
+  color: var(--branco);
+}
 
 .dot-flashing {
   position: relative;
@@ -20,6 +23,12 @@
   color: var(--laranja);
   animation: dot-flashing 1s infinite linear alternate;
   animation-delay: 0.5s;
+}
+.dot-flashing.white {
+  animation: dot-flashing-white 1s infinite linear alternate;
+  animation-delay: 0.5s;
+  background-color: var(--branco);
+  color: var(--branco);
 }
 .dot-flashing::before, .dot-flashing::after {
   content: "";
@@ -37,6 +46,12 @@
   animation: dot-flashing 1s infinite alternate;
   animation-delay: 0s;
 }
+.dot-flashing.white::before {
+  animation: dot-flashing-white 1s infinite alternate;
+  animation-delay: 0s;
+  background-color: var(--branco);
+  color: var(--branco);
+}
 .dot-flashing::after {
   left: 15px;
   width: 10px;
@@ -47,6 +62,12 @@
   animation: dot-flashing 1s infinite alternate;
   animation-delay: 1s;
 }
+.dot-flashing.white::after {
+  animation: dot-flashing-white 1s infinite alternate;
+  animation-delay: 1s;
+  background-color: var(--branco);
+  color: var(--branco);
+}
 
 @keyframes dot-flashing {
   0% {
@@ -54,5 +75,14 @@
   }
   50%, 100% {
     background-color: rgba(152, 128, 255, 0.2);
+  }
+}
+
+@keyframes dot-flashing-white  {
+  0% {
+    background-color: var(--branco);
+  }
+  50%, 100% {
+    background-color: rgba(104, 104, 104, 0.553);
   }
 }

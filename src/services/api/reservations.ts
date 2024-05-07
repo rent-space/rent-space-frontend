@@ -16,6 +16,18 @@ export async function getPlaceReservationById(
   return data;
 }
 
+export async function getPlaceReservations(): Promise<PlaceReservation[]> {
+  const { data, error } = await fetchApi('/solicitacao/espaco/all', {
+    method: "GET"
+  });
+
+  if (error) {
+    return new Promise(() => null);
+  }
+
+  return data;
+}
+
 export async function updatePlaceReservation(
   id: number,
   status: string
