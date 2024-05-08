@@ -106,6 +106,7 @@ export default function SpaceForm(props: Props) {
       title="Cadastro de Espaço"
       subtitle="Adicione abaixo as informações que serão exibidas sobre o seu espaço"
       loading={loading}
+      isCreating={!space.id}
     >
       <FormSection title="Sobre o local">
         <Input
