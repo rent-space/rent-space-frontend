@@ -102,8 +102,11 @@ export function DetailsSpace(props: Props) {
             {title}
           </Text>
           <div className={styles.buttons}>
-            <EditButton id={space.id} />
-            <DeleteButton openDeleteModal={openDeleteModal} />
+            <EditButton id={space.id} ownerId={space.owner.id} />
+            <DeleteButton
+              openDeleteModal={openDeleteModal}
+              ownerId={space.owner.id}
+            />
           </div>
         </div>
 

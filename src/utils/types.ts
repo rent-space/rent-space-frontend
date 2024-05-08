@@ -19,6 +19,7 @@ export type Space = {
   pricePerHour: number;
   media: string[];
   owner: {
+    id: number;
     name: string;
     profilePhoto: string;
     email: string;
