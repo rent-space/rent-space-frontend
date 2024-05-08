@@ -25,7 +25,5 @@ export default function EditSpace() {
     });
   };
 
-  return (
-    <>{space && <SpaceForm space={space} handleSubmit={handleSubmit} />}</>
-  );
+  return <SpaceForm space={space} handleSubmit={handleSubmit} />;
 }

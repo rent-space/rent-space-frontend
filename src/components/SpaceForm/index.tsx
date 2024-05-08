@@ -2,7 +2,7 @@ import { Form } from "@/components/Form";
 import FormSection from "@/components/Form/FormSection";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/Input/TextArea";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./styles.module.css";
 import { CurrencyInput } from "@/components/Input/CurrencyInput";
 import { PiHouseLight } from "react-icons/pi";
@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { Space, SpacePayload } from "@/utils/types";
 import { getBase64, stringToFile, zipCodeToInt } from "@/utils/utils";
 import { toast } from "react-toastify";
+import { SpaceLoading } from "../SpaceLoading";
 
 interface Props {
   space: Space | undefined;
@@ -31,32 +32,33 @@ export default function SpaceForm(props: Props) {
     },
   });
 
-  const [title, setTitle] = useState<string>(space?.title ?? "");
-  const [description, setDescription] = useState<string>(
-    space?.description ?? ""
-  );
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [images, setImages] = useState<File[]>([]);
-  const [address, setAddress] = useState<string>(space?.address ?? "");
-  const [neighborhood, setNeighborhood] = useState<string>(
-    space?.neighborhood ?? ""
-  );
-  const [city, setCity] = useState<string>(space?.city ?? "");
-  const [pricePerHour, setPricePerHour] = useState<number>(
-    space?.pricePerHour ?? 0
-  );
-  const [maximumCapacity, setMaximumCapacity] = useState<number>(
-    space?.maximumCapacity ?? 0
-  );
-  const [complement, setComplement] = useState<string>(space?.complement ?? "");
-  const [zipCode, setZipCode] = useState<number | undefined>(
-    zipCodeToInt(space?.zipCode)
-  );
+  const [address, setAddress] = useState<string>("");
+  const [neighborhood, setNeighborhood] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [pricePerHour, setPricePerHour] = useState<number>(0);
+  const [maximumCapacity, setMaximumCapacity] = useState<number>(0);
+  const [complement, setComplement] = useState<string>("");
+  const [zipCode, setZipCode] = useState<number | undefined>();
 
   const [loading, setLoading] = useState(false);
 
+  const medias = useMemo(() => stringToFile(space?.media), [space?.media]);
+
   useEffect(() => {
-    setImages(stringToFile(space?.media));
-  }, [space?.media]);
+    space?.title && setTitle(space?.title);
+    space?.description && setDescription(space?.description);
+    medias && setImages(medias);
+    space?.address && setAddress(space?.address);
+    space?.neighborhood && setNeighborhood(space?.neighborhood);
+    space?.city && setCity(space?.city);
+    space?.pricePerHour && setPricePerHour(space?.pricePerHour);
+    space?.maximumCapacity && setMaximumCapacity(space?.maximumCapacity);
+    space?.complement && setComplement(space?.complement);
+    setZipCode(zipCodeToInt(space?.zipCode));
+  }, [medias, space]);
 
   const onSubmit = async (event: React.FormEvent) => {
     setLoading(true);
@@ -92,6 +94,10 @@ export default function SpaceForm(props: Props) {
         setLoading(false);
       });
   };
+
+  if (!space) {
+    return <SpaceLoading />;
+  }
 
   return (
     <Form
