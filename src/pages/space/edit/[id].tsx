@@ -19,8 +19,8 @@ export default function EditSpace() {
     setId(parseInt(router.query.id as string));
   }, [router.query.id]);
 
-  const handleSubmit = (space: SpacePayload) => {
-    return editSpace(space).then((res) => {
+  const handleSubmit = (space: SpacePayload, id?: number) => {
+    return editSpace(space, id ?? -1).then((res) => {
       res && router.push(`/space/${res.id}`);
     });
   };

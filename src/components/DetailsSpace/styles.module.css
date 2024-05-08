@@ -146,7 +146,9 @@
   right: 10.75rem;
 }
 
-.icon {
-  color: var(--laranja);
-  font-size: 25px;
+.buttons {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  gap: 1.5rem;
 }

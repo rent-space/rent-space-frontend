@@ -16,7 +16,7 @@ import { SpaceLoading } from "../SpaceLoading";
 
 interface Props {
   space: Space | undefined;
-  handleSubmit: (space: SpacePayload) => Promise<any>;
+  handleSubmit: (space: SpacePayload, id?: number) => Promise<any>;
 }
 
 export default function SpaceForm(props: Props) {
@@ -74,7 +74,7 @@ export default function SpaceForm(props: Props) {
 
     Promise.all(mediaPromises)
       .then(async (media: string[]) => {
-        const space: SpacePayload = {
+        const spacePaylod: SpacePayload = {
           title,
           description,
           media,
@@ -87,11 +87,11 @@ export default function SpaceForm(props: Props) {
           zipCode: zipCode?.toString() ?? "",
           ownerId: parseInt(data.user.id),
         };
-        handleSubmit(space).then(() => setLoading(false));
+        handleSubmit(spacePaylod, space?.id).then(() => setLoading(false));
       })
       .catch((error) => {
-        toast.error("Error processing images:", error);
         setLoading(false);
+        toast.error("Error processing images:", error);
       });
   };
 

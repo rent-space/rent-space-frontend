@@ -3,11 +3,11 @@ import styles from "./styles.module.css";
 import { Text } from "../Text";
 import { Space } from "@/utils/types";
 import { Button } from "../Button";
-import { FiTrash } from "react-icons/fi"
 import { useEffect, useState } from "react";
 import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
 import { EditButton } from "../EditButton";
+import { DeleteButton } from "../DeleteButton";
 
 interface Props {
   space: Space;
@@ -17,7 +17,6 @@ interface Props {
 }
 
 export function DetailsSpace(props: Props) {
-
   const [mainImage, setMainImage] = useState<string>();
   const [anotherImages, setAnotherImages] = useState<string[]>([]);
   const [maxImagesShowed, setMaxImagesShowed] = useState<number>(3);
@@ -27,7 +26,6 @@ export function DetailsSpace(props: Props) {
   const { data } = useSession();
 
   const isEventOwner = data?.user && data?.user?.userType === "EVENT_OWNER";
-  const isPlaceOwner = data?.user && data?.user?.userType === "PLACE_OWNER";
 
   const {
     title,
@@ -103,7 +101,10 @@ export function DetailsSpace(props: Props) {
           <Text size="title2" weight="semibold" color="orange">
             {title}
           </Text>
-          <EditButton id={space.id} />
+          <div className={styles.buttons}>
+            <EditButton id={space.id} />
+            <DeleteButton openDeleteModal={openDeleteModal} />
+          </div>
         </div>
 
         <Text size="subtitle" color="gray" weight="regular">
@@ -132,7 +133,6 @@ export function DetailsSpace(props: Props) {
               </Text>
             </div>
 
-
             {isEventOwner && (
               <div>
                 <Button variant="primary" size="small" onClick={openModal}>
@@ -140,16 +140,6 @@ export function DetailsSpace(props: Props) {
                 </Button>
               </div>
             )}
-
-            {isPlaceOwner && (
-              <div>
-                <button className={styles.deleteButton} onClick={openDeleteModal}>
-                  <FiTrash className={styles.icon}/>
-                </button>
-              </div>
-            )
-
-            }
           </div>
           <div className={styles.card}>{children}</div>
         </div>
