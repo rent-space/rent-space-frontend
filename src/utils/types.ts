@@ -19,6 +19,7 @@ export type Space = {
   pricePerHour: number;
   media: string[];
   owner: {
+    id: number;
     name: string;
     profilePhoto: string;
     email: string;
@@ -28,7 +29,7 @@ export type Space = {
   maximumCapacity: number;
   neighborhood: string;
   complement: string;
-  zipCode: number;
+  zipCode: string;
 };
 
 export type SpacePayload = {

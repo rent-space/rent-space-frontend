@@ -74,6 +74,7 @@ export default function ReserveModal(props: Props) {
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inline}>
           <Input
+            value={startsAt}
             name="startsAt"
             label="O evento inicia às"
             type="datetime-local"
@@ -81,6 +82,7 @@ export default function ReserveModal(props: Props) {
             required
           />
           <Input
+            value={endsAt}
             name="endsAt"
             label="O evento termina às"
             type="datetime-local"
@@ -89,6 +91,7 @@ export default function ReserveModal(props: Props) {
           />
         </div>
         <Input
+          value={numOfParticipants}
           name="numOfParticipants"
           label="Quantidade de participantes"
           type="number"
@@ -98,6 +101,7 @@ export default function ReserveModal(props: Props) {
         />
         <div className={styles.inline}>
           <Input
+            value={paymentMethod}
             name="paymentMethod"
             label="Método de pagamento"
             type="select"
@@ -110,6 +114,7 @@ export default function ReserveModal(props: Props) {
           />
           {paymentMethod === "CREDIT" && (
             <Input
+              value={numOfInstallments}
               name="numOfInstallments"
               label="Quantidade de parcelas"
               type="number"

@@ -13,6 +13,7 @@ import Image from "next/image";
 import Loading from "@/components/Loading";
 
 import searchGif from "@/assets/searching.gif";
+import { SpaceLoading } from "@/components/SpaceLoading";
 
 export default function DetailsPageSpace() {
   const router = useRouter();
@@ -38,30 +39,33 @@ export default function DetailsPageSpace() {
 
   return (
     <>
-      {space && <>
-        <ReserveModal space={space} open={reserveModal} close={closeReserveModal} />
-        <DeleteModal modal={deleteModal} close={closeDeleteModal}  deleteSpaceId={space.id}/> 
-      </>}
-      
+      {space && (
+        <>
+          <ReserveModal
+            space={space}
+            open={reserveModal}
+            close={closeReserveModal}
+          />
+          <DeleteModal
+            modal={deleteModal}
+            close={closeDeleteModal}
+            deleteSpaceId={space.id}
+          />
+        </>
+      )}
+
       <Header justify="center" navigateBackTo="/spaces" />
       <Page type="form">
-
         {space ? (
-          <DetailsSpace space={space} openModal={openReserveModal} openDeleteModal={openDeleteModal}>
+          <DetailsSpace
+            space={space}
+            openModal={openReserveModal}
+            openDeleteModal={openDeleteModal}
+          >
             <DetailsCard owner={space.owner} />
           </DetailsSpace>
         ) : (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image src={searchGif} width={200} alt="Searching" />
-            <Loading loadingLabel="Estamos carregando as informações desse spaço" />
-          </div>
+          <SpaceLoading />
         )}
       </Page>
       <Footer />

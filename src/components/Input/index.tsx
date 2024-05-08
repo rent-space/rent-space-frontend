@@ -10,6 +10,7 @@ type InputComponentProps = {
   iconSize?: number;
   iconOnClick?: () => void;
   mask?: string;
+  value: any;
   setValue?: (values: any) => void;
   type?: HTMLInputTypeAttribute;
   required?: boolean;
@@ -32,6 +33,7 @@ function InputComponent(props: InputComponentProps) {
     required,
     placeholder,
     mask,
+    value,
     setValue,
     options = [],
     min,
@@ -44,6 +46,7 @@ function InputComponent(props: InputComponentProps) {
         <InputMask
           name={name}
           mask={mask}
+          value={value}
           placeholder={placeholder}
           className={styles.input}
           onChange={(event) => setValue && setValue(event.target.value)}
@@ -53,6 +56,7 @@ function InputComponent(props: InputComponentProps) {
         <select
           className={styles.inputSelect}
           onChange={(event) => setValue && setValue(event.target.value)}
+          value={value}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -67,6 +71,7 @@ function InputComponent(props: InputComponentProps) {
           type={type}
           placeholder={placeholder}
           required={required}
+          value={value}
           onChange={(event) => setValue && setValue(event.target.value)}
           min={min}
           max={max}

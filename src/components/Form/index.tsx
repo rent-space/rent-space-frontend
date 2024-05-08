@@ -12,16 +12,25 @@ interface Props {
   title: string;
   subtitle: string;
   loading: boolean;
+  isCreating: boolean;
 }
 
+const messages = {
+  save: ["Salvar", "Salvando..."],
+  create: ["Cadastrar", "Cadastrando..."],
+};
+
 export function Form(props: Props) {
-  const { name, children, onSubmit, title, subtitle, loading } = props;
+  const { name, children, onSubmit, title, subtitle, loading, isCreating } =
+    props;
 
   const router = useRouter();
 
   const handleBack = () => {
     router.push("/home");
   };
+
+  const confirmButtonMessage = isCreating ? messages.create : messages.save;
 
   return (
     <>
@@ -46,7 +55,7 @@ export function Form(props: Props) {
             form={name}
             disabled={loading}
           >
-            {loading ? "Cadastrando..." : "Cadastrar"}
+            {loading ? confirmButtonMessage[1] : confirmButtonMessage[0]}
           </Button>
         </Footer>
       </form>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { Text } from "@/components/Text";
 import { IoIosClose } from "react-icons/io";
+import { useMemo } from "react";
 
 interface Props {
   image: File;
@@ -12,6 +13,8 @@ interface Props {
 export function ImageCard(props: Props) {
   const { image, onRemove } = props;
 
+  const imageSrc = useMemo(() => URL.createObjectURL(image), [image]);
+
   return (
     <div className={styles.card}>
       <IoIosClose
@@ -20,12 +23,7 @@ export function ImageCard(props: Props) {
         onClick={() => onRemove(image.name)}
       />
       <div className={styles.imageContainer}>
-        <Image
-          src={URL.createObjectURL(image)}
-          alt={image.name}
-          fill
-          objectFit="contain"
-        />
+        <Image src={imageSrc} alt={image.name} fill objectFit="contain" />
       </div>
       <div className={styles.imageTitle}>
         <Text color="gray" size="label">
