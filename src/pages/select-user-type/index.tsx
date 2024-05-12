@@ -42,7 +42,7 @@ const SelectionButton = ({
 };
 
 export default function SelectUserType() {
-  const { data } = useSession();
+  const { data, update } = useSession();
   const [selectedOption, setSelectedOption] = useState<number>(-1);
 
   const router = useRouter();
@@ -86,7 +86,8 @@ export default function SelectUserType() {
 
       try {
         await createUser(newUser);
-        router.push("/home");
+        await router.push("/home");
+        update();
       } catch (error) {
         console.log("Erro ao criar usuário");
       }
@@ -100,12 +101,11 @@ export default function SelectUserType() {
       <div className={styles.pageBackground}></div>
 
       <section className={styles.userTypeSelectCont}>
-        <h1 className={styles.pageTitle}>
-          Selecione o seu perfil de usuário!
-        </h1>
+        <h1 className={styles.pageTitle}>Selecione o seu perfil de usuário!</h1>
         <span className={styles.pageSubtitle}>
           Selecione a opção que mais se encaixa com você, pois isso irá
-          determinar as funcionalidades as quais você terá acesso. Não será possível alterá-la no futuro.
+          determinar as funcionalidades as quais você terá acesso. Não será
+          possível alterá-la no futuro.
         </span>
 
         <div className={styles.selectionCont}>

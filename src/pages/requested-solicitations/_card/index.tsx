@@ -11,6 +11,7 @@ import styles from "./styles.module.css";
 import Modal from "@/components/Modal";
 import { updatePlaceReservation } from "@/services/api/reservations";
 import Loading from "@/components/Loading";
+import { useRouter } from "next/router";
 
 interface PageCardProps {
   placeReservation: PlaceReservation;
@@ -21,6 +22,8 @@ export default function PageCard({
   placeReservation,
   shouldClick = true,
 }: PageCardProps) {
+  const router = useRouter();
+
   const [placeImage, setPlaceImage] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -57,6 +60,7 @@ export default function PageCard({
       setLoading(false);
       placeReservation = response;
       setIsModalOpen(false);
+      router.reload();
     });
   };
 
@@ -78,11 +82,11 @@ export default function PageCard({
         {placeImage !== null &&
         placeImage?.length &&
         placeImage.includes("base64") ? (
-          <Image 
-            className={styles.image} 
-            src={placeImage} 
-            alt="Imagem do local" 
-            layout="fill" 
+          <Image
+            className={styles.image}
+            src={placeImage}
+            alt="Imagem do local"
+            layout="fill"
           />
         ) : (
           <div className={styles.noImagePlace}>
@@ -159,28 +163,28 @@ export default function PageCard({
             onClick={() => updateReservationStatus(true)}
             disabled={loading}
           >
-            {loading ?
+            {loading ? (
               <Loading loadingLabel="" color="white" />
-              :
+            ) : (
               <>
                 <FiThumbsUp color="#FFF" size={24} />
                 <span className={styles.buttonText}>Aceitar</span>
               </>
-            }
+            )}
           </button>
           <button
             className={`${styles.button} ${styles.secButton}`}
             onClick={() => updateReservationStatus(false)}
             disabled={loading}
           >
-            {loading ?
+            {loading ? (
               <Loading loadingLabel="" />
-              :
+            ) : (
               <>
                 <FiThumbsDown color="#eb5b14" size={24} />
                 <span className={styles.secButtonText}>Recusar</span>
               </>
-            }
+            )}
           </button>
         </section>
       </Modal>

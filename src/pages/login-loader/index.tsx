@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 import WaitLoading from "@/assets/waitLoading.svg";
 
 export default function LoginLoader() {
-  const { status, data } = useSession();
+  const { status, data, update } = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -19,8 +19,10 @@ export default function LoginLoader() {
       } else {
         router.push("/home");
       }
+    } else {
+      update();
     }
-  }, [status, router, data]);
+  }, [status, router, data, update]);
 
   return (
     <section className={styles.loadingLoginPage}>
