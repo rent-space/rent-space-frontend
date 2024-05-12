@@ -51,3 +51,13 @@ export function zipCodeToInt(zip: string | undefined): number | undefined {
   const zipCodeNumber = parseInt(zip.replace(/[^0-9]/g, ""));
   return zipCodeNumber === 0 ? undefined : zipCodeNumber;
 }
+
+export function removeCurrencySymbolAndParse(value: string): number {
+  // Remove non-digit characters
+  const cleanedValue = value.replace(/[^\d,.-]/g, "");
+  // Replace dot separator with empty string
+  const numberValue = cleanedValue.replace(/\./g, "");
+  // Replace comma separator with dot
+  const dotValue = numberValue.replace(/,/g, ".");
+  return parseFloat(dotValue) || 0;
+}

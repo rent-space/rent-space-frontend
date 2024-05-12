@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { User } from "@/utils/types";
 import { getUser } from "@/services/api/user";
+import { toast } from "react-toastify";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
@@ -13,6 +14,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
+      console.log("session", session);
       try {
         const email = session?.user?.email ?? "";
         const user: User = await getUser(email);
@@ -27,7 +29,7 @@ export const authOptions: NextAuthOptions = {
 
         return newSession;
       } catch (error: any) {
-        console.error("Error retrieving user data: ", error.message);
+        toast.error("Error retrieving user data: ", error.message);
         return session;
       }
     },
