@@ -8,10 +8,11 @@ import { CardDescription } from "@/components/CardDescription";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import styles from "./styles.module.css";
 import { FloatingButton } from "@/components/FloatingButton";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { getSpaces } from "@/services/api/space";
 import { AllSpaces } from "@/utils/types";
 import Loading from "@/components/Loading";
+import { SearchBar } from "@/components/SearchBar";
 
 const PAGE_SIZE = 6;
 
@@ -19,7 +20,7 @@ export default function Spaces() {
   const [spaces, setSpaces] = useState<AllSpaces>([]);
   const [cards, setCards] = useState<AllSpaces>([]);
   const [loading, setLoading] = useState<Boolean>(true);
-
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(spaces.length / PAGE_SIZE);
   const router = useRouter();
@@ -61,13 +62,25 @@ export default function Spaces() {
     },
   });
 
+  function setCurrentSearch(search:string) {
+    const url = new URL(window.location.toString());
+    url.searchParams.set('search', search);
+    window.history.pushState({},"",url);
+    setSearch(search);
+  }
+
+  function onSearchInputChanged(event: ChangeEvent<HTMLInputElement>) {
+    setCurrentSearch(event.target.value);
+    setPage(1)
+  }
+
   return (
     <>
       <Header>
         <NavBar />
         <UserAvatar />
       </Header>
-
+      <SearchBar search={search} onSearchInputChanged={()=>onSearchInputChanged}/>
       <FloatingButton />
       <div className={styles.container}>
         <div className={styles.titleContainer}>
