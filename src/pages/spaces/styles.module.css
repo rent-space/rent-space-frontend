@@ -8,6 +8,14 @@
   padding-bottom: 2.5rem;
 }
 
+.containerTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
 .card {
   align-items: center;
   justify-content: center;
@@ -51,3 +59,33 @@
   justify-content: center;
   flex-direction: row;
 }
+
+.containerSearch {
+ 
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 64px;
+  margin-right: 2rem;
+  border: 2px solid #bdbdbd;
+  border-radius: 4px; 
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: row;
+  gap: 0.75rem; 
+}
+
+.icon {
+  position: absolute;
+  color: #bdbdbd;
+  margin-left: 0.5rem;
+}
+
+.input {
+  margin-left: 2rem;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  font-size: 0.875rem;
+}
+

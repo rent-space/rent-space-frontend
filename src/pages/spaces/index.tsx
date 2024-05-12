@@ -12,7 +12,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { getSpaces } from "@/services/api/space";
 import { AllSpaces } from "@/utils/types";
 import Loading from "@/components/Loading";
-import { SearchBar } from "@/components/SearchBar";
+import { FaSearch } from "react-icons/fa";
 
 const PAGE_SIZE = 6;
 
@@ -63,9 +63,6 @@ export default function Spaces() {
   });
 
   function setCurrentSearch(search:string) {
-    const url = new URL(window.location.toString());
-    url.searchParams.set('search', search);
-    window.history.pushState({},"",url);
     setSearch(search);
   }
 
@@ -80,11 +77,16 @@ export default function Spaces() {
         <NavBar />
         <UserAvatar />
       </Header>
-      <SearchBar search={search} onSearchInputChanged={()=>onSearchInputChanged}/>
+
       <FloatingButton />
-      <div className={styles.container}>
-        <div className={styles.titleContainer}>
+        <div className={styles.containerTitle}>
           <span className={styles.title}>Espaços para alugar</span>
+          <div className={styles.containerSearch}>
+              <FaSearch className={styles.icon}/>
+              <input value={search} onChange={onSearchInputChanged} 
+                  className={styles.input} 
+                  type="text" placeholder="Buscar Espaço..."  />
+          </div>
         </div>
 
         <div className={styles.listContainer}>
@@ -110,7 +112,6 @@ export default function Spaces() {
                 );
               })}
         </div>
-      </div>
       <Footer justify="center" className={styles.footer}>
         <SlArrowLeft
           className={styles.footerArrow}
