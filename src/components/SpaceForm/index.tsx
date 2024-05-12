@@ -10,7 +10,12 @@ import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Space, SpacePayload } from "@/utils/types";
-import { getBase64, stringToFile, zipCodeToInt } from "@/utils/utils";
+import {
+  getBase64,
+  removeCurrencySymbolAndParse,
+  stringToFile,
+  zipCodeToInt,
+} from "@/utils/utils";
 import { toast } from "react-toastify";
 import { SpaceLoading } from "../SpaceLoading";
 
@@ -38,7 +43,7 @@ export default function SpaceForm(props: Props) {
   const [address, setAddress] = useState<string>("");
   const [neighborhood, setNeighborhood] = useState<string>("");
   const [city, setCity] = useState<string>("");
-  const [pricePerHour, setPricePerHour] = useState<number>(0);
+  const [pricePerHour, setPricePerHour] = useState<string>("");
   const [maximumCapacity, setMaximumCapacity] = useState<number>(0);
   const [complement, setComplement] = useState<string>("");
   const [zipCode, setZipCode] = useState<number | undefined>();
@@ -54,7 +59,7 @@ export default function SpaceForm(props: Props) {
     space?.address && setAddress(space?.address);
     space?.neighborhood && setNeighborhood(space?.neighborhood);
     space?.city && setCity(space?.city);
-    space?.pricePerHour && setPricePerHour(space?.pricePerHour);
+    space?.pricePerHour && setPricePerHour(space?.pricePerHour.toString());
     space?.maximumCapacity && setMaximumCapacity(space?.maximumCapacity);
     space?.complement && setComplement(space?.complement);
     setZipCode(zipCodeToInt(space?.zipCode));
@@ -81,7 +86,7 @@ export default function SpaceForm(props: Props) {
           address,
           neighborhood,
           city,
-          pricePerHour,
+          pricePerHour: removeCurrencySymbolAndParse(pricePerHour),
           maximumCapacity,
           complement,
           zipCode: zipCode?.toString() ?? "",
