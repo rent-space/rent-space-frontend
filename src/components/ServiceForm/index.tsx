@@ -7,6 +7,7 @@ import { TextArea } from "../Input/TextArea";
 import Inline from "../Inline";
 import { CurrencyInput } from "../Input/CurrencyInput";
 import { ImageInput } from "../Input/ImageInput";
+import { PiHouseLight } from "react-icons/pi";
 
 interface FormProps {
   service?: Service;
@@ -20,6 +21,11 @@ type ServiceForm = {
   quantityOfEmployees: number;
   pricePerHour: string;
   images: File[];
+  zipCode: number | undefined;
+  city: string;
+  address: string;
+  neighborhood: string;
+  complement: string;
 };
 
 export default function ServiceForm(props: FormProps) {
@@ -32,6 +38,12 @@ export default function ServiceForm(props: FormProps) {
   const [pricePerHour, setPricePerHour] =
     useState<ServiceForm["pricePerHour"]>("");
   const [images, setImages] = useState<ServiceForm["images"]>([]);
+  const [zipCode, setZipCode] = useState<ServiceForm["zipCode"]>();
+  const [city, setCity] = useState<ServiceForm["city"]>("");
+  const [address, setAddress] = useState<ServiceForm["address"]>("");
+  const [neighborhood, setNeighborhood] =
+    useState<ServiceForm["neighborhood"]>("");
+  const [complement, setComplement] = useState<ServiceForm["complement"]>("");
 
   return (
     <Form
@@ -88,8 +100,54 @@ export default function ServiceForm(props: FormProps) {
           />
         </Inline>
       </FormSection>
-      <FormSection title="Mídias do local" rowSpan={2}>
+      <FormSection title="Mídias do serviço" rowSpan={2}>
         <ImageInput name="media" images={images} setImages={setImages} />
+      </FormSection>
+      <FormSection title="Endereço do serviço">
+        <div style={{ width: "calc(50% - 0.5rem)" }}>
+          <Input
+            name="zipCode"
+            value={zipCode}
+            label="CEP"
+            type="number"
+            mask="99999-999"
+            placeholder="_____-___"
+            icon={PiHouseLight}
+            setValue={setZipCode}
+          />
+        </div>
+        <Inline>
+          <Input
+            name="city"
+            label="Cidade"
+            placeholder="Insira a cidade"
+            value={city}
+            setValue={setCity}
+          />
+          <Input
+            name="neighborhood"
+            label="Bairro"
+            placeholder="Insira o bairro"
+            value={neighborhood}
+            setValue={setNeighborhood}
+          />
+        </Inline>
+        <Inline>
+          <Input
+            name="address"
+            label="Rua"
+            placeholder="Insira a rua"
+            value={address}
+            setValue={setAddress}
+          />
+          <Input
+            name="complement"
+            label="Complemento"
+            placeholder="Insira o complemento (ex: apto, bloco, etc.)"
+            value={complement}
+            setValue={setComplement}
+          />
+        </Inline>
       </FormSection>
     </Form>
   );
