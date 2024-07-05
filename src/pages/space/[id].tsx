@@ -9,10 +9,7 @@ import { Space } from "@/utils/types";
 import { getSpace } from "@/services/api/space";
 import ReserveModal from "@/components/ReserveModal";
 import DeleteModal from "@/components/DeleteModal";
-import Image from "next/image";
-import Loading from "@/components/Loading";
 
-import searchGif from "@/assets/searching.gif";
 import { SpaceLoading } from "@/components/SpaceLoading";
 
 export default function DetailsPageSpace() {

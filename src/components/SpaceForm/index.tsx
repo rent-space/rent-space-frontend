@@ -9,7 +9,7 @@ import { PiHouseLight } from "react-icons/pi";
 import { ImageInput } from "@/components/Input/ImageInput";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { Space, SpacePayload } from "@/utils/types";
+
 import {
   getBase64,
   removeCurrencySymbolAndParse,
@@ -18,6 +18,7 @@ import {
 } from "@/utils/utils";
 import { toast } from "react-toastify";
 import { SpaceLoading } from "../SpaceLoading";
+import { Space, SpacePayload } from "@/utils/types";
 
 interface Props {
   space: Space | undefined;

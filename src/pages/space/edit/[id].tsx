@@ -1,6 +1,7 @@
 import SpaceForm from "@/components/SpaceForm";
 import { editSpace, getSpace } from "@/services/api/space";
-import { Space, SpacePayload } from "@/utils/types";
+import { Space, SpacePayload } from "@/utils/types/types";
+
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
