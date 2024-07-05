@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { createSpace } from "@/services/api/space";
 
 import SpaceForm from "@/components/SpaceForm";
-import { SpacePayload } from "@/utils/types/types";
+import { SpacePayload } from "@/utils/types";
 
 export interface SpaceForm {
   title: string;
