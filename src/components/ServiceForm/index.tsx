@@ -6,6 +6,7 @@ import { useState } from "react";
 import { TextArea } from "../Input/TextArea";
 import Inline from "../Inline";
 import { CurrencyInput } from "../Input/CurrencyInput";
+import { ImageInput } from "../Input/ImageInput";
 
 interface FormProps {
   service?: Service;
@@ -18,6 +19,7 @@ type ServiceForm = {
   nature: string;
   quantityOfEmployees: number;
   pricePerHour: string;
+  images: File[];
 };
 
 export default function ServiceForm(props: FormProps) {
@@ -29,6 +31,7 @@ export default function ServiceForm(props: FormProps) {
     useState<ServiceForm["quantityOfEmployees"]>(0);
   const [pricePerHour, setPricePerHour] =
     useState<ServiceForm["pricePerHour"]>("");
+  const [images, setImages] = useState<ServiceForm["images"]>([]);
 
   return (
     <Form
@@ -84,6 +87,9 @@ export default function ServiceForm(props: FormProps) {
             setValue={setPricePerHour}
           />
         </Inline>
+      </FormSection>
+      <FormSection title="Mídias do local" rowSpan={2}>
+        <ImageInput name="media" images={images} setImages={setImages} />
       </FormSection>
     </Form>
   );
