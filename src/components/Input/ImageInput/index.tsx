@@ -41,7 +41,7 @@ export function ImageInput(props: Props) {
         onClick={handleClick}
       >
         <FiUpload size={30} className={styles.icon} />
-        Clique ou arraste para adicionar sua imagem
+        Clique para adicionar sua imagem
       </button>
       <input
         name={name}

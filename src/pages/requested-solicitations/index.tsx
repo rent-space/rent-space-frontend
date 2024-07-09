@@ -5,10 +5,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
-import {
-  getPlaceReservationById,
-  getPlaceReservations,
-} from "@/services/api/reservations";
+import { getPlaceReservations } from "@/services/api/reservations";
 import { PlaceReservation } from "@/utils/types";
 import PageCard from "./_card";
 import Loading from "@/components/Loading";

@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { createSpace } from "@/services/api/space";
-import { SpacePayload } from "@/utils/types";
+
 import SpaceForm from "@/components/SpaceForm";
+import { SpacePayload } from "@/utils/types";
 
 export interface SpaceForm {
   title: string;
