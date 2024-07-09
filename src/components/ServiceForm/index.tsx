@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { getBase64, removeCurrencySymbolAndParse } from "@/utils/utils";
 import { toast } from "react-toastify";
+import NatureInput from "./NatureInput";
 
 interface FormProps {
   service?: Service;
@@ -108,15 +109,7 @@ export default function ServiceForm(props: FormProps) {
           label="Descrição"
           placeholder="Adicione a descrição"
         />
-        <Input
-          name="nature"
-          value={nature}
-          label="Natureza do serviço"
-          placeholder="Insira a natureza do serviço (ex: garçom, bar, etc.)"
-          type="text"
-          required
-          setValue={setNature}
-        />
+        <NatureInput value={nature} setValue={setNature} />
         <Inline>
           <Input
             name="quantityOfEmployees"

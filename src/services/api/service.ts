@@ -16,3 +16,15 @@ export async function createService(service: ServicePayload): Promise<any> {
 
   return data;
 }
+
+export async function getServiceTypes(): Promise<string[]> {
+  const { data, error } = await fetchApi("/servico/tipos", {
+    method: "GET",
+  });
+
+  if (error) {
+    toast.error("Erro ao buscar tipos de serviço: " + error);
+  }
+
+  return data;
+}

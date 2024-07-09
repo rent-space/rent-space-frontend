@@ -15,7 +15,6 @@ export default function ServiceNew() {
   });
 
   const handleSubmit = (service: ServicePayload) => {
-    console.log("submitting!", service);
     return createService(service).then((response) => {
       response && router.push("/services");
     });
