@@ -115,3 +115,43 @@ export type AllSpaces = {
   pricePerHour: number;
   description: string;
 }[];
+
+export type Service = {
+  id: number;
+  owner: Owner;
+  title: string;
+  media: string[];
+  description: string;
+  pricePerUnit: number;
+}
+
+export type AllServices = {
+  id:number;
+  title: string;
+  media: string[];
+  description: string;
+  pricePerUnit: number;
+}[];
+
+export type ServicePayload = {
+  title: string;
+  description: string;
+  media: string[];
+  address: string;
+  neighborhood: string;
+  city: string;
+  pricePerUnit: number;
+  ownerId: number;
+  complement: string;
+  zipCode: string;
+};
+
+type Owner = {
+  id: number;
+  name: string;
+  profilePhoto: string;
+  email: string;
+  telephone: string;
+  webSite: string;
+  userType: string;
+}
