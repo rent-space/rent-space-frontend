@@ -1,4 +1,4 @@
-import { Service, ServicePayload } from "@/utils/types";
+import type { Service, ServicePayload, ServiceForm } from "@/utils/types";
 import { Form } from "@/components/Form";
 import FormSection from "../Form/FormSection";
 import { Input } from "@/components/Input";
@@ -8,27 +8,30 @@ import Inline from "../Inline";
 import { CurrencyInput } from "../Input/CurrencyInput";
 import { ImageInput } from "../Input/ImageInput";
 import { PiHouseLight } from "react-icons/pi";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { getBase64, removeCurrencySymbolAndParse } from "@/utils/utils";
+import { toast } from "react-toastify";
 
 interface FormProps {
   service?: Service;
   handleSubmit: (service: ServicePayload, id?: number) => Promise<any>;
 }
 
-type ServiceForm = {
-  title: string;
-  description: string;
-  nature: string;
-  quantityOfEmployees: number;
-  pricePerHour: string;
-  images: File[];
-  zipCode: number | undefined;
-  city: string;
-  address: string;
-  neighborhood: string;
-  complement: string;
-};
-
 export default function ServiceForm(props: FormProps) {
+  const { handleSubmit } = props;
+
+  const router = useRouter();
+
+  useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/");
+    },
+  });
+
+  const { data } = useSession();
+
   const [title, setTitle] = useState<ServiceForm["title"]>("");
   const [description, setDescription] =
     useState<ServiceForm["description"]>("");
@@ -45,14 +48,47 @@ export default function ServiceForm(props: FormProps) {
     useState<ServiceForm["neighborhood"]>("");
   const [complement, setComplement] = useState<ServiceForm["complement"]>("");
 
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (event: React.FormEvent) => {
+    setLoading(true);
+    event.preventDefault();
+
+    const mediaPromises = images.map(async (image) => {
+      return await getBase64(image);
+    });
+
+    Promise.all(mediaPromises)
+      .then(async (media: string[]) => {
+        const servicePaylod: ServicePayload = {
+          title,
+          description,
+          media,
+          address,
+          neighborhood,
+          city,
+          pricePerHour: removeCurrencySymbolAndParse(pricePerHour),
+          serviceNature: nature,
+          peopleInvolved: quantityOfEmployees,
+          ownerId: parseInt(data?.user.id ?? ""),
+          placesIdsRelated: [],
+        };
+        handleSubmit(servicePaylod).then(() => setLoading(false));
+      })
+      .catch((error) => {
+        setLoading(false);
+        toast.error("Error processing images:", error);
+      });
+  };
+
   return (
     <Form
       name="Serviço"
       title="Cadastro de Serviço"
       subtitle="Adicione abaixo as informações que serão exibidas sobre o seu serviço oferecido"
-      loading={false}
+      loading={loading}
       isCreating={true}
-      onSubmit={() => {}}
+      onSubmit={onSubmit}
     >
       <FormSection title="Sobre o serviço">
         <Input

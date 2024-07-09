@@ -1,4 +1,5 @@
 import ServiceForm from "@/components/ServiceForm";
+import { createService } from "@/services/api";
 import { ServicePayload } from "@/utils/types";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -14,9 +15,9 @@ export default function ServiceNew() {
   });
 
   const handleSubmit = (service: ServicePayload) => {
-    console.log("submitting...");
-    return new Promise((resolve, reject) => {
-      resolve("success");
+    console.log("submitting!", service);
+    return createService(service).then((response) => {
+      response && router.push("/services");
     });
   };
 
