@@ -1,12 +1,11 @@
 import { FloatingButton } from "@/components/FloatingButton";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { List } from "@/components/List";
 import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import Loading from "@/components/Loading";
 import { CardDescription } from "@/components/CardDescription";
@@ -20,7 +19,7 @@ export default function Services() {
   const router = useRouter();
 
   const [loading, setLoading] = useState<Boolean>(true);
-  const [services,setServices] = useState<AllServices>([]);
+  const [services, setServices] = useState<AllServices>([]);
   const [cards, setCards] = useState<AllServices>([]);
   const [page, setPage] = useState(1);
 
@@ -28,35 +27,33 @@ export default function Services() {
 
   const handleNavigateServiceDetails = (id: number) => {
     router.push(`/service/${id}`);
-  }
+  };
 
   const goToNextPage = () => {
     if (totalPages > page) {
       return setPage(page + 1);
     }
-  }
+  };
 
-  useEffect(()=> {
-    const startIndex = (page - 1 ) * PAGE_SIZE;
+  useEffect(() => {
+    const startIndex = (page - 1) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
-    const updatedCards = services.slice(startIndex,endIndex);
+    const updatedCards = services.slice(startIndex, endIndex);
     setCards(updatedCards);
-  },[page, services])
+  }, [page, services]);
 
-  useEffect(()=> {
-    getServices()
-      .then( response =>{
-        setLoading(false);
-        setServices(response.sort((a,b) => b.id - a.id))
-      })
-  },[])
+  useEffect(() => {
+    getServices().then((response) => {
+      setLoading(false);
+      setServices(response.sort((a, b) => b.id - a.id));
+    });
+  }, []);
 
   const goToPreviousPage = () => {
     if (page > 1) {
       return setPage(page - 1);
     }
-  }
-
+  };
 
   useSession({
     required: true,
@@ -71,7 +68,7 @@ export default function Services() {
         <NavBar />
         <UserAvatar />
       </Header>
-      <FloatingButton route="services"/>
+      <FloatingButton route="service" />
       <div className={styles.container}>
         <div className={styles.titleContainer}>
           <span className={styles.title}>Serviços para alugar</span>

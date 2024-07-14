@@ -3,7 +3,7 @@ import Image from "next/image";
 import Loading from "@/components/Loading";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import styles from "./styles.module.css";
 import WaitLoading from "@/assets/waitLoading.svg";
@@ -12,7 +12,7 @@ export default function LoginLoader() {
   const { status, data, update } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
+  const redirectAfterAuth = useCallback(async () => {
     if (status === "authenticated") {
       if (data?.user && !data?.user?.id) {
         router.push("/select-user-type");
@@ -22,7 +22,11 @@ export default function LoginLoader() {
     } else {
       update();
     }
-  }, [status, router, data, update]);
+  }, [status]);
+
+  useEffect(() => {
+    redirectAfterAuth();
+  }, [redirectAfterAuth]);
 
   return (
     <section className={styles.loadingLoginPage}>

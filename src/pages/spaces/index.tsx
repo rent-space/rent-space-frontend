@@ -68,7 +68,7 @@ export default function Spaces() {
         <UserAvatar />
       </Header>
 
-      <FloatingButton route="spaces"/>
+      <FloatingButton route="space" />
       <div className={styles.container}>
         <div className={styles.titleContainer}>
           <span className={styles.title}>Espaços para alugar</span>
