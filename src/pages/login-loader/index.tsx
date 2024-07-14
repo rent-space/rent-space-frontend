@@ -20,7 +20,9 @@ export default function LoginLoader() {
         router.push("/home");
       }
     } else {
-      update();
+      setTimeout(async () => {
+        await update();
+      }, 5000);
     }
   }, [status]);
 

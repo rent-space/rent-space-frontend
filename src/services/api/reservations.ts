@@ -17,8 +17,8 @@ export async function getPlaceReservationById(
 }
 
 export async function getPlaceReservations(): Promise<PlaceReservation[]> {
-  const { data, error } = await fetchApi('/solicitacao/espaco/all', {
-    method: "GET"
+  const { data, error } = await fetchApi("/solicitacao/espaco/all", {
+    method: "GET",
   });
 
   if (error) {
