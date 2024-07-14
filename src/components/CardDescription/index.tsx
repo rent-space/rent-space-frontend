@@ -7,7 +7,7 @@ type CardProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
   description?: string;
   maxCapacity?: number;
-  pricePerHour: number;
+  pricePerHour?: number;
   pricePerUnity?: number;
   image: string;
   onClick: () => void;

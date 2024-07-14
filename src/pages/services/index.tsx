@@ -19,8 +19,9 @@ const PAGE_SIZE = 6;
 export default function Services() {
   const router = useRouter();
 
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(true);
   const [services,setServices] = useState<AllServices>([]);
+  const [cards, setCards] = useState<AllServices>([]);
   const [page, setPage] = useState(1);
 
   const totalPages = Math.ceil(services.length / PAGE_SIZE);
@@ -39,8 +40,8 @@ export default function Services() {
     const startIndex = (page - 1 ) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
     const updatedCards = services.slice(startIndex,endIndex);
-    setServices(updatedCards);
-  },[services, page])
+    setCards(updatedCards);
+  },[page, services])
 
   useEffect(()=> {
     getServices()
@@ -70,7 +71,7 @@ export default function Services() {
         <NavBar />
         <UserAvatar />
       </Header>
-      <FloatingButton />
+      <FloatingButton route="services"/>
       <div className={styles.container}>
         <div className={styles.titleContainer}>
           <span className={styles.title}>Serviços para alugar</span>
