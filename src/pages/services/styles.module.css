@@ -1,0 +1,54 @@
+.listContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-left: 3rem;
+    justify-content: center;
+    padding-right: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .card {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loadingCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+  }
+  
+  .titleContainer {
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footerArrow {
+    cursor: pointer;
+    color: var(--laranja);
+  }
+  
+  .footerPage {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .currentPage {
+    color: var(--laranja);
+  }
+  
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  

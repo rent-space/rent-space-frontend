@@ -12,7 +12,7 @@ export default function LoginLoader() {
   const { status, data, update } = useSession();
   const router = useRouter();
 
-  const redirect = useCallback(async () => {
+  const redirectAfterAuth = useCallback(async () => {
     if (status === "authenticated") {
       if (data?.user && !data?.user?.id) {
         router.push("/select-user-type");
@@ -24,11 +24,11 @@ export default function LoginLoader() {
         await update();
       }, 5000);
     }
-  }, [data?.user, router, status, update]);
+  }, [status]);
 
   useEffect(() => {
-    redirect();
-  }, [redirect]);
+    redirectAfterAuth();
+  }, [redirectAfterAuth]);
 
   return (
     <section className={styles.loadingLoginPage}>

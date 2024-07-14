@@ -2,21 +2,34 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
-export function FloatingButton() {
+interface FloatingProps {
+  route: "service" | "space";
+}
+
+const userTypeMap = {
+  space: "PLACE_OWNER",
+  service: "SERVICE_OWNER",
+};
+
+export function FloatingButton({ route }: FloatingProps) {
   const router = useRouter();
   const { data } = useSession();
 
-  const isPlaceOwner = data?.user && data?.user?.userType === "PLACE_OWNER";
+  const shouldBeHidden =
+    data?.user && data?.user?.userType !== userTypeMap[route];
 
-  if (!isPlaceOwner) return null;
+  if (shouldBeHidden) return null;
 
-  const navigateToNewSpace = () => {
-    router.push("/space/new");
+  const navigateToNew = (route: string) => {
+    router.push(`/${route}/new`);
   };
 
   return (
     <div className={styles.container}>
-      <button className={styles.floatingButton} onClick={navigateToNewSpace}>
+      <button
+        className={styles.floatingButton}
+        onClick={() => navigateToNew(route)}
+      >
         +
       </button>
     </div>

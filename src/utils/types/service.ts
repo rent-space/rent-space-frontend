@@ -26,4 +26,29 @@ export type ServicePayload = {
   placesIdsRelated: number[];
 };
 
-export type Service = {};
+type Owner = {
+  id: number;
+  name: string;
+  profilePhoto: string;
+  email: string;
+  telephone: string;
+  webSite: string;
+  userType: string;
+};
+
+export type Service = {
+  id: number;
+  owner: Owner;
+  title: string;
+  media: string[];
+  description: string;
+  pricePerUnit: number;
+};
+
+export type AllServices = {
+  id: number;
+  title: string;
+  media: string[];
+  description: string;
+  pricePerUnit: number;
+}[];

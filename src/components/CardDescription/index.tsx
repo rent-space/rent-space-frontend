@@ -6,8 +6,9 @@ import { FiCameraOff } from "react-icons/fi";
 type CardProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   title: string;
   description?: string;
-  maxCapacity: number;
-  pricePerHour: number;
+  maxCapacity?: number;
+  pricePerHour?: number;
+  pricePerUnity?: number;
   image: string;
   onClick: () => void;
 };
@@ -17,6 +18,7 @@ export function CardDescription({
   description,
   maxCapacity,
   pricePerHour,
+  pricePerUnity,
   image,
   onClick,
 }: CardProps) {
@@ -37,8 +39,8 @@ export function CardDescription({
       <div className={styles.descriptionSide}>
         <div className={styles.title}>{title}</div>
         <div className={styles.description}>{description}</div>
-        <div className={styles.maxCapacity}>~{maxCapacity} Pessoas</div>
-        <div className={styles.price}>R$ {pricePerHour}/h</div>
+        { maxCapacity ? <div className={styles.maxCapacity}>~{maxCapacity} Pessoas</div> : ''}
+        <div className={styles.price}>R$ {pricePerHour ? `${pricePerHour}/h` : pricePerUnity}</div>
       </div>
     </div>
   );
