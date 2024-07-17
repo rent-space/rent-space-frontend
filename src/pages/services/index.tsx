@@ -89,6 +89,7 @@ export default function Services() {
                       title={service.title}
                       image={service.firstMedia}
                       pricePerHour={service.pricePerHour}
+                      description={service.description}
                       onClick={() => handleNavigateServiceDetails(service.id)}
                     />
                   </div>

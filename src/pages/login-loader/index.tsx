@@ -7,6 +7,7 @@ import { useCallback, useEffect } from "react";
 
 import styles from "./styles.module.css";
 import WaitLoading from "@/assets/waitLoading.svg";
+import { toast } from "react-toastify";
 
 export default function LoginLoader() {
   const { status, data, update } = useSession();
@@ -18,7 +19,7 @@ export default function LoginLoader() {
         update();
         break;
       case "unauthenticated":
-        router.push("/select-user-type");
+        toast.error("Erro ao autenticar usuário");
         break;
       case "authenticated":
         if (data?.user && !data?.user?.id) {
