@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Page } from "@/components/Page";
-import { DetailsSpace } from "@/components/DetailsSpace";
 import { DetailsCard } from "@/components/DetailsCard";
 import { Footer } from "@/components/Footer";
 import { useRouter } from "next/router";
@@ -9,7 +8,7 @@ import { Service } from "@/utils/types";
 import DeleteModal from "@/components/DeleteModal";
 
 import { ServiceLoading } from "@/components/ServiceLoading";
-import { getService } from "@/services/api";
+import { deleteService, getService } from "@/services/api";
 import { DetailsService } from "@/components/DetailsService";
 
 export default function ServiceDetails() {
@@ -37,12 +36,14 @@ export default function ServiceDetails() {
           <DeleteModal
             modal={deleteModal}
             close={closeDeleteModal}
-            deleteSpaceId={service.id}
+            deleteQuery={deleteService}
+            type="serviço"
+            id={service.id}
           />
         </>
       )}
 
-      <Header justify="center" navigateBackTo="/spaces" />
+      <Header justify="center" navigateBackTo="/services" />
       <Page type="form">
         {service ? (
           <DetailsService service={service} openDeleteModal={openDeleteModal}>

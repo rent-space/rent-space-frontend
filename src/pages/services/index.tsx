@@ -81,15 +81,14 @@ export default function Services() {
                   <Loading key={i} loadingLabel="Carregando..." />
                 </div>
               ))
-            : services.map((service, i) => {
+            : cards.map((service, i) => {
                 return (
                   <div className={styles.card} key={i}>
                     <CardDescription
                       key={service.id}
                       title={service.title}
-                      description={service.description}
-                      image={service.media?.length ? service.media[0] : ""}
-                      pricePerHour={service.pricePerUnit}
+                      image={service.firstMedia}
+                      pricePerHour={service.pricePerHour}
                       onClick={() => handleNavigateServiceDetails(service.id)}
                     />
                   </div>

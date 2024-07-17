@@ -56,7 +56,7 @@ export type Service = {
 export type AllServices = {
   id: number;
   title: string;
-  media: string[];
-  description: string;
-  pricePerUnit: number;
+  firstMedia: string;
+  serviceNature: string;
+  pricePerHour: number;
 }[];

@@ -9,21 +9,25 @@ import { useState } from "react";
 interface Props {
   modal: boolean;
   close: () => void;
-  deleteSpaceId: number;
+  type: "espaço" | "serviço";
+  deleteQuery: (id: number) => Promise<any>;
+  id: number;
 }
 
 export default function DeleteModal(props: Props) {
-  const { close, modal, deleteSpaceId } = props;
+  const { close, modal, deleteQuery, type, id } = props;
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
-  const handleDeleteSpace = (id: number) => {
+  const redirectUrl = type === "espaço" ? "/spaces" : "/services";
+
+  const handleDelete = () => {
     setLoading(true);
-    deleteSpace(id)
+    deleteQuery(id)
       .then((res) => {
         setLoading(false);
-        res && router.push("/spaces");
+        res && router.push(redirectUrl);
       })
       .catch((error) => {
         setLoading(false);
@@ -44,9 +48,9 @@ export default function DeleteModal(props: Props) {
             style={{ color: "#bdbdbd" }}
           />
           <div className={styles.textContainer}>
-            <span className={styles.title}>Deseja excluir o espaço?</span>
+            <span className={styles.title}>Deseja excluir o {type}?</span>
             <p className={styles.subtitle}>
-              Tem certeza que deseja excluir o espaço? Essa ação é irrevesível.
+              Tem certeza que deseja excluir o {type}? Essa ação é irrevesível.
             </p>
           </div>
           <div className={styles.buttonContainer}>
@@ -57,11 +61,9 @@ export default function DeleteModal(props: Props) {
               size="small"
               variant="primary"
               className={styles.removeButton}
-              onClick={() => {
-                handleDeleteSpace(deleteSpaceId);
-              }}
+              onClick={() => handleDelete()}
             >
-              {loading ? "Excluindo..." : "Excluir espaço"}
+              {loading ? "Excluindo..." : "Excluir"}
               <FiTrash />
             </Button>
           </div>
