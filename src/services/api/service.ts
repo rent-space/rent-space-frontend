@@ -1,4 +1,4 @@
-import { ServicePayload } from "@/utils/types";
+import { AllServices, Service, ServicePayload } from "@/utils/types";
 import { fetchApi } from "./utils";
 import { toast } from "react-toastify";
 
@@ -17,6 +17,18 @@ export async function createService(service: ServicePayload): Promise<any> {
   return data;
 }
 
+export async function getService(id: number): Promise<Service> {
+  const { data, error } = await fetchApi(`/servico/${id}`, {
+    method: "GET",
+  });
+
+  if (error) {
+    toast.error("Erro ao buscar servico: " + error);
+  }
+
+  return data;
+}
+
 export async function getServiceTypes(): Promise<string[]> {
   const { data, error } = await fetchApi("/servico/tipos", {
     method: "GET",
@@ -24,6 +36,18 @@ export async function getServiceTypes(): Promise<string[]> {
 
   if (error) {
     toast.error("Erro ao buscar tipos de serviço: " + error);
+  }
+
+  return data;
+}
+
+export async function getServices(): Promise<AllServices> {
+  const { data, error } = await fetchApi(`/servico`, {
+    method: "GET",
+  });
+
+  if (error) {
+    toast.error("Erro ao recuperar serviços: " + error);
   }
 
   return data;

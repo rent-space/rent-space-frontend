@@ -11,7 +11,7 @@ import Loading from "@/components/Loading";
 import { CardDescription } from "@/components/CardDescription";
 import { AllServices } from "@/utils/types";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { getServices } from "@/services/api/services";
+import { getServices } from "@/services/api";
 
 const PAGE_SIZE = 6;
 
