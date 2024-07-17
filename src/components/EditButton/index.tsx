@@ -20,7 +20,9 @@ export function EditButton(props: Props) {
   if (!isOwner) return null;
 
   const edit = () => {
-    router.push(`/space/edit/${id}`);
+    const path = router.pathname.split("/");
+    const url = `/${path[1]}/edit/${id}`;
+    router.push(url);
   };
 
   return <FaPencil size={20} className={styles.button} onClick={edit} />;

@@ -14,7 +14,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      console.log("session", session);
       try {
         const email = session?.user?.email ?? "";
         const user: User = await getUser(email);

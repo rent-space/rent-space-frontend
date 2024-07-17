@@ -11,7 +11,7 @@ import Loading from "@/components/Loading";
 import { CardDescription } from "@/components/CardDescription";
 import { AllServices } from "@/utils/types";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-import { getServices } from "@/services/api/services";
+import { getServices } from "@/services/api";
 
 const PAGE_SIZE = 6;
 
@@ -81,15 +81,14 @@ export default function Services() {
                   <Loading key={i} loadingLabel="Carregando..." />
                 </div>
               ))
-            : services.map((service, i) => {
+            : cards.map((service, i) => {
                 return (
                   <div className={styles.card} key={i}>
                     <CardDescription
                       key={service.id}
                       title={service.title}
-                      description={service.description}
-                      image={service.media?.length ? service.media[0] : ""}
-                      pricePerHour={service.pricePerUnit}
+                      image={service.firstMedia}
+                      pricePerHour={service.pricePerHour}
                       onClick={() => handleNavigateServiceDetails(service.id)}
                     />
                   </div>

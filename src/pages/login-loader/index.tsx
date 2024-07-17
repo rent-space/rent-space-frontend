@@ -13,16 +13,20 @@ export default function LoginLoader() {
   const router = useRouter();
 
   const redirectAfterAuth = useCallback(async () => {
-    if (status === "authenticated") {
-      if (data?.user && !data?.user?.id) {
+    switch (status) {
+      case "loading":
+        update();
+        break;
+      case "unauthenticated":
         router.push("/select-user-type");
-      } else {
-        router.push("/home");
-      }
-    } else {
-      setTimeout(async () => {
-        await update();
-      }, 5000);
+        break;
+      case "authenticated":
+        if (data?.user && !data?.user?.id) {
+          router.push("/select-user-type");
+        } else {
+          router.push("/home");
+        }
+        break;
     }
   }, [status]);
 

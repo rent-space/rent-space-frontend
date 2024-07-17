@@ -1,3 +1,6 @@
+import { AllSpaces } from "./space";
+import { UserType } from "./user";
+
 export type ServiceForm = {
   title: string;
   description: string;
@@ -33,7 +36,7 @@ type Owner = {
   email: string;
   telephone: string;
   webSite: string;
-  userType: string;
+  userType: UserType;
 };
 
 export type Service = {
@@ -42,13 +45,18 @@ export type Service = {
   title: string;
   media: string[];
   description: string;
-  pricePerUnit: number;
+  address: string;
+  city: string;
+  pricePerHour: number;
+  serviceNature: string;
+  peopleInvolved: number;
+  placesRelated: AllSpaces;
 };
 
 export type AllServices = {
   id: number;
   title: string;
-  media: string[];
-  description: string;
-  pricePerUnit: number;
+  firstMedia: string;
+  serviceNature: string;
+  pricePerHour: number;
 }[];

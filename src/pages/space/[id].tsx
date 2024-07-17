@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Space } from "@/utils/types";
-import { getSpace } from "@/services/api/space";
+import { deleteSpace, getSpace } from "@/services/api/space";
 import ReserveModal from "@/components/ReserveModal";
 import DeleteModal from "@/components/DeleteModal";
 
@@ -46,7 +46,9 @@ export default function DetailsPageSpace() {
           <DeleteModal
             modal={deleteModal}
             close={closeDeleteModal}
-            deleteSpaceId={space.id}
+            id={space.id}
+            deleteQuery={deleteSpace}
+            type="espaço"
           />
         </>
       )}

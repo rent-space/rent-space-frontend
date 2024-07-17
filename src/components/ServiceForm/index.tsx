@@ -2,7 +2,7 @@ import type { Service, ServicePayload, ServiceForm } from "@/utils/types";
 import { Form } from "@/components/Form";
 import FormSection from "../Form/FormSection";
 import { Input } from "@/components/Input";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TextArea } from "../Input/TextArea";
 import Inline from "../Inline";
 import { CurrencyInput } from "../Input/CurrencyInput";
@@ -10,7 +10,11 @@ import { ImageInput } from "../Input/ImageInput";
 import { PiHouseLight } from "react-icons/pi";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { getBase64, removeCurrencySymbolAndParse } from "@/utils/utils";
+import {
+  getBase64,
+  removeCurrencySymbolAndParse,
+  stringToFile,
+} from "@/utils/utils";
 import { toast } from "react-toastify";
 import NatureInput from "./NatureInput";
 
@@ -20,7 +24,7 @@ interface FormProps {
 }
 
 export default function ServiceForm(props: FormProps) {
-  const { handleSubmit } = props;
+  const { handleSubmit, service } = props;
 
   const router = useRouter();
 
@@ -51,6 +55,19 @@ export default function ServiceForm(props: FormProps) {
 
   const [loading, setLoading] = useState(false);
 
+  const medias = useMemo(() => stringToFile(service?.media), [service?.media]);
+
+  useEffect(() => {
+    service?.title && setTitle(service?.title);
+    service?.description && setDescription(service?.description);
+    medias && setImages(medias);
+    service?.address && setAddress(service?.address);
+    service?.city && setCity(service?.city);
+    service?.pricePerHour && setPricePerHour(service?.pricePerHour.toString());
+    service?.peopleInvolved && setQuantityOfEmployees(service?.peopleInvolved);
+    service?.serviceNature && setNature(service?.serviceNature);
+  }, [medias, service]);
+
   const onSubmit = async (event: React.FormEvent) => {
     setLoading(true);
     event.preventDefault();
@@ -74,7 +91,7 @@ export default function ServiceForm(props: FormProps) {
           ownerId: parseInt(data?.user.id ?? ""),
           placesIdsRelated: [],
         };
-        handleSubmit(servicePaylod).then(() => setLoading(false));
+        handleSubmit(servicePaylod, service?.id).then(() => setLoading(false));
       })
       .catch((error) => {
         setLoading(false);
@@ -88,7 +105,7 @@ export default function ServiceForm(props: FormProps) {
       title="Cadastro de Serviço"
       subtitle="Adicione abaixo as informações que serão exibidas sobre o seu serviço oferecido"
       loading={loading}
-      isCreating={true}
+      isCreating={!service?.id}
       onSubmit={onSubmit}
     >
       <FormSection title="Sobre o serviço">
