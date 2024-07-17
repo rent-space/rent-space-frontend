@@ -59,4 +59,5 @@ export type AllServices = {
   firstMedia: string;
   serviceNature: string;
   pricePerHour: number;
+  description: string;
 }[];
