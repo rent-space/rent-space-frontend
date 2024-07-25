@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { User } from "@/utils/types";
-import { getUser } from "@/services/api/user";
+import { createUser, getUser } from "@/services/api/user";
 import { toast } from "react-toastify";
 
 export const authOptions: NextAuthOptions = {
@@ -46,6 +46,19 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Empty email while trying to sign in");
         }
 
+        const userInDatabase: User = await getUser(profile.email);
+        if (!userInDatabase) {
+          const newUser: User = {
+            name: profile.name,
+            email: profile.email,
+            profilePhoto: profile.image || "",
+            telephone: "",
+            userType: "",
+            webSite: ""
+          } 
+          await createUser(newUser)
+        }
+        
         return true;
       } catch (error) {
         console.log(error);
