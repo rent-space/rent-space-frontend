@@ -28,6 +28,34 @@ export async function getPlaceReservations(): Promise<PlaceReservation[]> {
   return data;
 }
 
+export async function getServiceReservations(): Promise<PlaceReservation[]> {
+  const { data, error } = await fetchApi("/solicitacao/servico/all", {
+    method: "GET",
+  });
+
+  if (error) {
+    return new Promise(() => null);
+  }
+
+  return data;
+}
+
+export async function updateServiceReservation(
+  id: number,
+  status: string
+): Promise<PlaceReservation> {
+  const { data, error } = await fetchApi(`/solicitacao/servico/${id}`, {
+    data: status,
+    method: "PUT",
+  });
+
+  if (error) {
+    toast.error("Erro ao atualizar reserva: " + error);
+  }
+
+  return data;
+}
+
 export async function updatePlaceReservation(
   id: number,
   status: string

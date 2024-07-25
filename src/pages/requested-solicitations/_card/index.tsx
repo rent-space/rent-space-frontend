@@ -1,4 +1,4 @@
-import { PlaceReservation } from "@/utils/types";
+import { PlaceReservation, ServiceReservation } from "@/utils/types";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import moment from "moment-timezone";
@@ -9,17 +9,21 @@ import { UserAccountCircle } from "@/components/Icons/UserAccountCircle";
 
 import styles from "./styles.module.css";
 import Modal from "@/components/Modal";
-import { updatePlaceReservation } from "@/services/api/reservations";
+import {
+  updatePlaceReservation,
+  updateServiceReservation,
+} from "@/services/api/reservations";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/router";
 
 interface PageCardProps {
-  placeReservation: PlaceReservation;
+  reservation: PlaceReservation | ServiceReservation;
   shouldClick?: boolean;
+  type: "PLACE" | "SERVICE";
 }
 
 export default function PageCard({
-  placeReservation,
+  reservation,
   shouldClick = true,
 }: PageCardProps) {
   const router = useRouter();
@@ -29,10 +33,10 @@ export default function PageCard({
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (placeReservation?.product?.media?.length > 0) {
+    if (reservation?.product?.media?.length > 0) {
       setPlaceImage(
-        placeReservation?.product?.media[0].includes("base64")
-          ? placeReservation?.product?.media[0]
+        reservation?.product?.media[0].includes("base64")
+          ? reservation?.product?.media[0]
           : null
       );
     }
@@ -51,17 +55,25 @@ export default function PageCard({
       .toString();
   };
 
-  const updateReservationStatus = (accepted: boolean) => {
+  const updateReservationStatus = async (accepted: boolean) => {
     setLoading(true);
-    updatePlaceReservation(
-      placeReservation.id,
-      accepted ? "ACCEPTED" : "REFUSED"
-    ).then((response) => {
-      setLoading(false);
-      placeReservation = response;
+    try {
+      const status = accepted ? "ACCEPTED" : "REFUSED";
+      let response;
+
+      if (reservation.type === "PLACE") {
+        response = await updatePlaceReservation(reservation.id, status);
+      } else {
+        response = await updateServiceReservation(reservation.id, status);
+      }
+
+      reservation = response;
       setIsModalOpen(false);
       router.reload();
-    });
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const openModal = () => {
@@ -94,40 +106,41 @@ export default function PageCard({
           </div>
         )}
 
-        {placeReservation && (
+        {reservation && (
           <>
             <section className={styles.cardInfoCont}>
               <strong className={styles.cardTitle}>
-                {placeReservation?.product?.title}
+                {reservation?.product?.title}
               </strong>
               <strong className={styles.cardInfo}>
                 Início:{" "}
                 <span className={styles.cardInfoValue}>
-                  {getFormattedDate(placeReservation.startsAt)}
+                  {getFormattedDate(reservation.startsAt)}
                 </span>
               </strong>
               <strong className={styles.cardInfo}>
                 Fim:{" "}
                 <span className={styles.cardInfoValue}>
-                  {getFormattedDate(placeReservation.endsAt)}
+                  {getFormattedDate(reservation.endsAt)}
                 </span>
               </strong>
+              {}
               <strong className={styles.cardInfo}>
                 Qnt. pessoas:{" "}
                 <span className={styles.cardInfoValue}>
-                  {placeReservation.numOfParticipants}
+                  {reservation.numOfParticipants}
                 </span>
               </strong>
               <strong className={styles.cardInfo}>
                 Valor:{" "}
                 <span className={styles.cardInfoValue}>
-                  R$ {placeReservation.placeFinalPrice}
+                  R$ {reservation.placeFinalPrice}
                 </span>
               </strong>
 
               <StatusTag
-                status={placeReservation.status.toLowerCase() as any}
-                tagText={getStatusText(placeReservation.status)}
+                status={reservation.status.toLowerCase() as any}
+                tagText={getStatusText(reservation.status)}
               />
             </section>
 
@@ -139,16 +152,16 @@ export default function PageCard({
               <strong className={styles.userInfoTitle}>Solicitado por:</strong>
 
               <UserAccountCircle
-                image={placeReservation.eventOwner.profilePhoto || null}
+                image={reservation.eventOwner.profilePhoto || null}
               />
               <strong className={styles.userName}>
-                {placeReservation.eventOwner.name}
+                {reservation.eventOwner.name}
               </strong>
               <span className={styles.userInfo}>
-                {placeReservation.eventOwner.email}
+                {reservation.eventOwner.email}
               </span>
               <span className={styles.userInfo}>
-                {placeReservation.eventOwner.telephone}
+                {reservation.eventOwner.telephone}
               </span>
             </section>
           </>
