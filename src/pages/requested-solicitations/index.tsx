@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import {
   getPlaceReservations,
-  getServiceReservations,
+  // getServiceReservations,
 } from "@/services/api/reservations";
 import { PlaceReservation, ServiceReservation } from "@/utils/types";
 import PageCard from "./_card";
@@ -40,17 +40,13 @@ export default function RequestedSolicitations() {
 
   useEffect(() => {
     const getReservation = async () => {
-      if (data?.user?.userType === "PLACE_OWNER") {
-        getPlaceReservations().then((reservations) => {
-          setAllReservations(reservations);
-        });
-      } else if (data?.user?.userType === "SERVICE_OWNER") {
-        getServiceReservations().then((reservations) => {
-          setAllReservations(reservations);
-        });
-
-        setIsLoading(false);
-      }
+      Promise.all([getPlaceReservations()]).then(
+        // TODO: getServiceReservations()
+        (reservations) => {
+          setAllReservations(reservations.flat());
+          setIsLoading(false);
+        }
+      );
     };
 
     getReservation();

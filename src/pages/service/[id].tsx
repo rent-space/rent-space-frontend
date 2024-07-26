@@ -8,8 +8,14 @@ import { Service } from "@/utils/types";
 import DeleteModal from "@/components/DeleteModal";
 
 import { ServiceLoading } from "@/components/ServiceLoading";
-import { deleteService, getService } from "@/services/api";
+import {
+  createServiceReservation,
+  deleteService,
+  getService,
+} from "@/services/api";
 import { DetailsService } from "@/components/DetailsService";
+import ReserveModal from "@/components/ReserveModal";
+import { resolve } from "path";
 
 export default function ServiceDetails() {
   const router = useRouter();
@@ -17,9 +23,13 @@ export default function ServiceDetails() {
   const [id, setId] = useState<number>();
   const [service, setService] = useState<Service | undefined>(undefined);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [reserveModal, setReserveModal] = useState(false);
 
   const openDeleteModal = () => setDeleteModal(true);
   const closeDeleteModal = () => setDeleteModal(false);
+
+  const openReserveModal = () => setReserveModal(true);
+  const closeReserveModal = () => setReserveModal(false);
 
   useEffect(() => {
     setId(parseInt(router.query.id as string));
@@ -33,6 +43,12 @@ export default function ServiceDetails() {
     <>
       {service && (
         <>
+          <ReserveModal
+            product={service}
+            open={reserveModal}
+            close={closeReserveModal}
+            createReservation={createServiceReservation}
+          />
           <DeleteModal
             modal={deleteModal}
             close={closeDeleteModal}
@@ -46,7 +62,11 @@ export default function ServiceDetails() {
       <Header justify="center" navigateBackTo="/services" />
       <Page type="form">
         {service ? (
-          <DetailsService service={service} openDeleteModal={openDeleteModal}>
+          <DetailsService
+            service={service}
+            openDeleteModal={openDeleteModal}
+            openReserveModal={openReserveModal}
+          >
             <DetailsCard owner={service.owner} />
           </DetailsService>
         ) : (

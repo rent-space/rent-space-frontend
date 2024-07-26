@@ -7,6 +7,7 @@ import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
 import { EditButton } from "../EditButton";
 import { DeleteButton } from "../DeleteButton";
+import { Button } from "../Button";
 
 interface Props {
   service: Service;
@@ -136,6 +137,18 @@ export function DetailsService(props: Props) {
                 {address} - {city}
               </Text>
             </div>
+
+            {isEventOwner && (
+              <div>
+                <Button
+                  variant="primary"
+                  size="small"
+                  onClick={openReserveModal}
+                >
+                  Reservar
+                </Button>
+              </div>
+            )}
           </div>
           <div className={styles.card}>{children}</div>
         </div>

@@ -11,6 +11,7 @@ import ReserveModal from "@/components/ReserveModal";
 import DeleteModal from "@/components/DeleteModal";
 
 import { SpaceLoading } from "@/components/SpaceLoading";
+import { createPlaceReservation } from "@/services/api";
 
 export default function DetailsPageSpace() {
   const router = useRouter();
@@ -39,9 +40,10 @@ export default function DetailsPageSpace() {
       {space && (
         <>
           <ReserveModal
-            space={space}
+            product={space}
             open={reserveModal}
             close={closeReserveModal}
+            createReservation={createPlaceReservation}
           />
           <DeleteModal
             modal={deleteModal}
