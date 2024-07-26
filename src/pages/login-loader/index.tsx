@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import Loading from "@/components/Loading";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 
@@ -20,6 +20,7 @@ export default function LoginLoader() {
         break;
       case "unauthenticated":
         toast.error("Erro ao autenticar usuário");
+        await signOut({ callbackUrl: "/" });
         break;
       case "authenticated":
         if (data?.user && !data?.user?.id) {

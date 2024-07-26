@@ -5,8 +5,11 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
-import { getPlaceReservations } from "@/services/api/reservations";
-import { PlaceReservation } from "@/utils/types";
+import {
+  getPlaceReservations,
+  // getServiceReservations,
+} from "@/services/api/reservations";
+import { PlaceReservation, ServiceReservation } from "@/utils/types";
 import PageCard from "./_card";
 import Loading from "@/components/Loading";
 
@@ -21,13 +24,13 @@ export default function RequestedSolicitations() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [shouldRespond, setShouldRespond] = useState<boolean>(false);
   const [allReservations, setAllReservations] = useState<
-    PlaceReservation[] | null
+    PlaceReservation[] | ServiceReservation[] | null | undefined
   >(null);
-  const [pedingReservation, setPendingReservation] = useState<
-    PlaceReservation[] | null
+  const [pendingReservation, setPendingReservation] = useState<
+    PlaceReservation[] | ServiceReservation[] | null | undefined
   >(null);
   const [answeredReservation, setAnsweredReservation] = useState<
-    PlaceReservation[] | null
+    PlaceReservation[] | ServiceReservation[] | null | undefined
   >(null);
   const [pageData, setPageData] = useState<PageDataProps>({
     title: "Suas reservas",
@@ -37,9 +40,13 @@ export default function RequestedSolicitations() {
 
   useEffect(() => {
     const getReservation = async () => {
-      getPlaceReservations().then((reservations) => {
-        setAllReservations(reservations);
-      });
+      Promise.all([getPlaceReservations()]).then(
+        // TODO: getServiceReservations()
+        (reservations) => {
+          setAllReservations(reservations.flat());
+          setIsLoading(false);
+        }
+      );
     };
 
     getReservation();
@@ -72,8 +79,16 @@ export default function RequestedSolicitations() {
 
   const getReservationsForUser = (userEmail: string) => {
     if (allReservations != null) {
-      let pendingList: PlaceReservation[] = [];
-      let answeredList: PlaceReservation[] = [];
+      let pendingList;
+      let answeredList;
+
+      if (data?.user?.userType === "PLACE_OWNER") {
+        answeredList = [] as PlaceReservation[];
+        pendingList = [] as PlaceReservation[];
+      } else if (data?.user?.userType === "SERVICE_OWNER") {
+        answeredList = [] as ServiceReservation[];
+        pendingList = [] as ServiceReservation[];
+      }
       console.log(allReservations);
 
       allReservations.forEach((reserv) => {
@@ -113,14 +128,25 @@ export default function RequestedSolicitations() {
           <div className={styles.cards}>
             {isLoading ? (
               <Loading loadingLabel="Carregando suas reservas..." />
-            ) : pedingReservation !== null && pedingReservation.length > 0 ? (
-              pedingReservation.map((reser, index) => (
-                <PageCard
-                  placeReservation={reser}
-                  key={index}
-                  shouldClick={shouldRespond}
-                />
-              ))
+            ) : pendingReservation !== null &&
+              (pendingReservation ?? []).length > 0 ? (
+              pendingReservation?.map((reser, index) =>
+                data?.user?.userType === "PLACE_OWNER" ? (
+                  <PageCard
+                    type="PLACE"
+                    reservation={reser}
+                    key={index}
+                    shouldClick={shouldRespond}
+                  />
+                ) : (
+                  <PageCard
+                    type="SERVICE"
+                    reservation={reser}
+                    key={index}
+                    shouldClick={shouldRespond}
+                  />
+                )
+              )
             ) : (
               <span>Não há nenhuma solicitação</span>
             )}
@@ -134,14 +160,24 @@ export default function RequestedSolicitations() {
             {isLoading ? (
               <Loading loadingLabel="Carregando suas reservas..." />
             ) : answeredReservation !== null &&
-              answeredReservation.length > 0 ? (
-              answeredReservation.map((reser, index) => (
-                <PageCard
-                  placeReservation={reser}
-                  key={index}
-                  shouldClick={false}
-                />
-              ))
+              (answeredReservation ?? []).length > 0 ? (
+              answeredReservation?.map((reser, index) =>
+                data?.user?.userType === "PLACE_OWNER" ? (
+                  <PageCard
+                    type="PLACE"
+                    reservation={reser}
+                    key={index}
+                    shouldClick={shouldRespond}
+                  />
+                ) : (
+                  <PageCard
+                    type="SERVICE"
+                    reservation={reser}
+                    key={index}
+                    shouldClick={shouldRespond}
+                  />
+                )
+              )
             ) : (
               <span>Não há nenhuma solicitação</span>
             )}

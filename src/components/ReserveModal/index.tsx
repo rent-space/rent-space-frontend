@@ -5,19 +5,29 @@ import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import { DateTime } from "next-auth/providers/kakao";
 import { Button } from "../Button";
-import { PaymentMethods, PlaceReservationBody, Space } from "@/utils/types";
+import {
+  PaymentMethods,
+  PlaceReservationBody,
+  Service,
+  ServiceReservationBody,
+  Space,
+} from "@/utils/types";
 import { useSession } from "next-auth/react";
-import { createPlaceReservation } from "@/services/api/reservations";
 import { useRouter } from "next/router";
 
+type ReservationBody = PlaceReservationBody | ServiceReservationBody;
+
 interface Props {
-  space: Space;
+  product: Space | Service;
   open: boolean;
   close: () => void;
+  createReservation: {
+    (reservation: any): Promise<any>;
+  };
 }
 
 export default function ReserveModal(props: Props) {
-  const { close, open, space } = props;
+  const { close, open, product, createReservation } = props;
 
   const { data } = useSession();
   const router = useRouter();
@@ -40,19 +50,19 @@ export default function ReserveModal(props: Props) {
 
     if (!userId) throw new Error("ERROR_FETCHING_USER_ID");
 
-    const reservation: PlaceReservationBody = {
+    const reservation: ReservationBody = {
       startsAt,
       endsAt,
       numOfParticipants,
       paymentMethod,
       numOfInstallments,
-      productId: space.id,
+      productId: product.id,
       eventOwnerId: userId,
       hiredRelatedServicesIds: [],
     };
 
     setLoading(true);
-    createPlaceReservation(reservation)
+    createReservation(reservation)
       .then((res) => {
         setLoading(false);
         res && router.push("/requested-solicitations");
@@ -69,7 +79,7 @@ export default function ReserveModal(props: Props) {
         Solicitação de Reserva
       </Text>
       <Text size="subtitle" color="gray">
-        {space.title}
+        {product.title}
       </Text>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inline}>
