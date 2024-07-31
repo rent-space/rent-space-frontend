@@ -18,7 +18,7 @@ export async function createService(service: FormData): Promise<any> {
 }
 
 export async function editService(
-  service: ServicePayload,
+  service: FormData,
   serviceid: number
 ): Promise<Service> {
   const { data, error } = await fetchApi(`/servico/${serviceid}`, {

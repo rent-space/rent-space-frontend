@@ -20,7 +20,7 @@ export default function EditService() {
     setId(parseInt(router.query.id as string));
   }, [router.query.id]);
 
-  const handleSubmit = (service: ServicePayload, id?: number) => {
+  const handleSubmit = (service: FormData, id?: number) => {
     return editService(service, id ?? -1).then((res) => {
       res && router.push(`/service/${res.id}`);
     });
