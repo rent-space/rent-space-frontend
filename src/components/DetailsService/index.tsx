@@ -41,7 +41,7 @@ export function DetailsService(props: Props) {
 
   useEffect(() => {
     if (media.length > 0) {
-      let [firstImg, ...rest] = media.filter((img) => img.includes("base64"));
+      let [firstImg, ...rest] = media;
       setMainImage(firstImg);
       setAnotherImages(rest);
     }

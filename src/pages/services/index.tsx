@@ -81,9 +81,9 @@ export default function Services() {
                   <Loading key={i} loadingLabel="Carregando..." />
                 </div>
               ))
-            : cards.map((service, i) => {
+            : cards.map((service) => {
                 return (
-                  <div className={styles.card} key={i}>
+                  <div className={styles.card} key={service.id}>
                     <CardDescription
                       key={service.id}
                       title={service.title}

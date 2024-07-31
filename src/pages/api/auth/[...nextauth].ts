@@ -16,7 +16,11 @@ export const authOptions: NextAuthOptions = {
     async session({ session }) {
       try {
         const email = session?.user?.email ?? "";
+        console.log(`Fetching user data for email: ${email}`);
+        const start = Date.now();
         const user: User = await getUser(email);
+        const end = Date.now();
+        console.log(`User data fetched in ${end - start}ms`);
 
         const newSession = {
           ...session,
@@ -28,6 +32,7 @@ export const authOptions: NextAuthOptions = {
 
         return newSession;
       } catch (error: any) {
+        console.error("Error retrieving user data:", error.message);
         toast.error("Error retrieving user data: ", error.message);
         return session;
       }
@@ -46,7 +51,12 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Empty email while trying to sign in");
         }
 
+        console.log(`Checking if user exists in the database for email: ${profile.email}`);
+        const start = Date.now();
         const userInDatabase: User = await getUser(profile.email);
+        const end = Date.now();
+        console.log(`User check completed in ${end - start}ms`);
+
         if (!userInDatabase) {
           const newUser: User = {
             name: profile.name,
@@ -55,13 +65,14 @@ export const authOptions: NextAuthOptions = {
             telephone: "",
             userType: "",
             webSite: ""
-          } 
-          await createUser(newUser)
+          };
+          console.log(`Creating new user for email: ${profile.email}`);
+          await createUser(newUser);
         }
         
         return true;
       } catch (error) {
-        console.log(error);
+        console.error("Error during sign-in:", error);
         return false;
       }
     },

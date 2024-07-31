@@ -25,7 +25,7 @@ export function CardDescription({
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.imageContainer}>
-        {image.length && image.includes("base64") ? (
+        {image.length ? (
           <Image src={image} alt="Imagem do Espaço" width={175} 
             layout="contain"
             height={225} className={styles.image}
