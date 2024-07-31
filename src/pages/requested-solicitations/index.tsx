@@ -2,12 +2,12 @@ import { Header } from "@/components/Header";
 import { NavBar } from "@/components/NavBar";
 import { UserAvatar } from "@/components/UserAvatar";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
 import {
   getPlaceReservations,
-  // getServiceReservations,
+  getServiceReservations,
 } from "@/services/api/reservations";
 import { PlaceReservation, ServiceReservation } from "@/utils/types";
 import PageCard from "./_card";
@@ -40,11 +40,9 @@ export default function RequestedSolicitations() {
 
   useEffect(() => {
     const getReservation = async () => {
-      Promise.all([getPlaceReservations()]).then(
-        // TODO: getServiceReservations()
+      Promise.all([getPlaceReservations(), getServiceReservations()]).then(
         (reservations) => {
           setAllReservations(reservations.flat());
-          setIsLoading(false);
         }
       );
     };
@@ -71,46 +69,40 @@ export default function RequestedSolicitations() {
     }
   }, [data?.user]);
 
+  const getReservationsForUser = useCallback(
+    (userEmail: string) => {
+      if (allReservations != null) {
+        const pendingList: any = [];
+        const answeredList: any = [];
+
+        allReservations.forEach((reserv) => {
+          if (
+            reserv.status == "PENDING" &&
+            (reserv.product.owner.email == userEmail ||
+              reserv.eventOwner.email == userEmail)
+          ) {
+            pendingList.push(reserv);
+          } else if (
+            reserv.product.owner.email == userEmail ||
+            reserv.eventOwner.email == userEmail
+          ) {
+            answeredList.push(reserv);
+          }
+        });
+
+        setIsLoading(false);
+        setPendingReservation(pendingList);
+        setAnsweredReservation(answeredList);
+      }
+    },
+    [allReservations]
+  );
+
   useEffect(() => {
     if (data?.user.email && isLoading) {
       getReservationsForUser(data?.user.email);
     }
-  }, [data?.user, allReservations]);
-
-  const getReservationsForUser = (userEmail: string) => {
-    if (allReservations != null) {
-      let pendingList;
-      let answeredList;
-
-      if (data?.user?.userType === "PLACE_OWNER") {
-        answeredList = [] as PlaceReservation[];
-        pendingList = [] as PlaceReservation[];
-      } else if (data?.user?.userType === "SERVICE_OWNER") {
-        answeredList = [] as ServiceReservation[];
-        pendingList = [] as ServiceReservation[];
-      }
-      console.log(allReservations);
-
-      allReservations.forEach((reserv) => {
-        if (
-          reserv.status == "PENDING" &&
-          (reserv.product.owner.email == userEmail ||
-            reserv.eventOwner.email == userEmail)
-        ) {
-          pendingList.push(reserv);
-        } else if (
-          reserv.product.owner.email == userEmail ||
-          reserv.eventOwner.email == userEmail
-        ) {
-          answeredList.push(reserv);
-        }
-      });
-
-      setIsLoading(false);
-      setPendingReservation(pendingList);
-      setAnsweredReservation(answeredList);
-    }
-  };
+  }, [data?.user.email, getReservationsForUser, isLoading]);
 
   return (
     <>
