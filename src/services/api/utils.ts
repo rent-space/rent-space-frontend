@@ -5,6 +5,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_APPLICATION_BASE_URL;
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 40000,
 });
 
 interface FetchOptions {
