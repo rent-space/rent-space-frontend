@@ -2,8 +2,8 @@ import { AllServices, Service, ServicePayload } from "@/utils/types";
 import { fetchApi } from "./utils";
 import { toast } from "react-toastify";
 
-export async function createService(service: ServicePayload): Promise<any> {
-  const { data, error } = await fetchApi("/servico", {
+export async function createService(service: FormData): Promise<any> {
+  const { data, error } = await fetchApi("/servico/create", {
     data: service,
     method: "POST",
   });
@@ -18,7 +18,7 @@ export async function createService(service: ServicePayload): Promise<any> {
 }
 
 export async function editService(
-  service: ServicePayload,
+  service: FormData,
   serviceid: number
 ): Promise<Service> {
   const { data, error } = await fetchApi(`/servico/${serviceid}`, {

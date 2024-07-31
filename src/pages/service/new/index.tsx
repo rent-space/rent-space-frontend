@@ -14,7 +14,10 @@ export default function ServiceNew() {
     },
   });
 
-  const handleSubmit = (service: ServicePayload) => {
+  const handleSubmit = (service: FormData) => {
+    if (!service.get('serviceNature')) {
+      service.set('serviceNature', "BAR")
+    }
     return createService(service).then((response) => {
       response && router.push("/services");
     });

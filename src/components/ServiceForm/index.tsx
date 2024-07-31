@@ -20,7 +20,7 @@ import NatureInput from "./NatureInput";
 
 interface FormProps {
   service?: Service;
-  handleSubmit: (service: ServicePayload, id?: number) => Promise<any>;
+  handleSubmit: (service: FormData, id?: number) => Promise<any>;
 }
 
 export default function ServiceForm(props: FormProps) {
@@ -72,31 +72,26 @@ export default function ServiceForm(props: FormProps) {
     setLoading(true);
     event.preventDefault();
 
-    const mediaPromises = images.map(async (image) => {
-      return await getBase64(image);
-    });
+    const formData = new FormData();
+    formData.append('persistDTO', new Blob([JSON.stringify({
+      address: address,
+      city: city,
+      description: description,
+      neighborhood: neighborhood,
+      ownerId: data?.user.id ?? "",
+      peopleInvolved: quantityOfEmployees,
+      placesIdsRelated: [],
+      pricePerHour: removeCurrencySymbolAndParse(pricePerHour),
+      serviceNature: nature ?? "BAR",
+      title: title,
+      media: []
+    })], { type: 'application/json' }));
 
-    Promise.all(mediaPromises)
-      .then(async (media: string[]) => {
-        const servicePaylod: ServicePayload = {
-          title,
-          description,
-          media,
-          address,
-          neighborhood,
-          city,
-          pricePerHour: removeCurrencySymbolAndParse(pricePerHour),
-          serviceNature: nature,
-          peopleInvolved: quantityOfEmployees,
-          ownerId: parseInt(data?.user.id ?? ""),
-          placesIdsRelated: [],
-        };
-        handleSubmit(servicePaylod, service?.id).then(() => setLoading(false));
-      })
-      .catch((error) => {
-        setLoading(false);
-        toast.error("Error processing images:", error);
-      });
+    images.forEach(image => {
+      formData.append('file', image);
+    })
+
+    handleSubmit(formData, service?.id).then(() => setLoading(false));
   };
 
   return (
