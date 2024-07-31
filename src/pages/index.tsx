@@ -13,6 +13,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { getServiceTypes } from "@/services/api";
 
 export default function LandingPage() {
   const router = useRouter();
@@ -24,6 +25,16 @@ export default function LandingPage() {
       router.push("/home");
     }
   }, [router, status]);
+
+  const apiHealthCheck = async () => {
+    try {
+      await getServiceTypes();
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    apiHealthCheck();
+  }, []);
 
   return (
     <>
