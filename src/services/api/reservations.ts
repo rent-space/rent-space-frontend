@@ -27,19 +27,21 @@ export async function getPlaceReservations(): Promise<PlaceReservation[]> {
   });
 
   if (error) {
-    return new Promise(() => null);
+    toast.error("Erro ao listar reservas de espaço");
+    console.error(error);
   }
 
   return data;
 }
 
 export async function getServiceReservations(): Promise<PlaceReservation[]> {
-  const { data, error } = await fetchApi("/solicitacao/servico", {
+  const { data, error } = await fetchApi("/solicitacao/servico/all", {
     method: "GET",
   });
 
   if (error) {
-    return new Promise(() => null);
+    toast.error("Erro ao listar reservas de serviço");
+    console.error(error);
   }
 
   return data;
