@@ -39,12 +39,15 @@ export default function RequestedSolicitations() {
   });
 
   useEffect(() => {
+    const userType = data?.user.userType;
+
     const getReservation = async () => {
-      Promise.all([getPlaceReservations(), getServiceReservations()]).then(
-        (reservations) => {
-          setAllReservations(reservations.flat());
-        }
-      );
+      Promise.all([
+        getPlaceReservations(userType),
+        getServiceReservations(userType),
+      ]).then((reservations) => {
+        setAllReservations(reservations.flat());
+      });
     };
 
     getReservation();
@@ -77,14 +80,14 @@ export default function RequestedSolicitations() {
 
         allReservations.forEach((reserv) => {
           if (
-            reserv.status == "PENDING" &&
-            (reserv.product.owner.email == userEmail ||
-              reserv.eventOwner.email == userEmail)
+            reserv?.status == "PENDING" &&
+            (reserv?.product.owner.email == userEmail ||
+              reserv?.eventOwner.email == userEmail)
           ) {
             pendingList.push(reserv);
           } else if (
-            reserv.product.owner.email == userEmail ||
-            reserv.eventOwner.email == userEmail
+            reserv?.product.owner.email == userEmail ||
+            reserv?.eventOwner.email == userEmail
           ) {
             answeredList.push(reserv);
           }
