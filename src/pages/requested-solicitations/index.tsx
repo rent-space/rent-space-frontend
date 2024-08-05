@@ -126,19 +126,19 @@ export default function RequestedSolicitations() {
             ) : pendingReservation !== null &&
               (pendingReservation ?? []).length > 0 ? (
               pendingReservation?.map((reser, index) =>
-                data?.user?.userType === "PLACE_OWNER" ? (
+                data?.user?.userType != "SERVICE_OWNER" ? (
                   <PageCard
                     type="PLACE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 ) : (
                   <PageCard
                     type="SERVICE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 )
               )
@@ -157,19 +157,19 @@ export default function RequestedSolicitations() {
             ) : answeredReservation !== null &&
               (answeredReservation ?? []).length > 0 ? (
               answeredReservation?.map((reser, index) =>
-                data?.user?.userType === "PLACE_OWNER" ? (
+                data?.user?.userType != "SERVICE_OWNER" ? (
                   <PageCard
                     type="PLACE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 ) : (
                   <PageCard
                     type="SERVICE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 )
               )

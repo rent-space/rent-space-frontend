@@ -95,7 +95,7 @@ export async function createPlaceReservation(
   if (error) {
     toast.error("Erro ao solicitar reserva: " + error);
   } else {
-    toast.success("A sua solicitação foi enviada para o dono do espaço 😀");
+    toast.success("A sua solicitação foi enviada para o dono do serviço 😀");
   }
 
   return data;
