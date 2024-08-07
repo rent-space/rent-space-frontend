@@ -14,7 +14,7 @@ export type PlaceReservationBody = {
 };
 
 export type PlaceReservation = {
-  type: "PLACE";
+  type: string;
   id: number;
   startsAt: string;
   endsAt: string;
@@ -73,7 +73,7 @@ export type ServiceReservationBody = {
 };
 
 export type ServiceReservation = {
-  type: "SERVICE";
+  type: string;
   id: number;
   startsAt: string;
   endsAt: string;

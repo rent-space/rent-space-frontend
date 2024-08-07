@@ -131,14 +131,20 @@ export default function RequestedSolicitations() {
                     type="PLACE"
                     reservation={reser}
                     key={index}
-                    shouldClick={reser.status === "PENDING"}
+                    shouldClick={
+                      reser.status === "PENDING" &&
+                      data?.user.userType === "PLACE_OWNER"
+                    }
                   />
                 ) : (
                   <PageCard
                     type="SERVICE"
                     reservation={reser}
                     key={index}
-                    shouldClick={reser.status === "PENDING"}
+                    shouldClick={
+                      reser.status === "PENDING" &&
+                      data?.user.userType === "SERVICE_OWNER"
+                    }
                   />
                 )
               )
