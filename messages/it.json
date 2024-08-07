@@ -14,5 +14,13 @@
     "terms": "Termini di utilizzo",
     "login": "Accedi",
     "register": "Registrati"
+  },
+  "home": {
+    "event-phrase": "Organizziamo questo",
+    "event-phrase-bold": "EVENTO?",
+    "subtitle": "Benvenuto! Siamo qui per offrire le principali necessità affinché tu possa avere l'evento perfetto senza alcuna preoccupazione!",
+    "main-spaces": "Spazi Principali",
+    "see-all": "Vedi tutti",
+    "loading": "Caricamento..."
   }
 }
