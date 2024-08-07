@@ -1,0 +1,18 @@
+{
+  "common": {
+    "italian": "Italiano",
+    "portuguese": "Portoghese"
+  },
+  "landing-page": {
+    "title-1": "Trova il posto perfetto per la tua prossima",
+    "title-2": "celebrazione.",
+    "description": "Prenota uno spazio, assumi un servizio, concentrati sul divertimento della tua festa, semplifica il mal di testa dell'organizzazione con noi.",
+    "functionality-list-1": "Trova lo spazio perfetto.",
+    "functionality-list-2": "Assumi i migliori servizi.",
+    "functionality-list-3": "Goditi al 100% la tua festa.",
+    "contact": "Contatto",
+    "terms": "Termini di utilizzo",
+    "login": "Accedi",
+    "register": "Registrati"
+  }
+}

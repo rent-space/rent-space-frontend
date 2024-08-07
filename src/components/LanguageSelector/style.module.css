@@ -1,0 +1,20 @@
+.selectContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+}
+
+.selectContainer select {
+  border: none;
+  padding: 0 0.2rem;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.selectContainer select option {
+  padding: 8px;
+}
