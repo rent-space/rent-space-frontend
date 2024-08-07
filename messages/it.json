@@ -14,5 +14,32 @@
     "terms": "Termini di utilizzo",
     "login": "Accedi",
     "register": "Registrati"
+  },
+  "home": {
+    "event-phrase": "Organizziamo questo",
+    "event-phrase-bold": "EVENTO?",
+    "subtitle": "Benvenuto! Siamo qui per offrire le principali necessità affinché tu possa avere l'evento perfetto senza alcuna preoccupazione!",
+    "main-spaces": "Spazi Principali",
+    "see-all": "Vedi tutti",
+    "loading": "Caricamento..."
+  },
+  "navbar": {
+    "home": "Home",
+    "spaces": "Spazi",
+    "services": "Servizi"
+  },
+  "card": {
+    "people": "Persone"
+  },
+  "spaces-to-rent": "Spazi da affittare",
+  "services-to-rent": "Servizi da affittare",
+  "details-space": {
+    "see-more": "Vedi di più...",
+    "see-less": "Mostra meno...",
+    "basic-info": "Informazioni di base",
+    "people": "Persone",
+    "until": "Fino a",
+    "address": "Indirizzo",
+    "reserve": "Prenotare"
   }
 }

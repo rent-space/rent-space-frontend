@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Loading from "@/components/Loading";
 import searchGif from "@/assets/searching.gif";
+import { useTranslations } from "next-intl";
 
 export function SpaceLoading() {
+  const t = useTranslations();
+
   return (
     <div
       style={{
@@ -13,7 +16,7 @@ export function SpaceLoading() {
       }}
     >
       <Image src={searchGif} width={200} alt="Searching" />
-      <Loading loadingLabel="Estamos carregando as informações desse espaço" />
+      <Loading loadingLabel={t("loading-space")} />
     </div>
   );
 }

@@ -13,9 +13,11 @@ import { getSpaces } from "@/services/api/space";
 import { Page } from "@/components/Page";
 import { Text } from "@/components/Text";
 import Loading from "@/components/Loading";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
   const router = useRouter();
+  const t = useTranslations("home");
   const [cards, setCards] = useState<AllSpaces>([]);
   const [spaces, setSpaces] = useState<AllSpaces>([]);
   const [loading, setLoading] = useState<Boolean>(true);
@@ -62,15 +64,13 @@ export default function Home() {
           />
           <div className={styles.overlayText}>
             <div className={styles.titleContainer}>
-              <span className={styles.eventPhrase}>Vamos organizar esse</span>
-              <span className={styles.eventPhraseBold}>EVENTO ?</span>
+              <span className={styles.eventPhrase}> {t("event-phrase")} </span>
+              <span className={styles.eventPhraseBold}>
+                {t("event-phrase-bold")}
+              </span>
             </div>
             <div className={styles.subtitleContainer}>
-              <span className={styles.subtitle}>
-                Seja bem-vindo! Estamos aqui para oferecer as principais
-                necessidades para que você tenha o evento perfeito sem qualquer
-                preocupação!
-              </span>
+              <span className={styles.subtitle}>{t("subtitle")}</span>
             </div>
           </div>
         </div>
@@ -79,10 +79,10 @@ export default function Home() {
           <div className={styles.spaces}>
             <div className={styles.textContainer}>
               <Text size="title1" weight="semibold">
-                Principais Espaços
+                {t("main-spaces")}
               </Text>
               <button className={styles.seeAll} onClick={navigateToListSpace}>
-                Ver todos
+                {t("see-all")}
               </button>
             </div>
 
@@ -93,7 +93,7 @@ export default function Home() {
                       className={`${styles.cards} ${styles.loadingCard}`}
                       key={i}
                     >
-                      <Loading key={i} loadingLabel="Carregando..." />
+                      <Loading key={i} loadingLabel={t("loading")} />
                     </div>
                   ))
                 : cards.map((card, _) => {

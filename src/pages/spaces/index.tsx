@@ -12,10 +12,13 @@ import { useEffect, useState } from "react";
 import { getSpaces } from "@/services/api/space";
 import { AllSpaces } from "@/utils/types";
 import Loading from "@/components/Loading";
+import { useTranslations } from "next-intl";
 
 const PAGE_SIZE = 6;
 
 export default function Spaces() {
+  const t = useTranslations();
+
   const [spaces, setSpaces] = useState<AllSpaces>([]);
   const [cards, setCards] = useState<AllSpaces>([]);
   const [loading, setLoading] = useState<Boolean>(true);
@@ -71,7 +74,7 @@ export default function Spaces() {
       <FloatingButton route="space" />
       <div className={styles.container}>
         <div className={styles.titleContainer}>
-          <span className={styles.title}>Espaços para alugar</span>
+          <span className={styles.title}> {t("spaces-to-rent")} </span>
         </div>
 
         <div className={styles.listContainer}>

@@ -8,6 +8,7 @@ import { FiCameraOff } from "react-icons/fi";
 import { useSession } from "next-auth/react";
 import { EditButton } from "../EditButton";
 import { DeleteButton } from "../DeleteButton";
+import { useTranslations } from "next-intl";
 
 interface Props {
   space: Space;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export function DetailsSpace(props: Props) {
+  const t = useTranslations("details-space");
   const [mainImage, setMainImage] = useState<string>();
   const [anotherImages, setAnotherImages] = useState<string[]>([]);
   const [maxImagesShowed, setMaxImagesShowed] = useState<number>(3);
@@ -86,12 +88,12 @@ export function DetailsSpace(props: Props) {
           ))}
           {anotherImages.length > 4 && !showAllImages && (
             <button className={styles.viewMore} onClick={openImages}>
-              Ver mais...
+              {t("see-more")}
             </button>
           )}
           {anotherImages.length > 4 && showAllImages && (
             <button className={styles.viewLess} onClick={hideImages}>
-              Mostrar menos...
+              {t("see-less")}
             </button>
           )}
         </div>
@@ -118,17 +120,19 @@ export function DetailsSpace(props: Props) {
           <div className={styles.textBox}>
             <div>
               <Text size="subtitle" weight="semibold">
-                Informações básicas
+                {t("basic-info")}
               </Text>
               <ul className={styles.list}>
-                <li>Até {maximumCapacity} pessoas</li>
+                <li>
+                  {t("until")} {maximumCapacity} {t("people")}
+                </li>
                 <li>R$ {pricePerHour}/h </li>
               </ul>
             </div>
 
             <div className={styles.address}>
               <Text size="subtitle" weight="semibold">
-                Endereço
+                {t("address")}
               </Text>
 
               <Text size="body" color="gray" weight="regular">
@@ -139,7 +143,7 @@ export function DetailsSpace(props: Props) {
             {isEventOwner && (
               <div>
                 <Button variant="primary" size="small" onClick={openModal}>
-                  Reservar
+                  {t("reserve")}
                 </Button>
               </div>
             )}

@@ -14,5 +14,34 @@
     "terms": "Termos de uso",
     "login": "Login",
     "register": "Cadastrar"
+  },
+  "home": {
+    "event-phrase": "Vamos organizar esse",
+    "event-phrase-bold": "EVENTO ?",
+    "subtitle": "Seja bem-vindo! Estamos aqui para oferecer as principais necessidades para que você tenha o evento perfeito sem qualquer preocupação!",
+    "main-spaces": "Principais Espaços",
+    "see-all": "Ver todos",
+    "loading": "Carregando..."
+  },
+  "navbar": {
+    "home": "Home",
+    "spaces": "Espaços",
+    "services": "Serviços"
+  },
+  "card": {
+    "people": "Pessoas"
+  },
+  "spaces-to-rent": "Espaços para alugar",
+  "services-to-rent": "Serviços para alugar",
+  "loading-space": "Estamos carregando as informações desse espaço",
+  "loading-service": "Estamos carregando as informações desse serviço",
+  "details-space": {
+    "see-more": "Ver mais...",
+    "see-less": "Mostrar menos...",
+    "basic-info": "Informações básicas",
+    "people": "Pessoas",
+    "until": "Até",
+    "address": "Endereço",
+    "reserve": "Reservar"
   }
 }

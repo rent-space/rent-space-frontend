@@ -12,11 +12,13 @@ import { CardDescription } from "@/components/CardDescription";
 import { AllServices } from "@/utils/types";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { getServices } from "@/services/api";
+import { useTranslations } from "next-intl";
 
 const PAGE_SIZE = 6;
 
 export default function Services() {
   const router = useRouter();
+  const t = useTranslations();
 
   const [loading, setLoading] = useState<Boolean>(true);
   const [services, setServices] = useState<AllServices>([]);
@@ -71,7 +73,7 @@ export default function Services() {
       <FloatingButton route="service" />
       <div className={styles.container}>
         <div className={styles.titleContainer}>
-          <span className={styles.title}>Serviços para alugar</span>
+          <span className={styles.title}>{t("services-to-rent")} </span>
         </div>
 
         <div className={styles.listContainer}>
