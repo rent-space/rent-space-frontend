@@ -6,6 +6,7 @@ export type User = {
   email: string;
   telephone: string;
   webSite: string;
+  accountId?: string;
 };
 
 export enum USER_TYPES {

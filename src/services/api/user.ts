@@ -28,3 +28,16 @@ export async function createUser(user: User): Promise<User> {
 
   return data;
 }
+
+export async function setUserAccountId(accountId: string, userId: string): Promise<User> {
+  const { data, error } = await fetchApi(`/usuario/${userId}`, {
+    data: { accountId },
+    method: "PATCH",
+  });
+
+  if (error) {
+    toast.error("Erro ao atualizar o usuário: " + error);
+  }
+
+  return data;
+}

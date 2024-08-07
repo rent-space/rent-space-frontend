@@ -1,0 +1,45 @@
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageTitle {
+  font-size: 32px;
+  padding: 0px;
+  margin: 0px;
+  color: var(--laranja);
+  font-weight: 600;
+}
+
+.pageImage {
+  width: 20vw;
+  height: 20vw;
+}
+
+.form {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.accountCreatedCont {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountCreatedCont h2 {
+  font-size: 16px;
+  max-width: 450px;
+  text-align: center;
+  color: var(--cinza-escuro);
+  font-weight: 400;
+  margin-bottom: 16px;
+}

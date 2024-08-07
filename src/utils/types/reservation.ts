@@ -34,6 +34,7 @@ export type PlaceReservation = {
       telephone: string;
       webSite: string;
       userType: string;
+      accountId?: string;
     };
     media: [string];
   };

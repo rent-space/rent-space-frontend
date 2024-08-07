@@ -11,6 +11,8 @@
     "test:open": "cypress open"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.3",
+    "@stripe/stripe-js": "^4.1.0",
     "axios": "^1.6.8",
     "moment-timezone": "^0.5.45",
     "next": "14.1.0",
