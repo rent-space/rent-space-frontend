@@ -14,11 +14,15 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { healthCheck } from "@/services/api/health";
+import { useTranslations } from "next-intl";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 export default function LandingPage() {
   const router = useRouter();
 
   const { status } = useSession();
+
+  const t = useTranslations("landing-page");
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -40,19 +44,20 @@ export default function LandingPage() {
     <>
       <Header>
         <div className={styles.login}>
+          <LanguageSelector />
           <Button
             onClick={() => signIn("google", { callbackUrl: "/login-loader" })}
             variant="primary"
             size="small"
           >
-            Login
+            {t("login")}
           </Button>
           <Button
             onClick={() => signIn("google", { callbackUrl: "/login-loader" })}
             variant="secondary"
             size="small"
           >
-            Cadastrar
+            {t("register")}
           </Button>
         </div>
       </Header>
@@ -60,27 +65,24 @@ export default function LandingPage() {
         <div className={styles.home}>
           <section className={styles.homeInformations}>
             <h1 className={styles.homeTitle}>
-              Encontre o lugar perfeito para a sua próxima
-              <span> comemoração.</span>
+              {t("title-1")}
+              <span> {t("title-2")}</span>
             </h1>
 
-            <span className={styles.appDescription}>
-              Reserve um espaço, contrate um serviço, se preocupe com a diversão
-              da sua festa, simplifique a dor de cabeça da organização conosco.
-            </span>
+            <span className={styles.appDescription}>{t("description")}</span>
 
             <div className={styles.appFunctionalities}>
               <span>
                 <IconArrowRight />
-                <p>Encontre o espaço perfeito.</p>
+                <p>{t("functionality-list-1")}</p>
               </span>
               <span>
                 <IconArrowRight />
-                <p>Contrate os melhores serviços.</p>
+                <p>{t("functionality-list-2")}</p>
               </span>
               <span>
                 <IconArrowRight />
-                <p>Aproveite 100% da sua festa.</p>
+                <p>{t("functionality-list-3")}</p>
               </span>
             </div>
           </section>
@@ -93,7 +95,7 @@ export default function LandingPage() {
       </Page>
       <Footer>
         <Text size="section" color="gray">
-          Contato &#x2022; Termos de uso
+          {t("contact")} &#x2022; {t("terms")}
         </Text>
       </Footer>
     </>

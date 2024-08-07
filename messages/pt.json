@@ -1,0 +1,18 @@
+{
+  "common": {
+    "italian": "Italiano",
+    "portuguese": "Português"
+  },
+  "landing-page": {
+    "title-1": "Encontre o lugar perfeito para a sua próxima",
+    "title-2": "comemoração.",
+    "description": "Reserve um espaço, contrate um serviço, se preocupe com a diversão da sua festa, simplifique a dor de cabeça da organização conosco.",
+    "functionality-list-1": "Encontre o espaço perfeito.",
+    "functionality-list-2": "Contrate os melhores serviços.",
+    "functionality-list-3": "Aproveite 100% da sua festa.",
+    "contact": "Contato",
+    "terms": "Termos de uso",
+    "login": "Login",
+    "register": "Cadastrar"
+  }
+}
