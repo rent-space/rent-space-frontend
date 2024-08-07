@@ -43,5 +43,11 @@
     "until": "Até",
     "address": "Endereço",
     "reserve": "Reservar"
+  },
+  "loading-reserve": "Carregando suas reservas...",
+  "modal-user": {
+    "reserve": "Reservas",
+    "language": "Idioma",
+    "logout": "Sair"
   }
 }

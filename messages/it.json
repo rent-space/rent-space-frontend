@@ -43,5 +43,11 @@
     "until": "Fino a",
     "address": "Indirizzo",
     "reserve": "Prenotare"
+  },
+  "loading-reserve": "Caricamento delle tue prenotazioni...",
+  "modal-user": {
+    "reserve": "Prenotazioni",
+    "language": "Lingua",
+    "logout": "Uscire"
   }
 }

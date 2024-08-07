@@ -8,10 +8,12 @@ import { useCallback, useEffect } from "react";
 import styles from "./styles.module.css";
 import WaitLoading from "@/assets/waitLoading.svg";
 import { toast } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 export default function LoginLoader() {
   const { status, data, update } = useSession();
   const router = useRouter();
+  const t = useTranslations();
 
   const redirectAfterAuth = useCallback(async () => {
     switch (status) {

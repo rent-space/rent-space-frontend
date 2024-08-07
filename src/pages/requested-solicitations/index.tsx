@@ -12,6 +12,7 @@ import {
 import { PlaceReservation, ServiceReservation } from "@/utils/types";
 import PageCard from "./_card";
 import Loading from "@/components/Loading";
+import { useTranslations } from "next-intl";
 
 interface PageDataProps {
   title: string;
@@ -37,6 +38,8 @@ export default function RequestedSolicitations() {
     firstSection: "Solicitações pendentes",
     secSection: "Solicitações respondidas",
   });
+
+  const t = useTranslations();
 
   useEffect(() => {
     const userType = data?.user.userType;
@@ -122,7 +125,7 @@ export default function RequestedSolicitations() {
 
           <div className={styles.cards}>
             {isLoading ? (
-              <Loading loadingLabel="Carregando suas reservas..." />
+              <Loading loadingLabel={t("loading-reserve")} />
             ) : pendingReservation !== null &&
               (pendingReservation ?? []).length > 0 ? (
               pendingReservation?.map((reser, index) =>

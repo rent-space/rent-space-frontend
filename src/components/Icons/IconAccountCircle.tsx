@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { GrLanguage } from "react-icons/gr";
 import { FiLogOut, FiCalendar } from "react-icons/fi";
 import { LanguageSelector } from "../LanguageSelector";
+import { useTranslations } from "next-intl";
 
 interface Props {
   onClick?: () => void;
@@ -15,6 +16,7 @@ interface Props {
 export function IconAccountCircle(props: Props) {
   const session = useSession();
   const router = useRouter();
+  const t = useTranslations("modal-user");
 
   const [showPopover, setShowPopover] = useState<boolean>(false);
   const [showLanguagePopover, setShowLanguagePopover] =
@@ -47,19 +49,19 @@ export function IconAccountCircle(props: Props) {
             onClick={() => router.push("/requested-solicitations")}
           >
             <FiCalendar style={{ marginRight: "0.2rem" }} />
-            Reservas
+            {t("reserve")}
           </button>
           <button
             className={styles.button}
             onClick={() => setShowLanguagePopover(!showLanguagePopover)}
           >
             <GrLanguage style={{ marginRight: "0.2rem" }} />
-            Idioma
+            {t("language")}
           </button>
           {showLanguagePopover && <LanguageSelector />}
           <button className={styles.button} onClick={props.onClick}>
             <FiLogOut style={{ marginRight: "0.2rem" }} />
-            Logout
+            {t("logout")}
           </button>
         </div>
       )}
