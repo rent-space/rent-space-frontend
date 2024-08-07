@@ -33,6 +33,8 @@
   },
   "spaces-to-rent": "Spazi da affittare",
   "services-to-rent": "Servizi da affittare",
+  "loading-space": "Stiamo caricando informazioni da questo spazio",
+  "loading-service": "Stiamo caricando informazioni da questo servizio",
   "details-space": {
     "see-more": "Vedi di più...",
     "see-less": "Mostra meno...",

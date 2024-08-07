@@ -80,7 +80,7 @@ export default function Services() {
           {loading
             ? Array.from(Array(6).keys()).map((_, i) => (
                 <div className={`${styles.card} ${styles.loadingCard}`} key={i}>
-                  <Loading key={i} loadingLabel="Carregando..." />
+                  <Loading key={i} loadingLabel={t("home.loading")} />
                 </div>
               ))
             : cards.map((service) => {
