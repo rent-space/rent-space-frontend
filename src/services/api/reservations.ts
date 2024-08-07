@@ -1,3 +1,4 @@
+import { UserType } from "./../../utils/types/user";
 import {
   PlaceReservation,
   PlaceReservationBody,
@@ -21,12 +22,14 @@ export async function getPlaceReservationById(
   return data;
 }
 
-export async function getPlaceReservations(): Promise<PlaceReservation[]> {
+export async function getPlaceReservations(
+  userType: string | undefined
+): Promise<PlaceReservation[]> {
   const { data, error } = await fetchApi("/solicitacao/espaco/all", {
     method: "GET",
   });
 
-  if (error) {
+  if (userType === "PLACE_OWNER" && error) {
     toast.error("Erro ao listar reservas de espaço");
     console.error(error);
   }
@@ -34,12 +37,14 @@ export async function getPlaceReservations(): Promise<PlaceReservation[]> {
   return data;
 }
 
-export async function getServiceReservations(): Promise<PlaceReservation[]> {
+export async function getServiceReservations(
+  userType: string | undefined
+): Promise<PlaceReservation[]> {
   const { data, error } = await fetchApi("/solicitacao/servico/all", {
     method: "GET",
   });
 
-  if (error) {
+  if (userType === "SERVICE_OWNER" && error) {
     toast.error("Erro ao listar reservas de serviço");
     console.error(error);
   }
@@ -90,7 +95,7 @@ export async function createPlaceReservation(
   if (error) {
     toast.error("Erro ao solicitar reserva: " + error);
   } else {
-    toast.success("A sua solicitação foi enviada para o dono do espaço 😀");
+    toast.success("A sua solicitação foi enviada para o dono do serviço 😀");
   }
 
   return data;

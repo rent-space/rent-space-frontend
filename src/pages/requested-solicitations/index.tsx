@@ -39,12 +39,15 @@ export default function RequestedSolicitations() {
   });
 
   useEffect(() => {
+    const userType = data?.user.userType;
+
     const getReservation = async () => {
-      Promise.all([getPlaceReservations(), getServiceReservations()]).then(
-        (reservations) => {
-          setAllReservations(reservations.flat());
-        }
-      );
+      Promise.all([
+        getPlaceReservations(userType),
+        getServiceReservations(userType),
+      ]).then((reservations) => {
+        setAllReservations(reservations.flat());
+      });
     };
 
     getReservation();
@@ -77,14 +80,14 @@ export default function RequestedSolicitations() {
 
         allReservations.forEach((reserv) => {
           if (
-            reserv.status == "PENDING" &&
-            (reserv.product.owner.email == userEmail ||
-              reserv.eventOwner.email == userEmail)
+            reserv?.status == "PENDING" &&
+            (reserv?.product.owner.email == userEmail ||
+              reserv?.eventOwner.email == userEmail)
           ) {
             pendingList.push(reserv);
           } else if (
-            reserv.product.owner.email == userEmail ||
-            reserv.eventOwner.email == userEmail
+            reserv?.product.owner.email == userEmail ||
+            reserv?.eventOwner.email == userEmail
           ) {
             answeredList.push(reserv);
           }
@@ -123,19 +126,25 @@ export default function RequestedSolicitations() {
             ) : pendingReservation !== null &&
               (pendingReservation ?? []).length > 0 ? (
               pendingReservation?.map((reser, index) =>
-                data?.user?.userType === "PLACE_OWNER" ? (
+                data?.user?.userType != "SERVICE_OWNER" ? (
                   <PageCard
                     type="PLACE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={
+                      reser.status === "PENDING" &&
+                      data?.user.userType === "PLACE_OWNER"
+                    }
                   />
                 ) : (
                   <PageCard
                     type="SERVICE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={
+                      reser.status === "PENDING" &&
+                      data?.user.userType === "SERVICE_OWNER"
+                    }
                   />
                 )
               )
@@ -154,19 +163,19 @@ export default function RequestedSolicitations() {
             ) : answeredReservation !== null &&
               (answeredReservation ?? []).length > 0 ? (
               answeredReservation?.map((reser, index) =>
-                data?.user?.userType === "PLACE_OWNER" ? (
+                data?.user?.userType != "SERVICE_OWNER" ? (
                   <PageCard
                     type="PLACE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 ) : (
                   <PageCard
                     type="SERVICE"
                     reservation={reser}
                     key={index}
-                    shouldClick={shouldRespond}
+                    shouldClick={reser.status === "PENDING"}
                   />
                 )
               )

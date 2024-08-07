@@ -59,13 +59,10 @@ export default function PageCard({
     setLoading(true);
     try {
       const status = accepted ? "ACCEPTED" : "REFUSED";
-      let response;
 
-      if (reservation.type === "PLACE") {
-        response = await updatePlaceReservation(reservation.id, status);
-      } else {
-        response = await updateServiceReservation(reservation.id, status);
-      }
+      // TODO: ADICIONAR UPDATE SERVICE RESERVATION
+
+      let response = await updatePlaceReservation(reservation.id, status);
 
       reservation = response;
       setIsModalOpen(false);
@@ -124,7 +121,6 @@ export default function PageCard({
                   {getFormattedDate(reservation.endsAt)}
                 </span>
               </strong>
-              {}
               <strong className={styles.cardInfo}>
                 Qnt. pessoas:{" "}
                 <span className={styles.cardInfoValue}>
